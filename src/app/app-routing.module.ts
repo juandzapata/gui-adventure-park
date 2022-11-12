@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SecurityModule } from './modules/security/security.module';
 import { NotFoundComponent } from './public/errors/not-found/not-found.component';
 import { HomeComponent } from './public/master-page/home/home.component';
 
@@ -14,7 +15,15 @@ const routes: Routes = [
     redirectTo: "/home"
   },
   {
-    path: "**",
+    path: "security",
+    loadChildren: () => import('./modules/security/security.module').then(m => m.SecurityModule)
+  },
+  {
+    path: "parameters",
+    loadChildren: () => import('./modules/parameters/parameters.module').then(m => m.ParametersModule)
+  },
+  {
+    path:"**",
     component: NotFoundComponent
   }
 ];
