@@ -4,11 +4,15 @@
 }
 
 .container{
-    display: flex;
-    justify-content: center;
+    margin: auto;
+    width: 60%;
 }
 
 .title{
     display: flex;
     justify-content: center;
+}
+
+.input-error{
+    color: red;
 }

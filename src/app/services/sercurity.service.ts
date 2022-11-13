@@ -21,4 +21,12 @@ export class SercurityService {
     });
   }
 
+  LoginRequest(username: string, password: string):Observable<object>{
+    let actionName = 'login';    
+    return this.http.post<object>(`${this.url}${actionName}`, {
+      correo: username,
+      clave: password
+    });
+  }
+
 }
