@@ -3,18 +3,26 @@
       <a routerLink="/home" class="brand-logo">Adventure</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a routerLink="security/singup">Login</a></li>
-        <li><a routerLink="/singIn.html">Components</a></li>
-        <li><a routerLink="/pursache">Javascript</a></li>
-        <li><a routerLink="/info">Mobile</a></li>
+        <li><a *ngIf="!isLogged" routerLink="security/singup">Login</a></li>        
+        <li><a *ngIf="isLogged"  routerLink="parameters/parques">Parques</a></li>        
+        <li><a *ngIf="isLogged" routerLink="parameters/atracciones">Atracciones</a></li>        
+        <li><a *ngIf="isLogged" routerLink="parameters/zonas">Zonas</a></li>        
+        <li><a *ngIf="isLogged" routerLink="parameters/puestos">Puestos de Comida</a></li>        
+        <li><a *ngIf="isLogged" routerLink="parameters/plan">Planes</a></li>        
+        <li><a *ngIf="isLogged" routerLink="parameters/departamentos">Departamentos</a></li>        
+        <li><a *ngIf="isLogged" routerLink="parameters/ciudades">Ciudades</a></li>                       
       </ul>
     </div>
   </nav>
 
   <ul class="sidenav" id="mobile-demo">
-    <li><a href="sass.html">Sass</a></li>
-    <li><a href="badges.html">Components</a></li>
-    <li><a href="collapsible.html">Javascript</a></li>
-    <li><a href="mobile.html">Mobile</a></li>
+    <li><a *ngIf="!isLogged" routerLink="security/singup">Login</a></li>        
+        <li><a *ngIf="isLogged"  routerLink="parameters/parques">Elecciones</a></li>        
+        <li><a *ngIf="isLogged" routerLink="parameters/atracciones">Atracciones</a></li>        
+        <li><a *ngIf="isLogged" routerLink="parameters/zonas">Zonas</a></li>        
+        <li><a *ngIf="isLogged" routerLink="parameters/puestos">Puestos de Comida</a></li>        
+        <li><a *ngIf="isLogged" routerLink="parameters/plan">Planes</a></li>        
+        <li><a *ngIf="isLogged" routerLink="parameters/departamentos">Login</a></li>        
+        <li><a *ngIf="isLogged" routerLink="parameters/ciudades">ciudades</a></li>    
   </ul>
           

@@ -2,22 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DefaultValues } from 'src/app/config/default-values';
+import { LoggedUserModel } from 'src/app/models/logged-user.model';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { SercurityService } from 'src/app/services/sercurity.service';
 
-var MD5 = require("crypto-js/md5");
+var MD5 = require('crypto-js/md5');
 
 @Component({
   selector: 'app-singup',
   templateUrl: './singup.component.html',
-  styleUrls: ['./singup.component.css']
+  styleUrls: ['./singup.component.css'],
 })
 export class SingupComponent implements OnInit {
-
   fGroup: FormGroup = new FormGroup({});
   constructor(
     private fb: FormBuilder,
     private secService: SercurityService,
-    private router: Router
+    private router: Router,
+    private lsServices: LocalStorageService
   ) {}
 
   ngOnInit(): void {
@@ -30,43 +32,46 @@ export class SingupComponent implements OnInit {
   /**
    * Construcción del formulario con los campos del mismo
    */
-  BuildingForm(){
+  BuildingForm() {
     this.fGroup = this.fb.group({
-      username: [DefaultValues.email, [Validators.required, Validators.email, Validators.minLength(5)]],
-      password: [DefaultValues.password, [Validators.required]]
+      username: [
+        DefaultValues.email,
+        [Validators.required, Validators.email, Validators.minLength(5)],
+      ],
+      password: [DefaultValues.password, [Validators.required]],
     });
   }
 
   /**
    * Ejecución de la funcionalidad del botón 'ingresar'
    */
-  LoginAction(){
-    let username = this.fGroup.controls["username"].value;
-    let password = this.fGroup.controls["password"].value;
+  LoginAction() {
+    let username = this.fGroup.controls['username'].value;
+    let password = this.fGroup.controls['password'].value;
 
     //Enviar la contraseña cifrada al backend
     let cryptoPassword = MD5(password).toString();
     console.log(cryptoPassword);
 
     this.secService.LoginRequest(username, cryptoPassword).subscribe({
-      next:(data) => {
+      next: (data: LoggedUserModel) => {
         //Cuando se ha obtenido una respuesta valida
-        if(data == null){
-          alert("Datos invalidos")
-        }else{
-          alert("Token: " + data)
-          this.router.navigate(["/home"])
+        if (data.token == '') {
+          alert('Datos invalidos');
+        } else {
+          //console.log(data)
+          data.user.isLogged = true;
+          this.lsServices.SaveUserData(data);
+          this.router.navigate(['/home']);
         }
-        
       },
-      error:(err) =>{
-        alert("Error en login")
-      }
+      error: (err) => {
+        alert('Error en login');
+      },
     });
   }
 
-  get fg(){
+  get fg() {
     return this.fGroup.controls;
   }
 }
-
