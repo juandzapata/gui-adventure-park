@@ -70,4 +70,14 @@ export class SercurityService {
     });
   }
 
+  /**
+   * Valida si el token almacenado es correcto
+   * @param jwt Token de localStroge
+   * @returns String con: -Rol Id- o -Vacío-
+   */
+  CheckSessionToken(jwt:string):Observable<boolean>{
+    let actionName = 'check-validate-token/';
+    return this.http.get<boolean>(`${this.url}${actionName}/${jwt}`);
+  }
+
 }

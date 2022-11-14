@@ -26,15 +26,38 @@ export class LocalStorageService {
   }
 
   /**
+   * Resetea los valores del usuario en el local storage para cerrar sesión
+   */
+  RemoveUserData(){
+    localStorage.removeItem("user-data");
+    let userData = new UserModel();
+    this.secService.UpdateUserBehavior(userData);
+  }
+
+  /**
    * Retorna la información del usuario logueado
    * @returns El objeto o un valor nulo
    */
-  /*GetUserData():UserModel | null{
+  GetSessionData(): LoggedUserModel | null{
     let userAsString = localStorage.getItem("user-data");
     if(userAsString){
       let userData: LoggedUserModel = JSON.parse(userAsString);
-      return userData.user;
+      return userData;
     }
-    return null; 
-  }*/
+    return null;
+  }
+
+  /**
+   * Verifica el rol del usuario logueado
+   * @returns El rol si hay un usuario logueado o vacío si no
+   */
+  GetRolId(){
+    let userAsString = localStorage.getItem("user-data");
+    if(userAsString){
+      return JSON.parse(userAsString).user.rol;
+    }
+    return "";
+  }
+
+
 }
