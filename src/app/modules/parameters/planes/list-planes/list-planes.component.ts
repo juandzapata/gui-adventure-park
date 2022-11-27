@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApisInfo } from 'src/app/config/apis-info';
+import { PlanModel } from 'src/app/models/plan.model';
+import { PlanesService } from 'src/app/services/parameters/planes.service';
 
 @Component({
   selector: 'app-list-planes',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListPlanesComponent implements OnInit {
 
-  constructor() { }
+  // /ObtenerArchivo/{type}/{name}
+  urlServer = ApisInfo.LOGIC_MS_URL;
+  recordList: PlanModel[] = [];
+
+
+  constructor(
+    private planService: PlanesService,
+
+  ) { }
 
   ngOnInit(): void {
+    this.planService.getRecordList().subscribe({
+      next:(data)=>{
+        this.recordList = data;
+
+      },
+      error:(err)=>{
+        alert("Error obteniendo la información");
+      }
+    });
   }
 
 }

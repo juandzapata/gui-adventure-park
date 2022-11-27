@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApisInfo } from 'src/app/config/apis-info';
+import { CiudadModel } from 'src/app/models/ciudad.model';
+import { CiudadesService } from 'src/app/services/parameters/ciudades.service';
 
 @Component({
   selector: 'app-list-ciudades',
@@ -7,9 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListCiudadesComponent implements OnInit {
 
-  constructor() { }
+
+  // /ObtenerArchivo/{type}/{name}
+  urlServer = ApisInfo.LOGIC_MS_URL;
+  recordList: CiudadModel[] = [];
+
+
+  constructor(
+    private ciudadService: CiudadesService,
+
+  ) { }
 
   ngOnInit(): void {
+    this.ciudadService.getRecordList().subscribe({
+      next:(data)=>{
+        this.recordList = data;
+
+      },
+      error:(err)=>{
+        alert("Error obteniendo la información");
+      }
+    });
   }
 
 }

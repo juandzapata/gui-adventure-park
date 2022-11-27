@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApisInfo } from 'src/app/config/apis-info';
+import { ParqueModel } from 'src/app/models/parque.model';
+import { ParqueService } from 'src/app/services/parameters/parque.service';
 
 @Component({
   selector: 'app-list-parque',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListParqueComponent implements OnInit {
 
-  constructor() { }
+  // /ObtenerArchivo/{type}/{name}
+  urlServer = ApisInfo.LOGIC_MS_URL;
+  recordList: ParqueModel[] = [];
+
+
+  constructor(
+    private parqueService: ParqueService,
+
+  ) { }
 
   ngOnInit(): void {
+    this.parqueService.getRecordList().subscribe({
+      next:(data)=>{
+        this.recordList = data;
+
+      },
+      error:(err)=>{
+        alert("Error obteniendo la información");
+      }
+    });
   }
 
 }

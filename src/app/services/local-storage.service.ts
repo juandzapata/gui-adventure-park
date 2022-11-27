@@ -59,5 +59,17 @@ export class LocalStorageService {
     return "";
   }
 
+   /**
+   * Verifica el rol del usuario logueado
+   * @returns token del usuario logueado
+   */
+    GetSessionToken(){
+      let userAsString = localStorage.getItem("user-data");
+      if(userAsString){
+        return JSON.parse(userAsString).token;
+      }
+      return "";
+    }
+
 
 }
