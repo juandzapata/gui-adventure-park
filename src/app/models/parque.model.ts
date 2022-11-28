@@ -3,9 +3,9 @@ export class ParqueModel{
     nombre: string = '';
     direccion: string = '';
     email: string = '';
-    capacidad: string = '';
+    capacidad: number = 0;
     imagenLogo: string = '';
     imagenMapa: string = '';
     eslogan: string = '';
-    descripción: string = '';    
+    descripcion: string = '';    
 }

@@ -38,7 +38,10 @@ export class CiudadesService {
    * @returns Registro ingresado
    */
   saveRecord(record: CiudadModel): Observable<CiudadModel>{
-    return this.http.post<CiudadModel>(this.url, record, {
+    return this.http.post<CiudadModel>(this.url, {
+      nombre: record.nombre,
+      codigoPostal: record.codigoPostal
+    }, {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`
       })

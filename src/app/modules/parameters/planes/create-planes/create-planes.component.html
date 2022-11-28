@@ -1,1 +1,37 @@
-<p>create-planes works!</p>
+<div class="row">
+    <form class="col s12" [formGroup]="fGroup">
+
+        <div class="row">
+            <div class="input-field col s12">
+                <input formControlName="name" id="name" type="text" />
+                <label for="name">Nombre</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <input formControlName="color" id="color" type="color" />
+                <label for="color"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <input formControlName="valor" id="color" type="number" />
+                <label for="valor">Valor</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <button class="btn btn-success green" (click)="SaveRecord()">
+                    <i class="material-icons left">save</i>Guardar
+                </button>
+                &nbsp;
+                <a routerLink="/parameters/list-ciudades" class="waves-effect waves-light btn red"><i
+                        class="material-icons left">cancel</i>Cancelar</a>
+            </div>
+        </div>
+        
+    </form>
+</div>

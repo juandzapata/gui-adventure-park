@@ -30,6 +30,7 @@ import { CreateCiudadesComponent } from './ciudades/create-ciudades/create-ciuda
 import { EditCiudadesComponent } from './ciudades/edit-ciudades/edit-ciudades.component';
 import { RemoveCiudadesComponent } from './ciudades/remove-ciudades/remove-ciudades.component';
 import { ListCiudadesComponent } from './ciudades/list-ciudades/list-ciudades.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -65,7 +66,9 @@ import { ListCiudadesComponent } from './ciudades/list-ciudades/list-ciudades.co
   ],
   imports: [
     CommonModule,
-    ParametersRoutingModule
-  ]
+    ParametersRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
+  ] 
 })
 export class ParametersModule { }

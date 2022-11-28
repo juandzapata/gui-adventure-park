@@ -1,1 +1,30 @@
-<p>create-ciudades works!</p>
+<div class="row">
+    <form class="col s12" [formGroup]="fGroup">
+
+        <div class="row">
+            <div class="input-field col s12">
+                <input formControlName="name" id="name" type="text" />
+                <label for="name">Nombre</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <input formControlName="codigoPostal" id="codigoPostal" type="text" />
+                <label for="codigoPostal">Código Postal</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <button class="btn btn-success green" (click)="SaveRecord()">
+                    <i class="material-icons left">save</i>Guardar
+                </button>
+                &nbsp;
+                <a routerLink="/parameters/list-ciudades" class="waves-effect waves-light btn red"><i
+                        class="material-icons left">cancel</i>Cancelar</a>
+            </div>
+        </div>
+        
+    </form>
+</div>

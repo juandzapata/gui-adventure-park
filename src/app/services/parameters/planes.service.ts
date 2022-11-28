@@ -38,7 +38,11 @@ export class PlanesService {
    * @returns Registro ingresado
    */
   saveRecord(record: PlanModel): Observable<PlanModel>{
-    return this.http.post<PlanModel>(this.url, record, {
+    return this.http.post<PlanModel>(this.url, {
+      nombre: record.nombre,
+      color: record.color,
+      valor: record.valor
+    }, {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`
       })

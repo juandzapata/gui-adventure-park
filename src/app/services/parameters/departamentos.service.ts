@@ -38,7 +38,9 @@ export class DepartamentosService {
    * @returns Registro ingresado
    */
   saveRecord(record: DepartamentoModel): Observable<DepartamentoModel>{
-    return this.http.post<DepartamentoModel>(this.url, record, {
+    return this.http.post<DepartamentoModel>(this.url, {
+      nombre: record.nombre
+    }, {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`
       })
@@ -70,4 +72,5 @@ export class DepartamentosService {
       })
     });
   }
+
 }

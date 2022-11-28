@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApisInfo } from 'src/app/config/apis-info';
 import { ParqueModel } from 'src/app/models/parque.model';
+import { UploadedFileModel } from 'src/app/models/uploaded.file.model';
 import { LocalStorageService } from '../local-storage.service';
 
 @Injectable({
@@ -39,7 +40,15 @@ export class ParqueService {
    * @returns Registro ingresado
    */
   saveRecord(record: ParqueModel): Observable<ParqueModel>{
-    return this.http.post<ParqueModel>(this.url, record, {
+    return this.http.post<ParqueModel>(this.url, {
+      nombre: record.nombre,
+      imagenLogo: record.imagenLogo,
+      descripcion: record.descripcion,
+      capacidad: record.capacidad,
+      eslogan: record.eslogan,
+      email: record.email,
+      direccion: record.direccion
+    }, {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`
       })
@@ -71,4 +80,23 @@ export class ParqueService {
       })
     });
   }
+
+  uploadImageLogo(formData: FormData): Observable<UploadedFileModel>{
+    let actionName = "cargar-archivo/3";
+    return this.http.post<UploadedFileModel>(`${this.baseUrl}/${actionName}`, formData,{
+      headers: new HttpHeaders({
+        "Authoritzation": `Bearer ${this.jwt}`
+      })
+    });
+  }
+
+  uploadImageMapa(formData: FormData): Observable<UploadedFileModel>{
+    let actionName = "cargar-archivo/4";
+    return this.http.post<UploadedFileModel>(`${this.baseUrl}/${actionName}`, formData,{
+      headers: new HttpHeaders({
+        "Authoritzation": `Bearer ${this.jwt}`
+      })
+    });
+  }
+
 }

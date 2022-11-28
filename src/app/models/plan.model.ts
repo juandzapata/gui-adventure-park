@@ -2,5 +2,5 @@ export class PlanModel{
     id:string = '';
     nombre:string = '';
     color:string = '';
-    valor:string = '';
+    valor:number = 0;
 }
