@@ -1,1 +1,70 @@
-<p>create-atracciones works!</p>
+<div class="row">
+    <form class="col s12" [formGroup]="fGroup">
+        <div class="cargaImagenes">
+            <div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <img *ngIf="uploadedImage == ''" src="/assets/images/notimage.jpg" class="imgInput" />
+                        <img *ngIf="uploadedImage != ''" src="{{urlServer}}/ObtenerArchivo/1/{{uploadedImage}}"
+                            class="imgInput">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col sm-12">
+                        <div class="file-field input-field">
+                            <div class="btn blue">
+                                <span>Imagen</span>
+                                <input type="file" (change)="onFileSelect($event)" />
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col sm-12">
+                        <button (click)="UploadImage()" [disabled]="!isFileSelected" class="btn orange">Cargar</button>
+                    </div>
+                </div>
+            </div>
+            <div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <input formControlName="name" id="name" type="text" />
+                <label for="name">Nombre</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input formControlName="descripcion" id="descripcion" type="text" />
+                <label for="descripcion">Descripción</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input formControlName="estaturaMinima" id="estaturaMinima" type="text" />
+                <label for="estaturaMinima">Estatura Mínima</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input formControlName="video" id="video" type="text" />
+                <label for="video">Link Video</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <button class="btn btn-success green" (click)="SaveRecord()">
+                    <i class="material-icons left">save</i>Guardar
+                </button>
+                &nbsp;
+                <a routerLink="/parameters/list-parque" class="waves-effect waves-light btn red"><i
+                        class="material-icons left">cancel</i>Cancelar</a>
+            </div>
+        </div>
+    </form>
+</div>
