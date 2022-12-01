@@ -1,0 +1,84 @@
+<main>
+
+    <div class="section"></div>
+
+    <h3 class="title brown-text center">¡Bienvenido!</h3>
+    <div class="section"></div>
+
+    <div class="container">
+        <div class="z-depth-1 grey lighten-4 row" style="padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+
+            <form class="col s12" [formGroup]="fGroup">
+                <div class='row'>
+                    <div class='col s12'>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='input-field col s12'>
+                        <input formControlName="correo" type='email' name='correo' id='correo' />
+                        <label class="active" for='correo'>Correo</label>
+                        <div class="input-error"
+                            *ngIf="fg['correo'].errors && (fg['correo'].dirty || fg['correo'].touched)">
+                            <ul>
+                                <li><strong *ngIf="fg['correo'].errors['required']">Este campo es requerido.</strong>
+                                </li>
+                                <br>
+                                <li><strong *ngIf="fg['correo'].errors['email']">Este campo debe contener un formato
+                                        de email.</strong></li>
+                                <br>
+                                <li><strong *ngIf="fg['correo'].errors['minlength']">El email debe contener mínimo 5
+                                        caracteres.</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input formControlName="nombre" id="nombre" type="text" />
+                        <label for="nombre">Nombre</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input formControlName="apellidos" id="apellido" type="text" />
+                        <label for="apellido">Apellidos</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input formControlName="cedula" id="cedula" type="text" />
+                        <label for="cedula">Cédula</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input formControlName="estatura" id="estatura" type="number" />
+                        <label for="estatura">Estatura</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input formControlName="edad" id="edad" type="text" />
+                        <label for="edad">Edad</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input formControlName="celular" id="celular" type="text" />
+                        <label for="celular">Celular</label>
+                    </div>
+                </div>
+                <br />
+
+                <div class='row'>
+                    <button type='button' (click)="SaveLogicRecord()" name='btn_forgot'
+                        class='col s12 btn btn-large waves-effect brown'>Registrarse</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</main>

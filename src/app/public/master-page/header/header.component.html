@@ -3,7 +3,8 @@
       <a routerLink="/home" class="brand-logo">Adventure</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">        
-        <li><a *ngIf="!isLogged" routerLink="security/singup">Login</a></li>        
+        <li><a *ngIf="!isLogged" routerLink="security/singup">Iniciar Sesión</a></li>
+        <li><a *ngIf="!isLogged" routerLink="security/register-user">Registrarse</a></li>        
         <li><a *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' " routerLink="parameters/list-parque">Parques</a></li>        
         <li><a *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' " routerLink="parameters/list-atracciones">Atracciones</a></li>        
         <li><a *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' " routerLink="parameters/list-zonas">Zonas</a></li>        
@@ -19,7 +20,8 @@
   </nav>
 
   <ul class="sidenav" id="mobile-demo">
-    <li><a *ngIf="!isLogged" routerLink="security/singup">Login</a></li>            
+    <li><a *ngIf="!isLogged" routerLink="security/singup">Iniciar Sesión</a></li>
+    <li><a *ngIf="!isLogged" routerLink="security/register-user">Registrarse</a></li>
     <li><a *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' " routerLink="parameters/list-parques">Parques</a></li>        
     <li><a *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' " routerLink="parameters/list-atracciones">Atracciones</a></li>        
     <li><a *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' " routerLink="parameters/list-zonas">Zonas</a></li>        
