@@ -32,6 +32,14 @@ export class CiudadesService {
     return this.http.get<CiudadModel[]>(this.url);
   }
 
+  getRecordById(id: number):Observable<CiudadModel>{        
+    return this.http.get<CiudadModel>(this.url + "/" + id, {
+      headers: new HttpHeaders({
+        "Authorization": "Bearer "+ this.jwt
+      })
+    });
+  }
+
   /**
    * Crea un nuevo registro
    * @param record Datos del nuevo registro

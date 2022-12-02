@@ -37,7 +37,7 @@ const routes: Routes = [
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'edit-praque',
+    path:'edit-parque/:id',
     component:EditParqueComponent,
     canActivate: [AuthenticatedGuard]
   },
@@ -57,7 +57,7 @@ const routes: Routes = [
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'edit-atracciones',
+    path:'edit-atracciones/:id',
     component:EditAtraccionesComponent,
     canActivate: [AuthenticatedGuard]
   },
@@ -77,7 +77,7 @@ const routes: Routes = [
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'edit-ciudades',
+    path:'edit-ciudades/:id',
     component:EditCiudadesComponent,
     canActivate: [AuthenticatedGuard]
   },
@@ -97,7 +97,7 @@ const routes: Routes = [
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'edit-departamentos',
+    path:'edit-departamentos/:id',
     component:EditDepartamentosComponent,
     canActivate: [AuthenticatedGuard]
   },
@@ -117,7 +117,7 @@ const routes: Routes = [
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'edit-planes',
+    path:'edit-planes/:id',
     component:EditPlanesComponent,
     canActivate: [AuthenticatedGuard]
   },
@@ -137,7 +137,7 @@ const routes: Routes = [
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'edit-puestos',
+    path:'edit-puestos/:id',
     component:EditPuestosComponent,
     canActivate: [AuthenticatedGuard]
   },
@@ -157,7 +157,7 @@ const routes: Routes = [
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'edit-zonas',
+    path:'edit-zonas/:id',
     component:EditZonasComponent,
     canActivate: [AuthenticatedGuard]
   },

@@ -1,1 +1,104 @@
-<p>edit-parque works!</p>
+<div class="row">
+    <form class="col s12" [formGroup]="fGroup">
+        <input type="hidden" formControlName = "id">
+      <div class="cargaImagenes">
+        <div>
+          <div class="row" >
+            <div class="input-field col s12">
+              <img *ngIf="uploadedImageLogo == ''" src="/assets/images/notimage.jpg" class="imgInput" />
+              <img *ngIf="uploadedImageLogo != ''" src="{{urlServer}}/ObtenerArchivo/3/{{uploadedImageLogo}}" class="imgInput">
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="col sm-12">
+              <div class="file-field input-field">
+                <div class="btn blue">
+                  <span>Logo</span>
+                  <input type="file" (change)="onFileSelectLogo($event)" />
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text" />
+                </div>
+              </div>
+            </div>
+            <div class="col sm-12">
+              <button (click)="UploadImageLogo()" [disabled]="!isFileSelectedLogo" class="btn orange">Cargar</button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="row">
+            <div class="input-field col s12">
+              <img *ngIf="uploadedImageMapa == ''" src="/assets/images/notimage.jpg" class="imgInput" />
+              <img *ngIf="uploadedImageMapa != ''" src="{{urlServer}}/ObtenerArchivo/4/{{uploadedImageMapa}}" class="imgInput">
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="col sm-12">
+              <div class="file-field input-field">
+                <div class="btn blue">
+                  <span>Mapa</span>
+                  <input type="file" (change)="onFileSelectMapa($event)" />
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text" />
+                </div>
+              </div>
+            </div>
+            <div class="col sm-12">
+              <button (click)="UploadImageMapa()" [disabled]="!isFileSelectedMapa" class="btn orange">Cargar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="input-field col s12">
+          <input formControlName="name" id="name" type="text" />
+          <label class="active" for="name">Nombre</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input formControlName="direccion" id="direccion" type="text" />
+          <label class="active" for="direccion">Dirección</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input formControlName="email" id="email" type="text" />
+          <label class="active" for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input formControlName="capacidad" id="capacidad" type="number" />
+          <label class="active" for="capacidad">Capacidad</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input formControlName="descripcion" id="descripcion" type="text" />
+          <label class="active" for="descripcion">Descripción</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input formControlName="eslogan" id="eslogan" type="text" />
+          <label class="active" for="eslogan">Eslogan</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <button class="btn btn-success green" (click)="EditRecord()">
+            <i class="material-icons left">edit</i>Actualizar
+          </button>
+          &nbsp;
+          <a routerLink="/parameters/list-parque" class="waves-effect waves-light btn red"><i
+              class="material-icons left">cancel</i>Cancelar</a>
+        </div>
+      </div>
+    </form>
+  </div>

@@ -33,6 +33,18 @@ export class ZonasService {
     return this.http.get<ZonaModel[]>(this.url);
   }
 
+   /**
+   * Obtiene la zona segun el id
+   * @returns la zona encontrada
+   */
+    getRecordById(id: number):Observable<ZonaModel>{        
+      return this.http.get<ZonaModel>(this.url + "/" + id, {
+        headers: new HttpHeaders({
+          "Authorization": "Bearer "+ this.jwt
+        })
+      });
+    }
+
   /**
    * Crea un nuevo registro
    * @param record Datos del nuevo registro

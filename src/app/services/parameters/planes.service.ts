@@ -32,6 +32,14 @@ export class PlanesService {
     return this.http.get<PlanModel[]>(this.url);
   }
 
+  getRecordById(id: number):Observable<PlanModel>{        
+    return this.http.get<PlanModel>(this.url + "/" + id, {
+      headers: new HttpHeaders({
+        "Authorization": "Bearer "+ this.jwt
+      })
+    });
+  }
+
   /**
    * Crea un nuevo registro
    * @param record Datos del nuevo registro

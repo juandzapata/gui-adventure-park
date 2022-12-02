@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApisInfo } from 'src/app/config/apis-info';
+import { CustomStyles } from 'src/app/config/custom.styles';
 import { ZonaModel } from 'src/app/models/zona.model';
 import { ZonasService } from 'src/app/services/parameters/zonas.service';
+
+declare const ShowToastMessage:any;
 
 @Component({
   selector: 'app-create-zonas',
@@ -61,7 +64,7 @@ export class CreateZonasComponent implements OnInit {
     this.zonasService.uploadImage(formData).subscribe({
       next: (data) => {
         this.uploadedImage = data.file;
-        alert('Imagen cargada');
+        ShowToastMessage("Imagen cargada éxitosamente", CustomStyles.success_toast_class);
       },
       error: (err) => {
         console.log(err);
@@ -71,7 +74,7 @@ export class CreateZonasComponent implements OnInit {
 
   SaveRecord() {
     if (this.fGroup.invalid) {
-      alert('Faltan datos' );
+      ShowToastMessage("Faltan datos"), CustomStyles.error_toast_class;
     } else {
       let model = new ZonaModel();
       //Tomar las variables del html y mandarlas al modelo
@@ -81,7 +84,7 @@ export class CreateZonasComponent implements OnInit {
       model.color = this.fGroup.controls['color'].value;      
       this.zonasService.saveRecord(model).subscribe({
         next: (data) => {
-          alert('Registro almacenado correctamente con id ' + data.id);
+          ShowToastMessage("Registro almacenado éxitosamente", CustomStyles.success_toast_class);
         },
         error: (err) => {},
       });

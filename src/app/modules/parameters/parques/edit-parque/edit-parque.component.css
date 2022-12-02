@@ -1,0 +1,11 @@
+.imgInput{
+    width: 300px;
+    height: 300px;
+    margin: auto;
+}
+
+.cargaImagenes{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

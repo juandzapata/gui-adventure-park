@@ -35,6 +35,18 @@ export class AtraccionesService {
   }
 
   /**
+   * Obtiene la atraccion segun el id
+   * @returns la atraccion encontrada
+   */
+   getRecordById(id: number):Observable<AtraccionModel>{        
+    return this.http.get<AtraccionModel>(this.url + "/" + id, {
+      headers: new HttpHeaders({
+        "Authorization": "Bearer "+ this.jwt
+      })
+    });
+  }
+
+  /**
    * Crea un nuevo registro
    * @param record Datos del nuevo registro
    * @returns Registro ingresado

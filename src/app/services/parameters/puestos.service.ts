@@ -34,6 +34,14 @@ export class PuestosService {
     return this.http.get<PuestoModel[]>(this.url);
   }
 
+  getRecordById(id: number):Observable<PuestoModel>{        
+    return this.http.get<PuestoModel>(this.url + "/" + id, {
+      headers: new HttpHeaders({
+        "Authorization": "Bearer "+ this.jwt
+      })
+    });
+  }
+
   /**
    * Crea un nuevo registro
    * @param record Datos del nuevo registro

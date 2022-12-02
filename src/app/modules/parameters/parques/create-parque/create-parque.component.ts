@@ -41,7 +41,8 @@ export class CreateParqueComponent implements OnInit {
       eslogan: ['', [Validators.required]],
       capacidad: [0, [Validators.required]],
       direccion: ['', [Validators.required]],
-      file: ['', [Validators.required]],
+      mapFile: ['', [Validators.required]],
+      logoFile: ['', [Validators.required]],
     });
   }
 
@@ -56,7 +57,7 @@ export class CreateParqueComponent implements OnInit {
   onFileSelectLogo(evt: any) {
     if (evt.target.files.length > 0) {
       const f = evt.target.files[0];
-      this.fGroup.controls['file'].setValue(f);
+      this.fGroup.controls['logoFile'].setValue(f);
       this.isFileSelectedLogo = true;
     }
   }
@@ -64,14 +65,14 @@ export class CreateParqueComponent implements OnInit {
   onFileSelectMapa(evt: any) {
     if (evt.target.files.length > 0) {
       const f = evt.target.files[0];
-      this.fGroup.controls['file'].setValue(f);
+      this.fGroup.controls['mapFile'].setValue(f);
       this.isFileSelectedMapa = true;
     }
   }
 
   UploadImageLogo() {
     const formData = new FormData();
-    formData.append('file', this.fGroup.controls['file'].value);
+    formData.append('file', this.fGroup.controls['logoFile'].value);
     this.parqueService.uploadImageLogo(formData).subscribe({
       next: (data) => {
         this.uploadedImageLogo = data.file;
@@ -85,7 +86,7 @@ export class CreateParqueComponent implements OnInit {
 
   UploadImageMapa() {
     const formData = new FormData();
-    formData.append('file', this.fGroup.controls['file'].value);
+    formData.append('file', this.fGroup.controls['mapFile'].value);
     this.parqueService.uploadImageMapa(formData).subscribe({
       next: (data) => {
         this.uploadedImageMapa= data.file;
@@ -111,7 +112,7 @@ export class CreateParqueComponent implements OnInit {
       model.direccion = this.fGroup.controls['direccion'].value;
       model.imagenMapa = this.uploadedImageMapa;
 
-      console.log(this.uploadedImageMapa);
+      console.log(model);
       this.parqueService.saveRecord(model).subscribe({
         next: (data) => {
           alert('Registro almacenado correctamente con id ' + data.id);
