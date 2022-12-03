@@ -1,6 +1,6 @@
 <nav class="pedro">
   <div class="nav-wrapper">
-    <a routerLink="/home" href=""><img src="../../../../assets/images/LogoAdventure.jpeg" class="logo" alt=""></a>
+    <a routerLink="/home" href=""><img src="../../../../assets/images/LogoAdventure.png" class="logo" alt=""></a>
     <button class='sidenav-trigger btn-floating btn-large waves-effect waves-light light-blue accent-3 right' href='#'
       data-target='slide-out'><i class="material-icons">person</i></button>
     <!-- Dropdown Structure -->
@@ -41,17 +41,22 @@
           routerLink="parameters/list-ciudades">Ciudades</a>
       </li>
 
+
       <li><a class="sidenav-close" *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' "
           routerLink="security/change-password">Cambiar
           contraseña</a>
-      <li><a *ngIf="isLogged && rolId == '6371d531ec6ee399607ab929' " routerLink="asd">Comprar Plan</a></li>
+      <li><a *ngIf="isLogged && rolId == '6371d531ec6ee399607ab929'" routerLink="parameters/vistas-parque">
+          Parques Adventure</a></li>
+      <li><a *ngIf="isLogged && rolId == '6371d531ec6ee399607ab929'" routerLink="parameters/vistas-atracciones">
+          Atracciones Adventure</a></li>
+        <li><a *ngIf="isLogged && rolId == '6371d531ec6ee399607ab929'" routerLink="parameters/vistas-planes">
+            Planes Adventure</a></li>
+      <br>
+      <br>
+      <br>
 
       <li><a *ngIf="isLogged && rolId == '6371d531ec6ee399607ab929'" routerLink="security/change-password">Cambiar
           contraseña</a></li>
-      <br>
-      <br>
-      <br>
-      <br>
       <li><a class="sidenav-close" *ngIf="isLogged" routerLink="security/logout">Cerrar sesión</a></li>
     </ul>
   </div>

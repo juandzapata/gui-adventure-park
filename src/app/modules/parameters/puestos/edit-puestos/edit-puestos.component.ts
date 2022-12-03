@@ -5,6 +5,8 @@ import { ApisInfo } from 'src/app/config/apis-info';
 import { CustomStyles } from 'src/app/config/custom.styles';
 import { PuestoModel } from 'src/app/models/puesto.model';
 import { PuestosService } from 'src/app/services/parameters/puestos.service';
+import { ZonaModel } from 'src/app/models/zona.model';
+import { ZonasService } from 'src/app/services/parameters/zonas.service';
 
 declare const ShowToastMessage:any;
 
@@ -15,21 +17,26 @@ declare const ShowToastMessage:any;
 })
 export class EditPuestosComponent implements OnInit {
 
+
   urlServer: string = ApisInfo.LOGIC_MS_URL;
   uploadedImage: string = '';
   isFileSelected: boolean = false;
 
   fGroup: FormGroup = new FormGroup({});
+  zonas: ZonaModel[] = [];
+  seleccionado = 0;
 
   constructor(
     private fb: FormBuilder, 
     private puestosService: PuestosService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private zonasService: ZonasService
     ) {}
 
   ngOnInit(): void {
     this.BuildingForm();
+    this.LlenarListaCiudades();
     this.SearchRecord();
   }
 
@@ -42,6 +49,7 @@ export class EditPuestosComponent implements OnInit {
       name: ['', [Validators.required]],
       file: ['', []],
       menu: ['', [Validators.required]],
+      seleccionado: ['', [Validators.required]],
     });
   }
 
@@ -54,6 +62,7 @@ export class EditPuestosComponent implements OnInit {
         this.fGroup.controls["name"].setValue(data.nombre);
         this.fGroup.controls["menu"].setValue(data.menu);
         this.uploadedImage = data.imagen; 
+        this.fGroup.controls["seleccionado"].setValue(data.zonaId);
       }, 
       error: (err) => {
         console.log(err);
@@ -101,6 +110,7 @@ export class EditPuestosComponent implements OnInit {
       model.nombre = this.fGroup.controls['name'].value;
       model.menu = this.fGroup.controls['menu'].value;
       model.id = this.fGroup.controls['id'].value;
+      model.zonaId = this.seleccionado;
       this.puestosService.editRecord(model).subscribe({
         next: (data) => {
           ShowToastMessage("Registro actualizado éxitosamente", CustomStyles.success_toast_class);
@@ -110,6 +120,21 @@ export class EditPuestosComponent implements OnInit {
       });
     }
   }
+
+  LlenarListaCiudades(){
+    this.zonasService.getRecordList().subscribe({
+      next: (data) =>{
+        this.zonas = data;
+        console.log(data);
+        
+      }
+    });
+  }
+
+  capturar() {
+    this.seleccionado = parseInt(this.fGroup.controls["seleccionado"].value);
+  }
+
 
 }
 

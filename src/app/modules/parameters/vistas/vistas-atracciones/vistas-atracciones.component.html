@@ -1,0 +1,38 @@
+<div class="container">
+    <br>
+    <div class="section"></div>
+    
+    <h3 class="title brown-text center">¡Atracciones!</h3>
+    <div class="section"></div>
+    <table class="striped">
+        <thead>
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Imagen
+                </th>
+                <th>
+                    Acciones
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let r of recordList">
+                <td>
+                    {{r.nombre}}
+                </td>
+                <td>
+                    {{r.descripcion}}
+                </td>            
+                <td>
+                    <img class="imagenAtraccion" src="{{urlServer}}/ObtenerArchivo/1/{{r.imagen}}" alt="imagen"/>
+                </td>
+                <td>
+                    <a routerLink="" class="waves-effect waves-light btn orange"><i class="material-icons left"></i>Planes</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>

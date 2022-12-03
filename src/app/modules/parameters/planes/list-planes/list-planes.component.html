@@ -1,4 +1,9 @@
+<div class="container">
 <br>
+<div class="section"></div>
+
+<h3 class="title brown-text center">¡Planes!</h3>
+<div class="section"></div>
 <a routerLink="/parameters/create-planes" class="waves-effect waves-light btn green"><i class="material-icons left">add</i>Agregar</a>
 <table class="striped">
     <thead>
@@ -8,12 +13,14 @@
             </th>
             <th>
                 Valor
+                
             </th>
             <th>
                 Acciones
             </th>
         </tr>
     </thead>
+
     <tbody>
         <tr *ngFor="let r of recordList">
             <td>
@@ -29,3 +36,4 @@
         </tr>
     </tbody>
 </table>
+</div>

@@ -10,6 +10,7 @@ import { PlanesService } from 'src/app/services/parameters/planes.service';
 })
 export class ListPlanesComponent implements OnInit {
 
+  
   // /ObtenerArchivo/{type}/{name}
   urlServer = ApisInfo.LOGIC_MS_URL;
   recordList: PlanModel[] = [];
