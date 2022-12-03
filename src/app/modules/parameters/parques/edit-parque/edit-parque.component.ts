@@ -6,6 +6,8 @@ import { ApisInfo } from 'src/app/config/apis-info';
 import { CustomStyles } from 'src/app/config/custom.styles';
 import { ParqueModel } from 'src/app/models/parque.model';
 import { ParqueService } from 'src/app/services/parameters/parque.service';
+import { CiudadModel } from 'src/app/models/ciudad.model';
+import { CiudadesService } from 'src/app/services/parameters/ciudades.service';
 
 declare const  ShowToastMessage:any;
 
@@ -21,19 +23,22 @@ export class EditParqueComponent implements OnInit {
   isFileSelectedLogo: boolean = false;
   isFileSelectedMapa: boolean = false;
 
+  seleccionado = 0;
+  ciudades: CiudadModel[] = [];
+
   fGroup: FormGroup = new FormGroup({});
 
   constructor(
     private fb: FormBuilder, 
     private parqueService: ParqueService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private ciudadesService: CiudadesService
     ) {}
 
   ngOnInit(): void {
-    console.log("problemas aqui");
-    
     this.BuildingForm();
+    this.LlenarListaCiudades();
     this.SearchRecord();
   }
 
@@ -49,10 +54,11 @@ export class EditParqueComponent implements OnInit {
       email: ['', [Validators.required]],
       descripcion: ['', [Validators.required]],
       eslogan: ['', [Validators.required]],
-      capacidad: [0, [Validators.required]],
+      capacidad: ['', [Validators.required]],
       direccion: ['', [Validators.required]],
       mapFile: ['', []],
       logoFile: ['', []],
+      seleccionado: ['', [Validators.required]],
     });
   }
 
@@ -122,6 +128,7 @@ export class EditParqueComponent implements OnInit {
         this.fGroup.controls["direccion"].setValue(data.direccion);
         this.uploadedImageLogo = data.imagenLogo;
         this.uploadedImageMapa = data.imagenMapa;
+        this.fGroup.controls["seleccionado"].setValue(data.ciudadId);
       }, 
       error: (err) => {
         console.log(err);
@@ -145,6 +152,7 @@ export class EditParqueComponent implements OnInit {
       model.direccion = this.fGroup.controls['direccion'].value;
       model.imagenMapa = this.uploadedImageMapa;
       model.id = this.fGroup.controls["id"].value;
+      model.ciudadId = this.seleccionado;
       //console.log(model);
       this.parqueService.editRecord(model).subscribe({
         next: (data) => {
@@ -157,6 +165,20 @@ export class EditParqueComponent implements OnInit {
         },
       });
     }
+  }
+
+  LlenarListaCiudades(){
+    this.ciudadesService.getRecordList().subscribe({
+      next: (data) =>{
+        this.ciudades = data;
+        console.log(data);
+        
+      }
+    });
+  }
+
+  capturar() {
+    this.seleccionado = parseInt(this.fGroup.controls["seleccionado"].value);
   }
 }
 

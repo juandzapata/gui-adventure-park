@@ -52,6 +52,7 @@ export class PuestosService {
       nombre: record.nombre,
       imagen: record.imagen,
       menu: record.menu,
+      zonaId: record.zonaId
     }, {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`

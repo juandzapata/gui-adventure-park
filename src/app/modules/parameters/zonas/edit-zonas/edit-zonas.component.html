@@ -10,7 +10,7 @@
                             class="imgInput">
                     </div>
                 </div>
-
+                  
                 <div class="row">
                     <div class="col sm-12">
                         <div class="file-field input-field">
@@ -50,6 +50,18 @@
             </div>
         </div>        
         
+        <div class="row">
+            <label class="input-field col s12 input-select">Parque</label>
+          </div>
+          <div class="row">
+            <div>
+              <select class="mi-select browser-default" (change)="capturar()" formControlName="seleccionado"
+                id="seleccionado">
+                <option disabled selected>Selecciona un parque</option>
+                <option *ngFor="let r of parques" value="{{r.id}}">{{r.nombre}}</option>
+              </select>
+            </div>
+          </div>
 
         <div class="row">
             <div class="input-field col s12">

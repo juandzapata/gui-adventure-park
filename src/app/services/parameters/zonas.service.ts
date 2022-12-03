@@ -55,7 +55,8 @@ export class ZonasService {
       nombre: record.nombre,
       imagen: record.imagen,
       color: record.color,
-      descripcion: record.descripcion
+      descripcion: record.descripcion,
+      parqueId: record.parqueId
     }, {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`

@@ -5,7 +5,8 @@ import { ApisInfo } from 'src/app/config/apis-info';
 import { CustomStyles } from 'src/app/config/custom.styles';
 import { AtraccionModel } from 'src/app/models/atraccion.model';
 import { AtraccionesService } from 'src/app/services/parameters/atracciones.service';
-
+import { ZonaModel } from 'src/app/models/zona.model';
+import { ZonasService } from 'src/app/services/parameters/zonas.service';
 declare const ShowToastMessage:any;
 
 @Component({
@@ -15,21 +16,26 @@ declare const ShowToastMessage:any;
 })
 export class EditAtraccionesComponent implements OnInit {
 
+
   urlServer: string = ApisInfo.LOGIC_MS_URL;
   uploadedImage: string = '';
   isFileSelected: boolean = false;
 
+  zonas:ZonaModel[] = [];
+  seleccionado = 0;
   fGroup: FormGroup = new FormGroup({});
 
   constructor(
     private fb: FormBuilder, 
     private atraccionesService: AtraccionesService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private zonasService: ZonasService,
     ) {}
 
   ngOnInit(): void {
     this.BuildingForm();
+    this.LlenarListaCiudades();
     this.SearchRecord();
   }
 
@@ -44,6 +50,7 @@ export class EditAtraccionesComponent implements OnInit {
       estaturaMinima: ['', [Validators.required]],
       video: ['', [Validators.required]],
       descripcion: ['', [Validators.required]],
+      seleccionado: ['', [Validators.required]]
 
     });
   }
@@ -89,6 +96,7 @@ export class EditAtraccionesComponent implements OnInit {
         this.fGroup.controls["video"].setValue(data.video);
         this.fGroup.controls["descripcion"].setValue(data.descripcion);
         this.uploadedImage = data.imagen;
+        this.fGroup.controls["seleccionado"].setValue(data.zonaId);
       }, 
       error: (err) => {
 
@@ -107,6 +115,7 @@ export class EditAtraccionesComponent implements OnInit {
       model.estaturaMinima = this.fGroup.controls['estaturaMinima'].value;
       model.descripcion = this.fGroup.controls['descripcion'].value;
       model.video = this.fGroup.controls["video"].value;
+      model.zonaId = this.seleccionado;
       console.log(model);
       
       model.id = this.fGroup.controls["id"].value;
@@ -120,6 +129,21 @@ export class EditAtraccionesComponent implements OnInit {
       });
     }
   }
+
+  LlenarListaCiudades(){
+    this.zonasService.getRecordList().subscribe({
+      next: (data) =>{
+        this.zonas = data;
+        console.log(data);
+        
+      }
+    });
+  }
+
+  capturar() {
+    this.seleccionado = parseInt(this.fGroup.controls["seleccionado"].value);
+  }
+
 
 }
 

@@ -5,6 +5,8 @@ import { ApisInfo } from 'src/app/config/apis-info';
 import { CustomStyles } from 'src/app/config/custom.styles';
 import { PuestoModel } from 'src/app/models/puesto.model';
 import { PuestosService } from 'src/app/services/parameters/puestos.service';
+import { ZonaModel } from 'src/app/models/zona.model';
+import { ZonasService } from 'src/app/services/parameters/zonas.service';
 
 declare const ShowToastMessage:any;
 
@@ -19,16 +21,21 @@ export class CreatePuestosComponent implements OnInit {
   uploadedImage: string = '';
   isFileSelected: boolean = false;
 
+  zonas: ZonaModel[] = [];
+  seleccionado = 0;
+
   fGroup: FormGroup = new FormGroup({});
 
   constructor(
     private fb: FormBuilder, 
     private puestosService: PuestosService,
     private router: Router,
+    private zonasService: ZonasService
     ) {}
 
   ngOnInit(): void {
     this.BuildingForm();
+    this.LlenarListaCiudades();
   }
 
   /**
@@ -40,6 +47,7 @@ export class CreatePuestosComponent implements OnInit {
       name: ['', [Validators.required]],
       file: ['', [Validators.required]],
       menu: ['', [Validators.required]],
+      seleccionado: ['', [Validators.required]],
     });
   }
 
@@ -65,7 +73,7 @@ export class CreatePuestosComponent implements OnInit {
     this.puestosService.uploadImage(formData).subscribe({
       next: (data) => {
         this.uploadedImage = data.file;
-        alert('Imagen cargada');
+        ShowToastMessage("Imagen cargada éxitosamente", CustomStyles.success_toast_class);
       },
       error: (err) => {
         console.log(err);
@@ -82,6 +90,8 @@ export class CreatePuestosComponent implements OnInit {
       model.imagen = this.uploadedImage;
       model.nombre = this.fGroup.controls['name'].value;
       model.menu = this.fGroup.controls['menu'].value;
+      model.zonaId = this.seleccionado;
+
       this.puestosService.saveRecord(model).subscribe({
         next: (data) => {
           ShowToastMessage("Registro almacenado éxitosamente", CustomStyles.success_toast_class);
@@ -93,6 +103,20 @@ export class CreatePuestosComponent implements OnInit {
         },
       });
     }
+  }
+
+  LlenarListaCiudades(){
+    this.zonasService.getRecordList().subscribe({
+      next: (data) =>{
+        this.zonas = data;
+        console.log(data);
+        
+      }
+    });
+  }
+
+  capturar() {
+    this.seleccionado = parseInt(this.fGroup.controls["seleccionado"].value);
   }
 
 }

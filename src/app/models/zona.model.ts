@@ -3,5 +3,6 @@ export class ZonaModel{
     nombre: string = '';
     imagen: string = '';
     color: string = '';
-    descripcion: string = '';    
+    descripcion: string = '';
+    parqueId: number = 0;    
 }

@@ -3,5 +3,6 @@ export class PuestoModel{
     nombre: string = '';
     imagen: string = '';
     menu: string = '';
+    zonaId: number = 0;
     
 }

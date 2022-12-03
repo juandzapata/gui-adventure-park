@@ -60,7 +60,9 @@ export class ParqueService {
       capacidad: record.capacidad,
       eslogan: record.eslogan,
       email: record.email,
-      direccion: record.direccion
+      direccion: record.direccion,
+      ciudadId: record.ciudadId
+
     }, {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`

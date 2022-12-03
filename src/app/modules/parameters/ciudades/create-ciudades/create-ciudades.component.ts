@@ -5,6 +5,8 @@ import { ApisInfo } from 'src/app/config/apis-info';
 import { CustomStyles } from 'src/app/config/custom.styles';
 import { CiudadModel } from 'src/app/models/ciudad.model';
 import { CiudadesService } from 'src/app/services/parameters/ciudades.service';
+import { DepartamentoModel } from 'src/app/models/departamento.model';
+import { DepartamentosService } from 'src/app/services/parameters/departamentos.service';
 
 declare const ShowToastMessage:any;
 @Component({
@@ -16,23 +18,28 @@ export class CreateCiudadesComponent implements OnInit {
   
   urlServer: string = ApisInfo.LOGIC_MS_URL;
   fGroup: FormGroup = new FormGroup({});
+  departamentos: DepartamentoModel[] = [];
+  seleccionado = 0;
 
   constructor(
     private fb: FormBuilder,
     private ciudadService: CiudadesService,
     private router: Router,
+    private departamentosService: DepartamentosService
 
   ) { }
 
   ngOnInit(): void {
     this.BuildingForm();
+    this.LlenarListaCiudades();
   }
 
   BuildingForm(){
     this.fGroup = this.fb.group({
       id: ['',[]],
       name: ['',[Validators.required]],
-      codigoPostal: ['',[Validators.required]]
+      codigoPostal: ['',[Validators.required]],
+      seleccionado: ['',[Validators.required]]
     });
   }
   
@@ -43,6 +50,7 @@ export class CreateCiudadesComponent implements OnInit {
       let model = new CiudadModel();      
       model.nombre = this.fGroup.controls['name'].value;
       model.codigoPostal = this.fGroup.controls['codigoPostal'].value;
+      model.departamentoId = this.seleccionado;
       
       this.ciudadService.saveRecord(model).subscribe({
         next: (data) => {
@@ -54,5 +62,20 @@ export class CreateCiudadesComponent implements OnInit {
         },
       });
     }
+  }
+  
+
+  LlenarListaCiudades(){
+    this.departamentosService.getRecordList().subscribe({
+      next: (data) =>{
+        this.departamentos = data;
+        console.log(data);
+        
+      }
+    });
+  }
+
+  capturar() {
+    this.seleccionado = parseInt(this.fGroup.controls["seleccionado"].value);
   }
 }

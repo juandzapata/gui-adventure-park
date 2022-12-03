@@ -1,4 +1,3 @@
-
 <div class="row">
   <form class="col s12" [formGroup]="fGroup">
     <div class="cargaImagenes">
@@ -62,10 +61,24 @@
         <label for="name">Nombre</label>
       </div>
     </div>
+
     <div class="row">
       <div class="input-field col s12">
         <input formControlName="direccion" id="direccion" type="text" />
         <label for="direccion">Dirección</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="input-field col s12 input-select">Ciudad</label>
+    </div>
+    <div class="row">
+      <div>
+        <select class="mi-select browser-default" (change)="capturar()" formControlName="seleccionado"
+          id="seleccionado">
+          <option disabled selected>Selecciona una ciudad</option>
+          <option *ngFor="let r of ciudades" value="{{r.id}}">{{r.nombre}}</option>
+        </select>
       </div>
     </div>
 

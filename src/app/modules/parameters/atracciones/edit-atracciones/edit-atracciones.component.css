@@ -4,3 +4,12 @@
     margin: auto;
 }
 
+.mi-select {
+    color: gray;
+    border-color: rgb(197, 195, 195);
+  }
+  
+  .input-select {
+    font-size: 14px;
+  }
+  

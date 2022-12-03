@@ -5,6 +5,9 @@ import { ApisInfo } from 'src/app/config/apis-info';
 import { CustomStyles } from 'src/app/config/custom.styles';
 import { ZonaModel } from 'src/app/models/zona.model';
 import { ZonasService } from 'src/app/services/parameters/zonas.service';
+import { ParqueModel } from 'src/app/models/parque.model';
+import { ParqueService } from 'src/app/services/parameters/parque.service';
+
 
 declare const ShowToastMessage:any;
 
@@ -20,15 +23,19 @@ export class CreateZonasComponent implements OnInit {
   isFileSelected: boolean = false;
 
   fGroup: FormGroup = new FormGroup({});
+  parques: ParqueModel[] = [];
+  seleccionado = 0;
 
   constructor(
     private fb: FormBuilder, 
     private zonasService: ZonasService,
-    private router: Router
+    private router: Router,
+    private parqueService: ParqueService
     ) {}
 
   ngOnInit(): void {
     this.BuildingForm();
+    this.LlenarListaCiudades();
   }
 
   /**
@@ -41,6 +48,7 @@ export class CreateZonasComponent implements OnInit {
       file: ['', [Validators.required]],
       color: ['', [Validators.required]],
       descripcion: ['', [Validators.required]],
+      seleccionado: ['', [Validators.required]]
     });
   }
 
@@ -83,7 +91,8 @@ export class CreateZonasComponent implements OnInit {
       model.imagen = this.uploadedImage;
       model.nombre = this.fGroup.controls['name'].value;
       model.descripcion = this.fGroup.controls['descripcion'].value;
-      model.color = this.fGroup.controls['color'].value;      
+      model.color = this.fGroup.controls['color'].value;
+      model.parqueId = this.seleccionado;      
       this.zonasService.saveRecord(model).subscribe({
         next: (data) => {
           ShowToastMessage("Registro almacenado éxitosamente", CustomStyles.success_toast_class);
@@ -92,6 +101,19 @@ export class CreateZonasComponent implements OnInit {
         error: (err) => {},
       });
     }
+  }
+
+  LlenarListaCiudades(){
+    this.parqueService.getRecordList().subscribe({
+      next: (data) =>{
+        this.parques = data;
+        console.log(data);
+      }
+    });
+  }
+
+  capturar() {
+    this.seleccionado = parseInt(this.fGroup.controls["seleccionado"].value);
   }
 
 }

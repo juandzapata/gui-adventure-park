@@ -5,6 +5,8 @@ import { ApisInfo } from 'src/app/config/apis-info';
 import { CustomStyles } from 'src/app/config/custom.styles';
 import { ZonaModel } from 'src/app/models/zona.model';
 import { ZonasService } from 'src/app/services/parameters/zonas.service';
+import { ParqueModel } from 'src/app/models/parque.model';
+import { ParqueService } from 'src/app/services/parameters/parque.service';
 
 declare const ShowToastMessage:any;
 
@@ -15,21 +17,25 @@ declare const ShowToastMessage:any;
 })
 export class EditZonasComponent implements OnInit {
 
+
   urlServer: string = ApisInfo.LOGIC_MS_URL;
   uploadedImage: string = '';
   isFileSelected: boolean = false;
-
+  parques: ParqueModel[] = [];
+  seleccionado = 0;
   fGroup: FormGroup = new FormGroup({});
 
   constructor(
     private fb: FormBuilder, 
     private zonasService: ZonasService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private parqueService: ParqueService
     ) {}
 
   ngOnInit(): void {
     this.BuildingForm();
+    this.LlenarListaCiudades();
     this.SearchRecord();
   }
 
@@ -43,6 +49,7 @@ export class EditZonasComponent implements OnInit {
       file: ['', []],
       color: ['', [Validators.required]],
       descripcion: ['', [Validators.required]],
+      seleccionado: ['', [Validators.required]]
     });
   }
 
@@ -86,6 +93,7 @@ export class EditZonasComponent implements OnInit {
         this.fGroup.controls["descripcion"].setValue(data.descripcion);
         this.fGroup.controls["color"].setValue(data.color);
         this.uploadedImage = data.imagen; 
+        this.fGroup.controls["seleccionado"].setValue(data.parqueId);
       }, 
       error: (err) => {
         console.log(err);
@@ -104,10 +112,11 @@ export class EditZonasComponent implements OnInit {
       model.descripcion = this.fGroup.controls['descripcion'].value;
       model.color = this.fGroup.controls['color'].value;
       model.id = this.fGroup.controls['id'].value;
+      model.parqueId = this.seleccionado;
 
       this.zonasService.editRecord(model).subscribe({
         next: (data) => {
-          alert('Registro actualizado correctamente');
+          ShowToastMessage("Registro actualizado éxitosamente", CustomStyles.success_toast_class);  
           console.log(model);
           
           this.router.navigate(["/parameters/list-zonas"]);
@@ -116,6 +125,20 @@ export class EditZonasComponent implements OnInit {
       });
     }
   }
+
+  LlenarListaCiudades(){
+    this.parqueService.getRecordList().subscribe({
+      next: (data) =>{
+        this.parques = data;
+        console.log(data);
+      }
+    });
+  }
+
+  capturar() {
+    this.seleccionado = parseInt(this.fGroup.controls["seleccionado"].value);
+  }
+
 
 }
 
