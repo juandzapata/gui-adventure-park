@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CustomStyles } from 'src/app/config/custom.styles';
 import { DefaultValues } from 'src/app/config/default-values';
 import { SercurityService } from 'src/app/services/sercurity.service';
+
+declare const ShowToastMessage:any;
 
 @Component({
   selector: 'app-reset-password',
@@ -12,7 +16,8 @@ export class ResetPasswordComponent implements OnInit {
   fGroup: FormGroup = new FormGroup({});
   constructor(
     private fb: FormBuilder,
-    private secService: SercurityService
+    private secService: SercurityService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -39,7 +44,8 @@ export class ResetPasswordComponent implements OnInit {
     this.secService.ResetPasswordRequest(username).subscribe({
       next:(data) => {
         if(data){
-          alert("Se ha cambiado la contraseña. Por favor verifique su bandeja de entrada")
+          ShowToastMessage("Te hemos enviado un correo con tu nueva contraseña, ¡No la olvides esta vez!", CustomStyles.success_toast_class);
+          this.router.navigate(['/home']);
         }else{
           alert("No se ha enviado la contraseña")
         }

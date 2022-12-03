@@ -7,5 +7,6 @@ export class ParqueModel{
     imagenLogo: string = '';
     imagenMapa: string = '';
     eslogan: string = '';
-    descripcion: string = '';    
+    descripcion: string = '';
+    ciudadId: number = 0; 
 }

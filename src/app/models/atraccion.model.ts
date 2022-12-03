@@ -5,4 +5,5 @@ export class AtraccionModel{
     estaturaMinima: string = '';
     video: string = '';
     descripcion: string = '';
+    zonaId: number = 0;
 }

@@ -1,1 +1,13 @@
-<p>remove-atracciones works!</p>
+<h1>Confirma la eliminación de {{atraccionName}}?</h1>
+
+
+<div class="row">
+    <div class="input-field col s12">
+        
+        <a routerLink="/parameters/list-atracciones" class="waves-effect waves-light btn blue"><i
+                class="material-icons left">arrow_back</i>Cancelar</a>
+        &nbsp;
+        <button class="btn btn-success red" (click)="RemoveRecord()">
+            <i class="material-icons left">delete</i>Eliminar
+        </button>
+    </div>

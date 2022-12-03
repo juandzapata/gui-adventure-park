@@ -23,8 +23,8 @@
                 {{r.valor}}
             </td>            
             <td>
-                <a class="waves-effect waves-light btn orange"><i class="material-icons left">edit</i>Editar</a>
-                &nbsp;<a class="waves-effect waves-light btn red"><i class="material-icons left">delete</i>Eliminar</a>
+                <a routerLink="/parameters/edit-planes/{{r.id}}" class="waves-effect waves-light btn orange"><i class="material-icons left">edit</i>Editar</a>
+                &nbsp;<a routerLink="/parameters/remove-planes/{{r.id}}" class="waves-effect waves-light btn red"><i class="material-icons left">delete</i>Eliminar</a>
             </td>
         </tr>
     </tbody>

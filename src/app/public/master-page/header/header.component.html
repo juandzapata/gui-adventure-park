@@ -1,32 +1,59 @@
-  <nav>
-    <div class="nav-wrapper yellow darken-4">
-      <a routerLink="/home" class="brand-logo">Adventure</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">        
-        <li><a *ngIf="!isLogged" routerLink="security/singup">Login</a></li>        
-        <li><a *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' " routerLink="parameters/list-parque">Parques</a></li>        
-        <li><a *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' " routerLink="parameters/list-atracciones">Atracciones</a></li>        
-        <li><a *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' " routerLink="parameters/list-zonas">Zonas</a></li>        
-        <li><a *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' " routerLink="parameters/list-puestos">Puestos de Comida</a></li>        
-        <li><a *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' " routerLink="parameters/list-planes">Planes</a></li>        
-        <li><a *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' " routerLink="parameters/list-departamentos">Departamentos</a></li>
-        <li><a *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' " routerLink="parameters/list-ciudades">Ciudades</a></li>
-        <li><a *ngIf="isLogged && rolId == '6371d531ec6ee399607ab929' " routerLink="asd">Comprar</a></li>
-        <li *ngIf="isLogged">En sesión: {{fullname}}</li>
-        <li><a *ngIf="isLogged" routerLink="security/logout">Logout</a></li>
-      </ul>
-    </div>
-  </nav>
+<nav class="pedro">
+  <div class="nav-wrapper">
+    <a routerLink="/home" href=""><img src="../../../../assets/images/LogoAdventure.jpeg" class="logo" alt=""></a>
+    <button class='sidenav-trigger btn-floating btn-large waves-effect waves-light light-blue accent-3 right' href='#'
+      data-target='slide-out'><i class="material-icons">person</i></button>
+    <!-- Dropdown Structure -->
+    <ul id='slide-out' class='sidenav'>
+      <li>
+        <div class="user-view">
+          <div class="background">
+            <img src="../../../../assets/images/background_image.jpg">
 
-  <ul class="sidenav" id="mobile-demo">
-    <li><a *ngIf="!isLogged" routerLink="security/singup">Login</a></li>            
-    <li><a *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' " routerLink="parameters/list-parques">Parques</a></li>        
-    <li><a *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' " routerLink="parameters/list-atracciones">Atracciones</a></li>        
-    <li><a *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' " routerLink="parameters/list-zonas">Zonas</a></li>        
-    <li><a *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' " routerLink="parameters/list-puestos">Puestos de Comida</a></li>        
-    <li><a *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' " routerLink="parameters/list-plan">Planes</a></li>        
-    <li><a *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' " routerLink="parameters/list-departamentos">Departamentos</a></li>
-    <li><a *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' " routerLink="parameters/list-ciudades">Ciudades</a></li>
-    <li><a *ngIf="isLogged" routerLink="security/logout">Logout</a></li>    
-  </ul>
-          
+          </div>
+          <a routerLink="">
+            <img class="circle" *ngIf="imagen == '' || !isLogged" src="../../../../assets/images/without_photo.jpeg" />
+            <img class="circle" *ngIf="imagen != ''" src="{{urlServer}}/ObtenerArchivo/6/{{imagen}}" />
+          </a>
+          <a href=""><span class="white-text name">{{fullname}}</span></a>
+          <a href=""><span class="white-text email">{{correo}}</span></a>
+
+        </div>
+      </li>
+      <li><a class="sidenav-close" *ngIf="!isLogged" routerLink="security/singup">Iniciar Sesión</a></li>
+      <li><a class="sidenav-close" *ngIf="!isLogged" routerLink="security/register-user">Registrarse</a></li>
+      <li><a class="sidenav-close" *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' "
+          routerLink="parameters/list-parque">Parques</a>
+      </li>
+      <li><a class="sidenav-close" *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' "
+          routerLink="parameters/list-atracciones">Atracciones</a></li>
+      <li><a class="sidenav-close" *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' "
+          routerLink="parameters/list-zonas">Zonas</a></li>
+      <li><a class="sidenav-close" *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' "
+          routerLink="parameters/list-puestos">Puestos de
+          Comida</a></li>
+      <li><a class="sidenav-close" *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' "
+          routerLink="parameters/list-planes">Planes</a>
+      </li>
+      <li><a class="sidenav-close" *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' "
+          routerLink="parameters/list-departamentos">Departamentos</a></li>
+      <li><a class="sidenav-close" *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' "
+          routerLink="parameters/list-ciudades">Ciudades</a>
+      </li>
+
+      <li><a class="sidenav-close" *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' "
+          routerLink="security/change-password">Cambiar
+          contraseña</a>
+      <li><a *ngIf="isLogged && rolId == '6371d531ec6ee399607ab929' " routerLink="asd">Comprar Plan</a></li>
+
+      <li><a *ngIf="isLogged && rolId == '6371d531ec6ee399607ab929'" routerLink="security/change-password">Cambiar
+          contraseña</a></li>
+      <br>
+      <br>
+      <br>
+      <br>
+      <li><a class="sidenav-close" *ngIf="isLogged" routerLink="security/logout">Cerrar sesión</a></li>
+    </ul>
+  </div>
+</nav>
+<!-- Dropdown Trigger -->

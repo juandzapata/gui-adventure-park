@@ -1,1 +1,59 @@
-<p>edit-puestos works!</p>
+<div class="row">
+    <form class="col s12" [formGroup]="fGroup">
+        <input type="hidden" formControlName="id">
+        <div class="cargaImagenes">
+            <div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <img *ngIf="uploadedImage == ''" src="/assets/images/notimage.jpg" class="imgInput" />
+                        <img *ngIf="uploadedImage != ''" src="{{urlServer}}/ObtenerArchivo/5/{{uploadedImage}}"
+                            class="imgInput">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col sm-12">
+                        <div class="file-field input-field">
+                            <div class="btn blue">
+                                <span>Imagen</span>
+                                <input type="file" (change)="onFileSelect($event)" />
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col sm-12">
+                        <button (click)="UploadImage()" [disabled]="!isFileSelected" class="btn orange">Cargar</button>
+                    </div>
+                </div>
+            </div>
+            <div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <input formControlName="name" id="name" type="text" />
+                <label class="active" for="name">Nombre</label>
+            </div>
+        </div>        
+        <div class="row">
+            <div class="input-field col s12">
+                <input formControlName="menu" id="descripcion" type="text" />
+                <label class="active" for="descripcion">Menú</label>
+            </div>
+        </div>        
+        
+        <div class="row">
+            <div class="input-field col s12">
+                <button class="btn btn-success green" (click)="EditarRecord()">
+                    <i class="material-icons left">edit</i>Actualizar
+                </button>
+                &nbsp;
+                <a routerLink="/parameters/list-puestos" class="waves-effect waves-light btn red"><i
+                        class="material-icons left">cancel</i>Cancelar</a>
+            </div>
+        </div>
+    </form>
+</div>

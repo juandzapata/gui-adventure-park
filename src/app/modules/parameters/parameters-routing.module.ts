@@ -25,10 +25,12 @@ import { CreatePuestosComponent } from './puestos/create-puestos/create-puestos.
 import { EditPuestosComponent } from './puestos/edit-puestos/edit-puestos.component';
 import { ListPuestosComponent } from './puestos/list-puestos/list-puestos.component';
 import { RemovePuestosComponent } from './puestos/remove-puestos/remove-puestos.component';
+import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.component';
 import { CreateZonasComponent } from './zonas/create-zonas/create-zonas.component';
 import { EditZonasComponent } from './zonas/edit-zonas/edit-zonas.component';
 import { ListZonasComponent } from './zonas/list-zonas/list-zonas.component';
 import { RemoveZonasComponent } from './zonas/remove-zonas/remove-zonas.component';
+
 
 const routes: Routes = [
   {
@@ -37,12 +39,12 @@ const routes: Routes = [
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'edit-praque',
+    path:'edit-parque/:id',
     component:EditParqueComponent,
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'remove-parque',
+    path:'remove-parque/:id',
     component:RemoveParqueComponent,
     canActivate: [AuthenticatedGuard]
   },
@@ -57,12 +59,12 @@ const routes: Routes = [
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'edit-atracciones',
+    path:'edit-atracciones/:id',
     component:EditAtraccionesComponent,
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'remove-atracciones',
+    path:'remove-atracciones/:id',
     component:RemoveAtraccionesComponent,
     canActivate: [AuthenticatedGuard]
   },
@@ -77,12 +79,12 @@ const routes: Routes = [
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'edit-ciudades',
+    path:'edit-ciudades/:id',
     component:EditCiudadesComponent,
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'remove-ciudades',
+    path:'remove-ciudades/:id',
     component:RemoveCiudadesComponent,
     canActivate: [AuthenticatedGuard]
   },
@@ -97,12 +99,12 @@ const routes: Routes = [
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'edit-departamentos',
+    path:'edit-departamentos/:id',
     component:EditDepartamentosComponent,
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'remove-departamentos',
+    path:'remove-departamentos/:id',
     component:RemoveDepartamentosComponent,
     canActivate: [AuthenticatedGuard]
   },
@@ -117,12 +119,12 @@ const routes: Routes = [
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'edit-planes',
+    path:'edit-planes/:id',
     component:EditPlanesComponent,
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'remove-planes',
+    path:'remove-planes/:id',
     component:RemovePlanesComponent,
     canActivate: [AuthenticatedGuard]
   },
@@ -137,12 +139,12 @@ const routes: Routes = [
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'edit-puestos',
+    path:'edit-puestos/:id',
     component:EditPuestosComponent,
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'remove-puestos',
+    path:'remove-puestos/:id',
     component:RemovePuestosComponent,
     canActivate: [AuthenticatedGuard]
   },
@@ -157,12 +159,12 @@ const routes: Routes = [
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'edit-zonas',
+    path:'edit-zonas/:id',
     component:EditZonasComponent,
     canActivate: [AuthenticatedGuard]
   },
   {
-    path:'remove-zonas',
+    path:'remove-zonas/:id',
     component:RemoveZonasComponent,
     canActivate: [AuthenticatedGuard]
   },
@@ -171,7 +173,11 @@ const routes: Routes = [
     component:ListZonasComponent,
     canActivate: [AuthenticatedGuard]
   },
-  
+  {
+    path:'edit-usuario',
+    component:EditUsuarioComponent,
+    canActivate: [AuthenticatedGuard]
+  }
 ];
 
 @NgModule({

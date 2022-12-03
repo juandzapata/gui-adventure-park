@@ -1,10 +1,16 @@
 import { makeBindingParser } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { mode } from 'crypto-js';
 import { ApisInfo } from 'src/app/config/apis-info';
+import { CustomStyles } from 'src/app/config/custom.styles';
 import { ParqueModel } from 'src/app/models/parque.model';
 import { ParqueService } from 'src/app/services/parameters/parque.service';
+import { CiudadModel } from 'src/app/models/ciudad.model';
+import { CiudadesService } from 'src/app/services/parameters/ciudades.service';
+
+declare const ShowToastMessage:any;
 
 @Component({
   selector: 'app-create-parque',
@@ -19,14 +25,22 @@ export class CreateParqueComponent implements OnInit {
   isFileSelectedMapa: boolean = false;
 
   fGroup: FormGroup = new FormGroup({});
+  seleccionado = 0;
+  ciudades: CiudadModel[] = [];
+
+
 
   constructor(
     private fb: FormBuilder, 
-    private parqueService: ParqueService
+    private parqueService: ParqueService,
+    private router: Router,
+    private ciudadesService: CiudadesService
     ) {}
 
   ngOnInit(): void {
+    
     this.BuildingForm();
+    this.LlenarListaCiudades();
   }
 
   /**
@@ -41,7 +55,9 @@ export class CreateParqueComponent implements OnInit {
       eslogan: ['', [Validators.required]],
       capacidad: [0, [Validators.required]],
       direccion: ['', [Validators.required]],
-      file: ['', [Validators.required]],
+      mapFile: ['', [Validators.required]],
+      logoFile: ['', [Validators.required]],
+      seleccionado: [0, [Validators.required]]
     });
   }
 
@@ -56,7 +72,7 @@ export class CreateParqueComponent implements OnInit {
   onFileSelectLogo(evt: any) {
     if (evt.target.files.length > 0) {
       const f = evt.target.files[0];
-      this.fGroup.controls['file'].setValue(f);
+      this.fGroup.controls['logoFile'].setValue(f);
       this.isFileSelectedLogo = true;
     }
   }
@@ -64,18 +80,18 @@ export class CreateParqueComponent implements OnInit {
   onFileSelectMapa(evt: any) {
     if (evt.target.files.length > 0) {
       const f = evt.target.files[0];
-      this.fGroup.controls['file'].setValue(f);
+      this.fGroup.controls['mapFile'].setValue(f);
       this.isFileSelectedMapa = true;
     }
   }
 
   UploadImageLogo() {
     const formData = new FormData();
-    formData.append('file', this.fGroup.controls['file'].value);
+    formData.append('file', this.fGroup.controls['logoFile'].value);
     this.parqueService.uploadImageLogo(formData).subscribe({
       next: (data) => {
         this.uploadedImageLogo = data.file;
-        alert('Imagen cargada');
+        ShowToastMessage("Imagen cargada éxitosamente", CustomStyles.success_toast_class);
       },
       error: (err) => {
         console.log(err);
@@ -85,11 +101,11 @@ export class CreateParqueComponent implements OnInit {
 
   UploadImageMapa() {
     const formData = new FormData();
-    formData.append('file', this.fGroup.controls['file'].value);
+    formData.append('file', this.fGroup.controls['mapFile'].value);
     this.parqueService.uploadImageMapa(formData).subscribe({
       next: (data) => {
         this.uploadedImageMapa= data.file;
-        alert('Imagen cargada');
+        ShowToastMessage("Imagen cargada éxitosamente", CustomStyles.success_toast_class);
       },
       error: (err) => {
         console.log(err);
@@ -99,7 +115,7 @@ export class CreateParqueComponent implements OnInit {
 
   SaveRecord() {
     if (this.fGroup.invalid) {
-      alert('Faltan datos' +"Mapa: "+ this.uploadedImageMapa + "Logo: " + this.uploadedImageLogo );
+      ShowToastMessage("Faltan datos", CustomStyles.error_toast_class);      
     } else {
       let model = new ParqueModel();
       model.imagenLogo = this.uploadedImageLogo;
@@ -110,14 +126,32 @@ export class CreateParqueComponent implements OnInit {
       model.eslogan = this.fGroup.controls['eslogan'].value;
       model.direccion = this.fGroup.controls['direccion'].value;
       model.imagenMapa = this.uploadedImageMapa;
-
-      console.log(this.uploadedImageMapa);
+      model.ciudadId = this.seleccionado;
+      
+      console.log(model);
       this.parqueService.saveRecord(model).subscribe({
         next: (data) => {
-          alert('Registro almacenado correctamente con id ' + data.id);
+          ShowToastMessage("Registro almacenado éxitosamente", CustomStyles.success_toast_class);
+          this.router.navigate(['/parameters/list-parque']);
         },
-        error: (err) => {},
+        error: (err) => {
+          ShowToastMessage("Error almacenado el registro", CustomStyles.success_toast_class);
+        },
       });
     }
+  }
+
+  LlenarListaCiudades(){
+    this.ciudadesService.getRecordList().subscribe({
+      next: (data) =>{
+        this.ciudades = data;
+        console.log(data);
+        
+      }
+    });
+  }
+
+  capturar() {
+    this.seleccionado = parseInt(this.fGroup.controls["seleccionado"].value);
   }
 }

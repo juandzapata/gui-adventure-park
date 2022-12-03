@@ -9,6 +9,8 @@ import { NotFoundComponent } from './public/errors/not-found/not-found.component
 import { InternalServerErrorComponent } from './public/errors/internal-server-error/internal-server-error.component';
 import { HomeComponent } from './public/master-page/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ViewParqueComponent } from './public/master-page/views/view-parque/view-parque.component';
+
 
 @NgModule({
   declarations: [
@@ -17,12 +19,13 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     NotFoundComponent,
     InternalServerErrorComponent,
-    HomeComponent
+    HomeComponent,
+    ViewParqueComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

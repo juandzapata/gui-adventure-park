@@ -1,4 +1,9 @@
 <br>
+<div class="section"></div>
+
+<h3 class="title brown-text center">¡Parques!</h3>
+<div class="section"></div>
+
 <a routerLink="/parameters/create-parque" class="waves-effect waves-light btn green"><i class="material-icons left">add</i>Agregar</a>
 <table class="striped">
     <thead>
@@ -29,8 +34,9 @@
                 <img class="logoParque" src="{{urlServer}}/ObtenerArchivo/3/{{r.imagenLogo}}" alt="logo"/>
             </td>
             <td>
-                <a class="waves-effect waves-light btn orange"><i class="material-icons left">edit</i>Editar</a>
-                &nbsp;<a class="waves-effect waves-light btn red"><i class="material-icons left">delete</i>Eliminar</a>
+                <a routerLink="/parameters/edit-parque/{{r.id}}" class="waves-effect waves-light btn orange"><i class="material-icons left">edit</i>Editar</a>
+                &nbsp;
+                <a routerLink="/parameters/remove-parque/{{r.id}}" class="waves-effect waves-light btn red"><i class="material-icons left">delete</i>Eliminar</a>
             </td>
         </tr>
     </tbody>

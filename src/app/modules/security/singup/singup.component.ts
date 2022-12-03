@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CustomStyles } from 'src/app/config/custom.styles';
 import { DefaultValues } from 'src/app/config/default-values';
 import { LoggedUserModel } from 'src/app/models/logged-user.model';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { SercurityService } from 'src/app/services/sercurity.service';
 
+declare const ShowToastMessage:any;
 var MD5 = require('crypto-js/md5');
 
 @Component({
@@ -51,22 +53,23 @@ export class SingupComponent implements OnInit {
 
     //Enviar la contraseña cifrada al backend
     let cryptoPassword = MD5(password).toString();
-    console.log(cryptoPassword);
+    //console.log(cryptoPassword);
 
     this.secService.LoginRequest(username, cryptoPassword).subscribe({
-      next: (data: LoggedUserModel) => {
+      
+      next: (data) => {
+        
         //Cuando se ha obtenido una respuesta valida
-        if (data.token == '') {
-          alert('Datos invalidos');
+        if (data) {         
+          //alert('Datos validos');
+          this.router.navigate(['/security/doble-factor']);
         } else {
           //console.log(data)
-          data.user.isLogged = true;
-          this.lsServices.SaveUserData(data);
-          this.router.navigate(['/home']);
+          ShowToastMessage("Error", CustomStyles.error_toast_class);
         }
       },
       error: (err) => {
-        alert('Error en login');
+        ShowToastMessage("Error", CustomStyles.error_toast_class);
       },
     });
   }

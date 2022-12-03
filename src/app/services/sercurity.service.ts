@@ -48,6 +48,17 @@ export class SercurityService {
   getUserData(){
     return this.userData.asObservable()
   }
+
+  ChangePasswordRequest(
+    username: string, 
+    oldPassword: string, 
+    newPassword: string):Observable<boolean>{
+    let actionName = 'validate-password';
+    return this.http.post<boolean>(`${this.url}${actionName}/${newPassword}`, {
+      correo: username,
+      clave: oldPassword
+    })
+  }
   
   /**
    * Hace una petición al backend para utilizar le método de: -recupera contraseña-
@@ -78,6 +89,15 @@ export class SercurityService {
   CheckSessionToken(jwt:string):Observable<boolean>{
     let actionName = 'check-validate-token/';
     return this.http.get<boolean>(`${this.url}${actionName}/${jwt}`);
+  }
+
+  /**
+   * Verifica que el codigo ingresado pertenezca al usuario correspondiente
+   * @param codigo Codigo ingresado por el usuario para autenticarse
+   */
+   DobleFactorRequest(codigo: string):Observable<LoggedUserModel> {
+    let actionName = 'validate-code';
+    return this.http.get<LoggedUserModel>(`${this.url}${actionName}/${codigo}`);
   }
 
 }

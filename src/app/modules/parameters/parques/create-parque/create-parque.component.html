@@ -2,13 +2,14 @@
   <form class="col s12" [formGroup]="fGroup">
     <div class="cargaImagenes">
       <div>
-        <div class="row" >
+        <div class="row">
           <div class="input-field col s12">
             <img *ngIf="uploadedImageLogo == ''" src="/assets/images/notimage.jpg" class="imgInput" />
-            <img *ngIf="uploadedImageLogo != ''" src="{{urlServer}}/ObtenerArchivo/3/{{uploadedImageLogo}}" class="imgInput">
+            <img *ngIf="uploadedImageLogo != ''" src="{{urlServer}}/ObtenerArchivo/3/{{uploadedImageLogo}}"
+              class="imgInput">
           </div>
         </div>
-  
+
         <div class="row">
           <div class="col sm-12">
             <div class="file-field input-field">
@@ -30,10 +31,11 @@
         <div class="row">
           <div class="input-field col s12">
             <img *ngIf="uploadedImageMapa == ''" src="/assets/images/notimage.jpg" class="imgInput" />
-            <img *ngIf="uploadedImageMapa != ''" src="{{urlServer}}/ObtenerArchivo/4/{{uploadedImageMapa}}" class="imgInput">
+            <img *ngIf="uploadedImageMapa != ''" src="{{urlServer}}/ObtenerArchivo/4/{{uploadedImageMapa}}"
+              class="imgInput">
           </div>
         </div>
-  
+
         <div class="row">
           <div class="col sm-12">
             <div class="file-field input-field">
@@ -59,12 +61,27 @@
         <label for="name">Nombre</label>
       </div>
     </div>
+
     <div class="row">
       <div class="input-field col s12">
         <input formControlName="direccion" id="direccion" type="text" />
         <label for="direccion">Dirección</label>
       </div>
     </div>
+
+    <div class="row">
+      <label class="input-field col s12 input-select">Ciudad</label>
+    </div>
+    <div class="row">
+      <div>
+        <select class="mi-select browser-default" (change)="capturar()" formControlName="seleccionado"
+          id="seleccionado">
+          <option disabled selected>Selecciona una ciudad</option>
+          <option *ngFor="let r of ciudades" value="{{r.id}}">{{r.nombre}}</option>
+        </select>
+      </div>
+    </div>
+
     <div class="row">
       <div class="input-field col s12">
         <input formControlName="email" id="email" type="text" />
@@ -73,7 +90,7 @@
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <input formControlName="capacidad" id="capacidad" type="number" />
+        <input type="capacidad" id="capacidad" type="number" />
         <label for="capacidad">Capacidad</label>
       </div>
     </div>

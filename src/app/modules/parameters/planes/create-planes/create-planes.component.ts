@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApisInfo } from 'src/app/config/apis-info';
+import { CustomStyles } from 'src/app/config/custom.styles';
 import { PlanModel } from 'src/app/models/plan.model';
 import { PlanesService } from 'src/app/services/parameters/planes.service';
+
+declare const ShowToastMessage:any;
 
 @Component({
   selector: 'app-create-planes',
@@ -17,6 +21,7 @@ export class CreatePlanesComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private planService: PlanesService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -34,7 +39,7 @@ export class CreatePlanesComponent implements OnInit {
   
   SaveRecord() {
     if (this.fGroup.invalid) {
-      alert('Faltan datos');
+      ShowToastMessage("Faltan datos", CustomStyles.error_toast_class);
     } else {
       let model = new PlanModel();      
       model.nombre = this.fGroup.controls['name'].value;
@@ -43,9 +48,14 @@ export class CreatePlanesComponent implements OnInit {
       
       this.planService.saveRecord(model).subscribe({
         next: (data) => {
-          alert('Registro almacenado correctamente con id ' + data.id);
+          ShowToastMessage("Registro creado éxitosamente", CustomStyles.success_toast_class);
+          this.router.navigate(['/parameters/list-planes']);
+
         },
-        error: (err) => {},
+        error: (err) => {
+          ShowToastMessage("Error creando el registro", CustomStyles.success_toast_class);
+        },
+
       });
     }
   }

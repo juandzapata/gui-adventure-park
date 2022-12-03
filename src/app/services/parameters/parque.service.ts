@@ -34,6 +34,18 @@ export class ParqueService {
     return this.http.get<ParqueModel[]>(this.url);
   }
 
+   /**
+   * Obtiene el parque segun el id
+   * @returns el parque encontrado
+   */
+    getRecordById(id: number):Observable<ParqueModel>{        
+      return this.http.get<ParqueModel>(this.url + "/" + id, {
+        headers: new HttpHeaders({
+          "Authorization": "Bearer "+ this.jwt
+        })
+      });
+    }
+
   /**
    * Crea un nuevo registro
    * @param record Datos del nuevo registro
@@ -43,11 +55,14 @@ export class ParqueService {
     return this.http.post<ParqueModel>(this.url, {
       nombre: record.nombre,
       imagenLogo: record.imagenLogo,
+      imagenMapa: record.imagenMapa,
       descripcion: record.descripcion,
       capacidad: record.capacidad,
       eslogan: record.eslogan,
       email: record.email,
-      direccion: record.direccion
+      direccion: record.direccion,
+      ciudadId: record.ciudadId
+
     }, {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`
@@ -61,7 +76,7 @@ export class ParqueService {
    * @returns NA
    */
   editRecord(record: ParqueModel){
-    return this.http.put(this.url + "/" + record.id, record, {
+    return this.http.put(this.url + "/" + record.id,  record, {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`
       })
@@ -74,7 +89,7 @@ export class ParqueService {
    * @returns NA
    */
   removeRecord(id: number){
-    return this.http.post(this.url + "/" + id, {
+    return this.http.delete(this.url + "/" + id, {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`
       })
