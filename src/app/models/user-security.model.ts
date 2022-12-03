@@ -6,4 +6,5 @@ export class UserSecurityModel{
     clave: string = '';
     correo: string = '';
     rolId: string = '';
+    imagenPerfil:string = '';
 }

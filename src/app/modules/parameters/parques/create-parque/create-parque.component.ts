@@ -1,10 +1,15 @@
 import { makeBindingParser } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { mode } from 'crypto-js';
 import { ApisInfo } from 'src/app/config/apis-info';
+import { CustomStyles } from 'src/app/config/custom.styles';
 import { ParqueModel } from 'src/app/models/parque.model';
 import { ParqueService } from 'src/app/services/parameters/parque.service';
+
+
+declare const ShowToastMessage:any;
 
 @Component({
   selector: 'app-create-parque',
@@ -19,10 +24,13 @@ export class CreateParqueComponent implements OnInit {
   isFileSelectedMapa: boolean = false;
 
   fGroup: FormGroup = new FormGroup({});
+  //selectedOption = 0;
+  //listaCiudades: string[] = ['ciudad1', 'ciudad2', 'ciudad3'];
 
   constructor(
     private fb: FormBuilder, 
-    private parqueService: ParqueService
+    private parqueService: ParqueService,
+    private router: Router,
     ) {}
 
   ngOnInit(): void {
@@ -100,7 +108,7 @@ export class CreateParqueComponent implements OnInit {
 
   SaveRecord() {
     if (this.fGroup.invalid) {
-      alert('Faltan datos' +"Mapa: "+ this.uploadedImageMapa + "Logo: " + this.uploadedImageLogo );
+      ShowToastMessage("Faltan datos", CustomStyles.error_toast_class);      
     } else {
       let model = new ParqueModel();
       model.imagenLogo = this.uploadedImageLogo;
@@ -115,9 +123,12 @@ export class CreateParqueComponent implements OnInit {
       console.log(model);
       this.parqueService.saveRecord(model).subscribe({
         next: (data) => {
-          alert('Registro almacenado correctamente con id ' + data.id);
+          ShowToastMessage("Registro almacenado éxitosamente", CustomStyles.success_toast_class);
+          this.router.navigate(['/parameters/list-parque']);
         },
-        error: (err) => {},
+        error: (err) => {
+          ShowToastMessage("Error almacenado el registro", CustomStyles.success_toast_class);
+        },
       });
     }
   }

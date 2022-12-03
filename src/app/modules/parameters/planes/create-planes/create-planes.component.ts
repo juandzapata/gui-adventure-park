@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApisInfo } from 'src/app/config/apis-info';
 import { CustomStyles } from 'src/app/config/custom.styles';
 import { PlanModel } from 'src/app/models/plan.model';
@@ -20,6 +21,7 @@ export class CreatePlanesComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private planService: PlanesService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -47,8 +49,12 @@ export class CreatePlanesComponent implements OnInit {
       this.planService.saveRecord(model).subscribe({
         next: (data) => {
           ShowToastMessage("Registro creado éxitosamente", CustomStyles.success_toast_class);
+          this.router.navigate(['/parameters/list-planes']);
+
         },
-        error: (err) => {},
+        error: (err) => {
+          ShowToastMessage("Error creando el registro", CustomStyles.success_toast_class);
+        },
 
       });
     }

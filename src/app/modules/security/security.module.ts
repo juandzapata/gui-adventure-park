@@ -8,6 +8,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
+import { DobleFactorComponent } from './doble-factor/doble-factor.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { RegisterUserComponent } from './register-user/register-user.component';
     ResetPasswordComponent,
     ChangePasswordComponent,
     LogoutComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    DobleFactorComponent
   ],
   imports: [
     CommonModule,

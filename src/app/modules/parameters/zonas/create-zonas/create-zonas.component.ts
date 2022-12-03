@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Route, Router } from '@angular/router';
 import { ApisInfo } from 'src/app/config/apis-info';
 import { CustomStyles } from 'src/app/config/custom.styles';
 import { ZonaModel } from 'src/app/models/zona.model';
@@ -22,7 +23,8 @@ export class CreateZonasComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder, 
-    private zonasService: ZonasService
+    private zonasService: ZonasService,
+    private router: Router
     ) {}
 
   ngOnInit(): void {
@@ -85,6 +87,7 @@ export class CreateZonasComponent implements OnInit {
       this.zonasService.saveRecord(model).subscribe({
         next: (data) => {
           ShowToastMessage("Registro almacenado éxitosamente", CustomStyles.success_toast_class);
+          this.router.navigate(['/parameters/list-zonas']);
         },
         error: (err) => {},
       });

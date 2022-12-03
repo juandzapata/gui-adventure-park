@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApisInfo } from 'src/app/config/apis-info';
+import { CustomStyles } from 'src/app/config/custom.styles';
 import { PuestoModel } from 'src/app/models/puesto.model';
 import { PuestosService } from 'src/app/services/parameters/puestos.service';
+
+declare const ShowToastMessage:any;
 
 @Component({
   selector: 'app-create-puestos',
@@ -19,7 +23,8 @@ export class CreatePuestosComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder, 
-    private puestosService: PuestosService
+    private puestosService: PuestosService,
+    private router: Router,
     ) {}
 
   ngOnInit(): void {
@@ -70,7 +75,7 @@ export class CreatePuestosComponent implements OnInit {
 
   SaveRecord() {
     if (this.fGroup.invalid) {
-      alert('Faltan datos' );
+      ShowToastMessage("Faltan datos", CustomStyles.error_toast_class);
     } else {
       let model = new PuestoModel();
       //Tomar las variables del html y mandarlas al modelo
@@ -79,9 +84,13 @@ export class CreatePuestosComponent implements OnInit {
       model.menu = this.fGroup.controls['menu'].value;
       this.puestosService.saveRecord(model).subscribe({
         next: (data) => {
-          alert('Registro almacenado correctamente con id ' + data.id);
+          ShowToastMessage("Registro almacenado éxitosamente", CustomStyles.success_toast_class);
+          this.router.navigate(['/parameters/list-puestos']);
         },
-        error: (err) => {},
+        error: (err) => {
+          ShowToastMessage("Error almacenando el registro", CustomStyles.error_toast_class);
+
+        },
       });
     }
   }

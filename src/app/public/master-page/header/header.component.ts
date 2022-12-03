@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
         this.isLogged = data.isLogged;
         this.rolId = data.rol;
         this.fullname = data.nombre;
-        //this.imagenPerfil = data.imagen;
+        this.imagen = data.imagenPerfil;
         this.correo = data.correo;
       },
       error: (err) =>{

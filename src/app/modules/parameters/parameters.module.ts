@@ -31,6 +31,11 @@ import { EditCiudadesComponent } from './ciudades/edit-ciudades/edit-ciudades.co
 import { RemoveCiudadesComponent } from './ciudades/remove-ciudades/remove-ciudades.component';
 import { ListCiudadesComponent } from './ciudades/list-ciudades/list-ciudades.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditPlanAtraccionComponent } from './plan-atraccion/edit-plan-atraccion/edit-plan-atraccion.component';
+import { CreatePlanAtraccionComponent } from './plan-atraccion/create-plan-atraccion/create-plan-atraccion.component';
+import { RemovePlanAtraccionComponent } from './plan-atraccion/remove-plan-atraccion/remove-plan-atraccion.component';
+import { ListPlanAtraccionComponent } from './plan-atraccion/list-plan-atraccion/list-plan-atraccion.component';
+import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.component';
 
 
 @NgModule({
@@ -62,7 +67,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CreateCiudadesComponent,
     EditCiudadesComponent,
     RemoveCiudadesComponent,
-    ListCiudadesComponent
+    ListCiudadesComponent,
+    CreatePlanAtraccionComponent,
+    RemovePlanAtraccionComponent,
+    ListPlanAtraccionComponent,
+    EditPlanAtraccionComponent,
+    EditUsuarioComponent
   ],
   imports: [
     CommonModule,

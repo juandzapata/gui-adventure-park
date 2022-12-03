@@ -4,4 +4,5 @@ export class UserModel{
     rol:string = '';
     id:string = '';
     isLogged: boolean = false;
+    imagenPerfil: string = '';
 }

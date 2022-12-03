@@ -78,7 +78,7 @@ export class PuestosService {
    * @returns NA
    */
   removeRecord(id: number){
-    return this.http.post(this.url + "/" + id, {
+    return this.http.delete(this.url + "/" + id, {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`
       })

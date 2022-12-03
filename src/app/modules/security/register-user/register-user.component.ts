@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { mode } from 'crypto-js';
 import { ApisInfo } from 'src/app/config/apis-info';
+import { CustomStyles } from 'src/app/config/custom.styles';
 import { DefaultValues } from 'src/app/config/default-values';
 import { UserLogicModel } from 'src/app/models/user-logic-model';
 import { UserSecurityModel } from 'src/app/models/user-security.model';
@@ -9,6 +11,8 @@ import { UserModel } from 'src/app/models/user.model';
 import { UsuarioLogicService } from 'src/app/services/parameters/usuario-logic.service';
 import { UsuarioSecurityService } from 'src/app/services/parameters/usuario-security.service';
 import { UsuariosService } from 'src/app/services/parameters/usuarios.service';
+
+declare const ShowToastMessage:any;
 
 @Component({
   selector: 'app-register-user',
@@ -27,7 +31,8 @@ export class RegisterUserComponent implements OnInit {
   constructor(
     private fb: FormBuilder, 
     private usuariosSecurityService: UsuarioSecurityService,
-    private usuariosLogicService: UsuarioLogicService
+    private usuariosLogicService: UsuarioLogicService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -83,7 +88,7 @@ export class RegisterUserComponent implements OnInit {
 
       this.usuariosLogicService.saveRecord(model).subscribe({
         next: (data) => {
-          alert('Registro almacenado correctamente con id ' + data.id);
+          ShowToastMessage("¡Ya eres parte de la familia Adventure Park!", CustomStyles.success_toast_class);
           this.SaveSecurityRecord();
         },
         error: (err) => {
@@ -106,10 +111,10 @@ export class RegisterUserComponent implements OnInit {
 
       this.usuariosSecurityService.saveRecord(model).subscribe({
         next: (data) => {
-          alert('Registro almacenado correctamente con id ' + data.id);
+          this.router.navigate(['/security/singup']);
         },
         error: (err) => {
-          alert('Error en la creación del usuario de seguridad');
+          ShowToastMessage("Error", CustomStyles.error_toast_class);
         },
       });
     }
