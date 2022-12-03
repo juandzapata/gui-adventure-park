@@ -12,6 +12,7 @@ describe('EditPuestosComponent', () => {
     })
     .compileComponents();
 
+    
     fixture = TestBed.createComponent(EditPuestosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

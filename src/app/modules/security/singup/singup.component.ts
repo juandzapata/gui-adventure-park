@@ -50,30 +50,22 @@ export class SingupComponent implements OnInit {
   LoginAction() {
     let username = this.fGroup.controls['username'].value;
     let password = this.fGroup.controls['password'].value;
-
     //Enviar la contraseña cifrada al backend
     let cryptoPassword = MD5(password).toString();
     //console.log(cryptoPassword);
-
     this.secService.LoginRequest(username, cryptoPassword).subscribe({
-      
       next: (data) => {
-        
-        //Cuando se ha obtenido una respuesta valida
-        if (data) {         
-          //alert('Datos validos');
+        if(data) {
           this.router.navigate(['/security/doble-factor']);
         } else {
-          //console.log(data)
-          ShowToastMessage("Error", CustomStyles.error_toast_class);
+          alert("error, contraseña incorrecta");
+        }},
+        error: (err) => {
+        alert("error, contraseña incorrecta");
+            }
+          });
         }
-      },
-      error: (err) => {
-        ShowToastMessage("Error", CustomStyles.error_toast_class);
-      },
-    });
-  }
-
+              
   get fg() {
     return this.fGroup.controls;
   }

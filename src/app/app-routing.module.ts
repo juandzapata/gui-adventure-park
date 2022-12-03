@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SecurityModule } from './modules/security/security.module';
 import { NotFoundComponent } from './public/errors/not-found/not-found.component';
 import { HomeComponent } from './public/master-page/home/home.component';
+import { ViewParqueComponent } from './public/master-page/views/view-parque/view-parque.component';
 
 const routes: Routes = [
   {
@@ -23,9 +24,14 @@ const routes: Routes = [
     loadChildren: () => import('./modules/parameters/parameters.module').then(m => m.ParametersModule)
   },
   {
+    path: "purchase",
+    loadChildren: () => import('./modules/purchase/purchase.module').then(m => m.PurchaseModule)
+  },
+  {
     path:"**",
     component: NotFoundComponent
-  }
+  },
+  
 ];
 
 @NgModule({

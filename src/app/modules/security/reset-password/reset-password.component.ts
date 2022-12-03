@@ -45,7 +45,7 @@ export class ResetPasswordComponent implements OnInit {
       next:(data) => {
         if(data){
           ShowToastMessage("Te hemos enviado un correo con tu nueva contraseña, ¡No la olvides esta vez!", CustomStyles.success_toast_class);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/security/singup']);
         }else{
           alert("No se ha enviado la contraseña")
         }

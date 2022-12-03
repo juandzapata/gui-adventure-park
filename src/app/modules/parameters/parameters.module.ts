@@ -36,6 +36,10 @@ import { CreatePlanAtraccionComponent } from './plan-atraccion/create-plan-atrac
 import { RemovePlanAtraccionComponent } from './plan-atraccion/remove-plan-atraccion/remove-plan-atraccion.component';
 import { ListPlanAtraccionComponent } from './plan-atraccion/list-plan-atraccion/list-plan-atraccion.component';
 import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.component';
+import { VistasParqueComponent } from './vistas/vistas-parque/vistas-parque.component';
+import { VistasZonasComponent } from './vistas/vistas-zonas/vistas-zonas.component';
+import { VistasAtraccionesComponent } from './vistas/vistas-atracciones/vistas-atracciones.component';
+import { VistasPlanesComponent } from './vistas/vistas-planes/vistas-planes.component';
 
 
 @NgModule({
@@ -72,7 +76,11 @@ import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.compon
     RemovePlanAtraccionComponent,
     ListPlanAtraccionComponent,
     EditPlanAtraccionComponent,
-    EditUsuarioComponent
+    EditUsuarioComponent,
+    VistasParqueComponent,
+    VistasZonasComponent,
+    VistasAtraccionesComponent,
+    VistasPlanesComponent
   ],
   imports: [
     CommonModule,

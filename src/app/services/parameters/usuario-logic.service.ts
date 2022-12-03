@@ -41,4 +41,9 @@ export class UsuarioLogicService {
       })
     });
   }
+
+  buscarCorreo(correo: string):Observable<UserLogicModel>{
+    let actionName = 'obtener-email'
+    return this.http.get<UserLogicModel>(`${this.url}/${actionName}/${correo}`);
+  }
 }

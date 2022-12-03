@@ -81,6 +81,14 @@ export class SercurityService {
     });
   }
 
+  ValidarClaveRequest(username: string, clave:string):Observable<Boolean>{
+    let actionName = 'validate-password-singup';
+    return this.http.post<boolean>(`${this.url}${actionName}`, {
+      correo: username,
+      clave: clave
+    });
+  }
+
   /**
    * Valida si el token almacenado es correcto
    * @param jwt Token de localStroge

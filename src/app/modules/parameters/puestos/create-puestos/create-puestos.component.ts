@@ -10,6 +10,7 @@ import { ZonasService } from 'src/app/services/parameters/zonas.service';
 
 declare const ShowToastMessage:any;
 
+
 @Component({
   selector: 'app-create-puestos',
   templateUrl: './create-puestos.component.html',
