@@ -74,7 +74,9 @@ export class SercurityService {
    * Realiza una petición al backend para utilizar le método de: -login-
    */
   LoginRequest(username: string, password: string):Observable<LoggedUserModel>{
-    let actionName = 'login';    
+    let actionName = 'login'; 
+    console.log("problema aqui");
+       
     return this.http.post<LoggedUserModel>(`${this.url}${actionName}`, {
       correo: username,
       clave: password
@@ -106,6 +108,12 @@ export class SercurityService {
    DobleFactorRequest(codigo: string):Observable<LoggedUserModel> {
     let actionName = 'validate-code';
     return this.http.get<LoggedUserModel>(`${this.url}${actionName}/${codigo}`);
+  }
+
+  enviarSMS(username: string):Observable<boolean> {
+    console.log(username);
+    let actionName = 'enviarSMS';
+    return this.http.get<boolean>(`${this.url}${actionName}/${username}`);
   }
 
 }

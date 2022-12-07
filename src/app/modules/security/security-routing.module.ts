@@ -31,7 +31,7 @@ const routes: Routes = [
     canActivate: [UnauthenticatedGuard]
   },
   {
-    path: 'doble-factor',
+    path: 'doble-factor/:username',
     component: DobleFactorComponent,
     canActivate: [UnauthenticatedGuard]
   },

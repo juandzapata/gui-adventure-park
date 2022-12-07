@@ -44,7 +44,7 @@ export class ResetPasswordComponent implements OnInit {
     this.secService.ResetPasswordRequest(username).subscribe({
       next:(data) => {
         if(data){
-          ShowToastMessage("Te hemos enviado un correo con tu nueva contraseña, ¡No la olvides esta vez!", CustomStyles.success_toast_class);
+          ShowToastMessage("Hemos enviado un correo con tu nueva contraseña, ¡No la olvides esta vez!", CustomStyles.success_toast_class);
           this.router.navigate(['/security/singup']);
         }else{
           alert("No se ha enviado la contraseña")

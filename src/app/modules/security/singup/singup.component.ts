@@ -52,11 +52,13 @@ export class SingupComponent implements OnInit {
     let password = this.fGroup.controls['password'].value;
     //Enviar la contraseña cifrada al backend
     let cryptoPassword = MD5(password).toString();
-    //console.log(cryptoPassword);
+    console.log(cryptoPassword);
     this.secService.LoginRequest(username, cryptoPassword).subscribe({
       next: (data) => {
+        console.log(data);
+        
         if(data) {
-          this.router.navigate(['/security/doble-factor']);
+          this.router.navigate([`/security/doble-factor/${username}`]);
         } else {
           alert("error, contraseña incorrecta");
         }},
