@@ -17,6 +17,8 @@ var MD5 = require('crypto-js/md5');
 })
 export class SingupComponent implements OnInit {
   fGroup: FormGroup = new FormGroup({});
+  selected: boolean = false;
+
   constructor(
     private fb: FormBuilder,
     private secService: SercurityService,
@@ -69,4 +71,5 @@ export class SingupComponent implements OnInit {
   get fg() {
     return this.fGroup.controls;
   }
+
 }

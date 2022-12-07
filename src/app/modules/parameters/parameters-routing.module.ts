@@ -183,8 +183,7 @@ const routes: Routes = [
   },
   {
     path:'vistas-parque',
-    component:VistasParqueComponent,
-    canActivate: [AuthenticatedGuard]
+    component:VistasParqueComponent
   },
   {
     path:'vistas-atracciones',

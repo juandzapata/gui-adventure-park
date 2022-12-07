@@ -44,9 +44,10 @@ export class EditZonasComponent implements OnInit {
    */
   BuildingForm() {
     this.fGroup = this.fb.group({
+      //quitar los requeridos para no obligar al usuario a modificarlo todo!!!
       id: ['', []],
       name: ['', [Validators.required]],
-      file: ['', []],
+      file: ['', []], 
       color: ['', [Validators.required]],
       descripcion: ['', [Validators.required]],
       seleccionado: ['', [Validators.required]]
@@ -93,6 +94,7 @@ export class EditZonasComponent implements OnInit {
         this.fGroup.controls["descripcion"].setValue(data.descripcion);
         this.fGroup.controls["color"].setValue(data.color);
         this.uploadedImage = data.imagen; 
+        this.isFileSelected = true; //evitar que pida archivo de foto obligatoriamente 
         this.fGroup.controls["seleccionado"].setValue(data.parqueId);
       }, 
       error: (err) => {

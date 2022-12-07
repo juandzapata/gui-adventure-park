@@ -3,3 +3,10 @@
     margin: 0% !important;
     width: 100% !important;
 }
+
+.bunker{
+    background: rgba(0%, 0%, 0%, 20%);
+    padding: 2vh;
+    border-radius: 15px;
+    width: max-content;
+}

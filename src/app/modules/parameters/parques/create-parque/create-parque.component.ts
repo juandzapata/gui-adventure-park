@@ -9,6 +9,8 @@ import { ParqueModel } from 'src/app/models/parque.model';
 import { ParqueService } from 'src/app/services/parameters/parque.service';
 import { CiudadModel } from 'src/app/models/ciudad.model';
 import { CiudadesService } from 'src/app/services/parameters/ciudades.service';
+import { CategoriaModel } from 'src/app/models/categoria.model';
+import { CategoriaService } from 'src/app/services/parameters/categoria.service';
 
 declare const ShowToastMessage:any;
 
@@ -26,7 +28,9 @@ export class CreateParqueComponent implements OnInit {
 
   fGroup: FormGroup = new FormGroup({});
   seleccionado = 0;
+  seleccionadoCategoria = 0;
   ciudades: CiudadModel[] = [];
+  categorias: CategoriaModel[] = [];
 
 
 
@@ -34,13 +38,16 @@ export class CreateParqueComponent implements OnInit {
     private fb: FormBuilder, 
     private parqueService: ParqueService,
     private router: Router,
-    private ciudadesService: CiudadesService
+    private ciudadesService: CiudadesService,
+    private categoriasService: CategoriaService
+
     ) {}
 
   ngOnInit(): void {
     
     this.BuildingForm();
     this.LlenarListaCiudades();
+    this.LlenarListaCategorias();
   }
 
   /**
@@ -57,7 +64,8 @@ export class CreateParqueComponent implements OnInit {
       direccion: ['', [Validators.required]],
       mapFile: ['', [Validators.required]],
       logoFile: ['', [Validators.required]],
-      seleccionado: [0, [Validators.required]]
+      seleccionado: [0, [Validators.required]],
+      seleccionadoCategoria: [0, [Validators.required]]
     });
   }
 
@@ -127,6 +135,7 @@ export class CreateParqueComponent implements OnInit {
       model.direccion = this.fGroup.controls['direccion'].value;
       model.imagenMapa = this.uploadedImageMapa;
       model.ciudadId = this.seleccionado;
+      model.categoriaId = this.seleccionadoCategoria;
       
       console.log(model);
       this.parqueService.saveRecord(model).subscribe({
@@ -151,7 +160,21 @@ export class CreateParqueComponent implements OnInit {
     });
   }
 
+  LlenarListaCategorias(){
+    this.categoriasService.getRecordList().subscribe({
+      next: (data) =>{
+        this.categorias = data;
+        console.log(data);
+        
+      }
+    });
+  }
+
   capturar() {
     this.seleccionado = parseInt(this.fGroup.controls["seleccionado"].value);
+  }
+
+  capturarCategoria() {
+    this.seleccionado = parseInt(this.fGroup.controls["seleccionadoCategoria"].value);
   }
 }

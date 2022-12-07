@@ -16,3 +16,17 @@
     background: rgba(100%, 100%, 100%, 20%) !important;    
     box-shadow: none !important;
 }
+
+.pedro .btn{
+    margin: 1% !important;
+    border-radius: 7px;
+}
+
+.imgside{
+
+    width: 20vh;
+}
+
+.selected{
+    display: none;
+}

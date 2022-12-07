@@ -1,8 +1,11 @@
 <nav class="pedro">
   <div class="nav-wrapper">
-    <a routerLink="/home" href=""><img src="../../../../assets/images/LogoAdventure.png" class="logo" alt=""></a>
-    <button class='sidenav-trigger btn-floating btn-large waves-effect waves-light light-blue accent-3 right' href='#'
-      data-target='slide-out'><i class="material-icons">person</i></button>
+    <a routerLink="/home" (click)="selected = false" href=""><img src="../../../../assets/images/LogoAdventure.png" class="logo" alt=""></a>
+    <button class="btn waves-effect waves-light light-blue accent-3 right btndisable" *ngIf="!isLogged" (click)="selected = true" [ngClass]="{'selected': selected == true}" routerLink="security/register-user">Registrarse</button>
+    <button class="btn waves-effect waves-light light-blue accent-3 right btndisable" *ngIf="!isLogged" (click)="selected = true" [ngClass]="{'selected': selected == true}"  routerLink="security/singup">Iniciar Sesión</button>
+    <button *ngIf="isLogged"
+      class='sidenav-trigger btn-floating btn-large waves-effect waves-light light-blue accent-3 right' href='#'
+      data-target='slide-out'><i class="material-icons">menu</i></button>
     <!-- Dropdown Structure -->
     <ul id='slide-out' class='sidenav'>
       <li>
@@ -15,13 +18,13 @@
             <img class="circle" *ngIf="imagen == '' || !isLogged" src="../../../../assets/images/without_photo.jpeg" />
             <img class="circle" *ngIf="imagen != ''" src="{{urlServer}}/ObtenerArchivo/6/{{imagen}}" />
           </a>
-          <a href=""><span class="white-text name">{{fullname}}</span></a>
-          <a href=""><span class="white-text email">{{correo}}</span></a>
+          <a><span class="white-text name">{{fullname}}</span></a>
+          <a><span class="white-text email">{{correo}}</span></a>
+          <a routerLink="" *ngIf="isLogged"><span class="white-text edit">Editar mi perfil</span></a>
+
 
         </div>
       </li>
-      <li><a class="sidenav-close" *ngIf="!isLogged" routerLink="security/singup">Iniciar Sesión</a></li>
-      <li><a class="sidenav-close" *ngIf="!isLogged" routerLink="security/register-user">Registrarse</a></li>
       <li><a class="sidenav-close" *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' "
           routerLink="parameters/list-parque">Parques</a>
       </li>
@@ -40,6 +43,9 @@
       <li><a class="sidenav-close" *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' "
           routerLink="parameters/list-ciudades">Ciudades</a>
       </li>
+      <li><a class="sidenav-close" *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' "
+          routerLink="report/report1">Prueba Reporte</a>
+      </li>
 
 
       <li><a class="sidenav-close" *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' "
@@ -49,15 +55,16 @@
           Parques Adventure</a></li>
       <li><a *ngIf="isLogged && rolId == '6371d531ec6ee399607ab929'" routerLink="parameters/vistas-atracciones">
           Atracciones Adventure</a></li>
-        <li><a *ngIf="isLogged && rolId == '6371d531ec6ee399607ab929'" routerLink="parameters/vistas-planes">
-            Planes Adventure</a></li>
+      <li><a *ngIf="isLogged && rolId == '6371d531ec6ee399607ab929'" routerLink="parameters/vistas-planes">
+          Planes Adventure</a></li>
       <br>
       <br>
       <br>
 
       <li><a *ngIf="isLogged && rolId == '6371d531ec6ee399607ab929'" routerLink="security/change-password">Cambiar
           contraseña</a></li>
-      <li><a class="sidenav-close" *ngIf="isLogged" routerLink="security/logout">Cerrar sesión</a></li>
+      <li><a class="sidenav-close" (click)="selected = false" *ngIf="isLogged" routerLink="security/logout">Cerrar sesión</a></li>
+      <li><img class="imgside" src="../../../../assets/images/LogoAdventureSideNav.png" alt=""></li>
     </ul>
   </div>
 </nav>
