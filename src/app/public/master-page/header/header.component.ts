@@ -3,7 +3,7 @@ import { ApisInfo } from 'src/app/config/apis-info';
 import { UserModel } from 'src/app/models/user.model';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { SercurityService } from 'src/app/services/sercurity.service';
-declare const DisableButton: any;
+declare const DropBoxNav: any;
 
 @Component({
   selector: 'app-header',
@@ -38,4 +38,6 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
+
+
 }

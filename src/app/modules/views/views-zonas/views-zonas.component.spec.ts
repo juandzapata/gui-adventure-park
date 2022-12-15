@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VistasZonasComponent } from './vistas-zonas.component';
+import { ViewsZonasComponent } from './views-zonas.component';
 
-describe('VistasZonasComponent', () => {
-  let component: VistasZonasComponent;
-  let fixture: ComponentFixture<VistasZonasComponent>;
+describe('ViewsZonasComponent', () => {
+  let component: ViewsZonasComponent;
+  let fixture: ComponentFixture<ViewsZonasComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VistasZonasComponent ]
+      declarations: [ ViewsZonasComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(VistasZonasComponent);
+    fixture = TestBed.createComponent(ViewsZonasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

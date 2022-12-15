@@ -9,8 +9,8 @@ import { NotFoundComponent } from './public/errors/not-found/not-found.component
 import { InternalServerErrorComponent } from './public/errors/internal-server-error/internal-server-error.component';
 import { HomeComponent } from './public/master-page/home/home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ViewParqueComponent } from './public/master-page/views/view-parque/view-parque.component';
 import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
+
 
 
 @NgModule({
@@ -21,7 +21,7 @@ import { AuthorizationInterceptor } from './interceptors/authorization.intercept
     NotFoundComponent,
     InternalServerErrorComponent,
     HomeComponent,
-    ViewParqueComponent
+
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,82 @@
+.card{
+    margin: auto 10px;
+    z-index: 2;
+}
+
+.cards{
+    display: grid;
+    grid-template-columns: 45% 45%;
+    justify-content: center;
+    z-index: 1;
+}
+
+.logos{
+    width: 80%;
+    transition: 0.5s;
+    object-fit: cover;
+}
+
+.logos:hover{
+    transform: scale(1.5);
+}
+
+.wallpaper{
+    background: linear-gradient(rgba(200, 200, 200, 0.15),
+    rgba(250, 250, 250, 0.50)),
+    url(../../../../assets/images/port-aventura_700f8282.jpg) no-repeat center
+    center fixed;
+    background-size:cover ;
+}
+
+.magicButton{
+    margin: 10px;
+    background: orange;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    color: #FFF;
+    font-size: 15px;
+    position: relative;
+}
+
+.magicButton::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: linear-gradient(
+        45deg,
+        #00e278,#087829,
+        #00e278,#087829
+    );
+    background-size: 1000%;
+    border-radius: 5px;
+    filter: blur(5px);
+    animation: glowing 20s linear infinite; 
+}
+
+@keyframes glowing{
+    0%{
+        background-position: 0 0;
+    }
+
+    50%{
+        background-position: 400% 0;
+    }
+
+    100%{
+        background-position: 0 0;
+    }
+}
+
+.parrafo{
+    background-color: rgba(250, 250, 250, 0.16);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 500;
+}

@@ -3,8 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { SecurityModule } from './modules/security/security.module';
 import { NotFoundComponent } from './public/errors/not-found/not-found.component';
 import { HomeComponent } from './public/master-page/home/home.component';
-import { ViewParqueComponent } from './public/master-page/views/view-parque/view-parque.component';
-
 const routes: Routes = [
   {
     path: "home",
@@ -30,6 +28,10 @@ const routes: Routes = [
   {
     path: "report",
     loadChildren: () => import('./modules/report/report.module').then(m => m.ReportModule)
+  },
+  {
+    path: "views",
+    loadChildren: () => import('./modules/views/views.module').then(m => m.ViewsModule)
   },
   {
     path:"**",

@@ -1,10 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
+    //
     var elems = document.querySelectorAll('.sidenav');
     var instance = M.Sidenav.init(elems, {
     });
+    //
     var elems = document.querySelectorAll('.dropdown-trigger');
-    var instance = M.Dropdown.init(elems, {});
-    
+    var instance = M.Dropdown.init(elems, {
+      hover: true      
+    });
+    //
   });
 
   function ShowSlider() {
@@ -20,4 +24,12 @@ document.addEventListener('DOMContentLoaded', function() {
   function ShowToastMessage(message, className){
     var toastHTML = `<span class="${className}">${message}</span>`;
     M.toast({html: toastHTML});
+  }
+
+  function OpenModal() {
+    var elems = document.querySelectorAll(".modal");
+    M.Modal.init(elems, {});
+    let elem = document.querySelector("#AddModal");
+    var instance = M.Modal.getInstance(elem);
+    instance.open();
   }

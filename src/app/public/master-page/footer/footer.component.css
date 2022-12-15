@@ -1,3 +1,23 @@
 .rights{
     color: red;
 }
+
+.page-footer{
+    padding: 0%;
+}
+
+.footer-copyright {
+    padding: 0%;
+}
+
+.row{
+    margin-bottom: 0% !important; 
+}
+
+.logoNegro{
+    width: 100px;
+}
+
+.container{
+    z-index: 1;
+}
