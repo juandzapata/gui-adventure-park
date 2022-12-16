@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CustomStyles } from 'src/app/config/custom.styles';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { SercurityService } from 'src/app/services/sercurity.service';
@@ -13,11 +13,13 @@ declare const ShowToastMessage:any;
 })
 export class DobleFactorComponent implements OnInit {
   fGroup: FormGroup = new FormGroup({});
+
   constructor(
     private fb: FormBuilder,
     private secService: SercurityService,
     private router: Router,
-    private lsService: LocalStorageService
+    private lsService: LocalStorageService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -26,12 +28,14 @@ export class DobleFactorComponent implements OnInit {
 
   BuildingForm(){
     this.fGroup = this.fb.group({
-      codigo: ['', [Validators.required]]     
+      username: ['', []],
+      codigo: ['', []]     
     });
   }
 
   get fg() {
     return this.fGroup.controls;
+    
   }
   
   DobleFactor(){
@@ -54,5 +58,22 @@ export class DobleFactorComponent implements OnInit {
         
       }
     })
+  }
+
+  enviarSMS() {
+    let username = this.route.snapshot.params["username"];
+    console.log(this.fGroup.controls['username'].value);
+    
+    console.log(username + "aqui");
+    
+    this.secService.enviarSMS(username).subscribe({
+      next: (data) => {
+        if(data){
+          ShowToastMessage("Código enviado. ¡Revisa tus mensajes!", CustomStyles.success_toast_class);
+        } else {
+          ShowToastMessage("Error al enviar el mensaje", CustomStyles.error_toast_class);
+        }
+      }
+    });
   }
 }
