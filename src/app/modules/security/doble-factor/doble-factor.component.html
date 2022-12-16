@@ -9,6 +9,7 @@
         <div class="z-depth-1 grey lighten-4 row" style="padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
 
             <form class="col s12" [formGroup]="fGroup">
+                <input type="hidden" formControlName="username">
                 <div class='row'>
                     <div class='col s12'>
                     </div>
@@ -29,10 +30,14 @@
                     </div>
                 </div>
                 <br />
-
+                <section class="row">
+                    <label for="" >¿No te llegó? </label>
+                    <button class='blue-text' style="float: right;" (click)="enviarSMS()"><b>Intenta con SMS</b></button>
+                </section>
                 <div class='row'>
                     <button type='button' (click)="DobleFactor()" name='btn_forgot'
                         class='col s12 btn btn-large waves-effect brown'>Enviar código</button>
+
                 </div>
             </form>
         </div>
