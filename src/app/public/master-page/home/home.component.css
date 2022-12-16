@@ -10,3 +10,22 @@
     border-radius: 15px;
     width: max-content;
 }
+
+.imgNavidad{
+    width:100%;
+    border-radius: 10px;
+}
+
+.imgNavidad2{
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.snow{
+    
+    background: linear-gradient(rgba(250, 250, 250, 0.70),
+    rgba(250, 250, 250, 0.70)),
+    url(../../../../assets/images/textura-de-la-nieve-12878039.jpg) center;
+    background-size: cover;
+}
