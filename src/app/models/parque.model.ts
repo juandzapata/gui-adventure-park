@@ -1,3 +1,5 @@
+import { CategoriaModel } from "./categoria.model";
+
 export class ParqueModel{
     id: string = '';
     nombre: string = '';
@@ -8,5 +10,7 @@ export class ParqueModel{
     imagenMapa: string = '';
     eslogan: string = '';
     descripcion: string = '';
-    ciudadId: number = 0; 
+    ciudadId: number = 0;
+    categoriaId: number = 0;
+    categoria:CategoriaModel = new CategoriaModel()
 }

@@ -102,6 +102,18 @@
       </div>
     </div>
     <div class="row">
+      <label class="input-field col s12 input-select">Categoría</label>
+    </div>
+    <div class="row">
+      <div>
+        <select class="mi-select browser-default" (change)="capturarCategoria()" formControlName="seleccionadoCategoria"
+          id="seleccionadoCategoria">
+          <option disabled selected>Selecciona una categoria</option>
+          <option *ngFor="let r of categorias" value="{{r.id}}">{{r.nombre}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
       <div class="input-field col s12">
         <input formControlName="eslogan" id="eslogan" type="text" />
         <label for="eslogan">Eslogan</label>

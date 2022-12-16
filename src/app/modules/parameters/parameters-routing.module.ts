@@ -26,9 +26,6 @@ import { EditPuestosComponent } from './puestos/edit-puestos/edit-puestos.compon
 import { ListPuestosComponent } from './puestos/list-puestos/list-puestos.component';
 import { RemovePuestosComponent } from './puestos/remove-puestos/remove-puestos.component';
 import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.component';
-import { VistasAtraccionesComponent } from './vistas/vistas-atracciones/vistas-atracciones.component';
-import { VistasParqueComponent } from './vistas/vistas-parque/vistas-parque.component';
-import { VistasPlanesComponent } from './vistas/vistas-planes/vistas-planes.component';
 import { CreateZonasComponent } from './zonas/create-zonas/create-zonas.component';
 import { EditZonasComponent } from './zonas/edit-zonas/edit-zonas.component';
 import { ListZonasComponent } from './zonas/list-zonas/list-zonas.component';
@@ -181,21 +178,6 @@ const routes: Routes = [
     component:EditUsuarioComponent,
     canActivate: [AuthenticatedGuard]
   },
-  {
-    path:'vistas-parque',
-    component:VistasParqueComponent,
-    canActivate: [AuthenticatedGuard]
-  },
-  {
-    path:'vistas-atracciones',
-    component:VistasAtraccionesComponent,
-    canActivate: [AuthenticatedGuard]
-  },
-  {
-    path:'vistas-planes',
-    component:VistasPlanesComponent,
-    canActivate: [AuthenticatedGuard]
-  }
   
 ];
 
