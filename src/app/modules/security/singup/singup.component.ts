@@ -62,10 +62,10 @@ export class SingupComponent implements OnInit {
         if(data) {
           this.router.navigate([`/security/doble-factor/${username}`]);
         } else {
-          alert("error, contraseña incorrecta");
+          ShowToastMessage("¡Oh no! Contraseña incorrecta.")
         }},
         error: (err) => {
-        alert("error, contraseña incorrecta");
+        ShowToastMessage("¡Oh no! Error.")
             }
           });
         }

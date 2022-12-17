@@ -18,7 +18,7 @@ const routes: Routes = [
     component: ViewsParquesComponent,
   },
   {
-    path: 'views-zonas',
+    path: 'views-zonas/:id',
     component: ViewsZonasComponent,
   },
 ];

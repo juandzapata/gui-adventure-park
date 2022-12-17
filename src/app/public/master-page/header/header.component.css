@@ -30,3 +30,7 @@
 .selected{
     display: none;
 }
+
+.font1{
+    font-weight: 700;
+}

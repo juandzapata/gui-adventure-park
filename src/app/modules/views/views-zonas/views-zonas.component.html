@@ -1,1 +1,30 @@
-<p>views-zonas works!</p>
+<div class="wallpaper">
+  <div class="container">
+    <br>
+
+    <div class="cards">
+
+      <div class="card" *ngFor="let r of recordList">
+
+        <div class="card-content">
+          <br>
+          <span class="card-title activator grey-text text-darken-4 textosalvaje center">{{r.nombre}}
+          </span>
+          <a routerLink="/views/views-zonas/{{r.id}}" class="magicButton right">ATRACCIONES</a>
+          <br>
+          <p class="parrafo">
+            {{r.descripcion}}
+          </p>
+        </div>
+
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">{{r.descripcion}}<i
+              class="material-icons right">close</i></span>
+          <p>{{r.descripcion}}</p>
+          <button class="magicButton right" routerLink="/views/views-zonas/{{r.id}}">ATRACCIONES</button>
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>

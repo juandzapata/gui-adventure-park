@@ -1,17 +1,17 @@
 <div class="wallpaper center">
   <div class="container">
-    <br>
+    <br>  
+    
     <div class="section"></div>
-
-    <div class="head1">
-      <h1 class="title center">¡PARQUES ADVENTURE!</h1>
-      <div class="container section">
-        <p class="parrafo"> Hicimos una recopilacion de los mejores parques de aventura de Colombia para que puedas
-          disfrutar con tu familia y amigos. Los parques que encontrarás aquí tienen alta calidad, la mejor
-          seguridad, la tecnología más avanzada y el personal más calificado.
-        </p>
+      <div class="head1">
+        <h1 class="title center">¡PARQUES ADVENTURE!</h1>
+        <div class="container section">
+          <p class="parrafo"> Hicimos una recopilacion de los mejores parques de aventura de Colombia para que puedas
+            disfrutar con tu familia y amigos. Los parques que encontrarás aquí tienen alta calidad, la mejor
+            seguridad, la tecnología más avanzada y el personal más calificado.
+          </p>
+        </div>
       </div>
-    </div>
 
     <div class="cards">
 
@@ -27,13 +27,13 @@
           <span class="card-title activator grey-text text-darken-4">{{r.nombre}}<i
               class="material-icons right">add</i></span>
           <p><a href="#">{{r.direccion}}</a></p>
-          <a href="#" class="magicButton right">ZONAS</a>
+          <a routerLink="/views/views-zonas/{{r.id}}" class="magicButton right">ZONAS</a>
         </div>
 
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4">{{r.eslogan}}<i class="material-icons right">close</i></span>
           <p>{{r.descripcion}}</p>
-          <button class="magicButton right">ZONAS</button>
+          <button class="magicButton right" routerLink="/views/views-zonas/{{r.id}}">ZONAS</button>
         </div>
       </div>
     </div>
