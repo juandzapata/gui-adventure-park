@@ -26,6 +26,8 @@
     url(../../../../assets/images/port-aventura_700f8282.jpg) no-repeat center
     center fixed;
     background-size:cover ;
+    min-width: 100vh;
+
 }
 
 .magicButton{

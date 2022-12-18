@@ -107,4 +107,9 @@ export class AtraccionesService {
       })
     });
   }
+
+  getAtraccionesZona(id:number):Observable<AtraccionModel[]>{
+    let actionName = `zonas/${id}/atraccions`;
+    return this.http.get<AtraccionModel[]>(`${this.baseUrl}/${actionName}`);
+  }
 }

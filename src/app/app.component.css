@@ -9,3 +9,7 @@
 .footer{
     height: 10% !important;
 }
+
+.home{
+    min-height: 100vh !important;
+}

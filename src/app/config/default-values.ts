@@ -1,4 +1,4 @@
 export namespace DefaultValues{
-    export const email: string = "juliana.gomez21225@ucaldas.edu.co"
-    export const password: string = "julis"
+    export const email: string = "juan.zapata22871@ucaldas.edu.co"
+    export const password: string = "juandavid"
 }

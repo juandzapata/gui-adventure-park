@@ -6,6 +6,10 @@ import { ViewsParquesComponent } from './views-parques/views-parques.component';
 import { ViewsAtraccionesComponent } from './views-atracciones/views-atracciones.component';
 import { ViewsPlanesComponent } from './views-planes/views-planes.component';
 import { ViewsZonasComponent } from './views-zonas/views-zonas.component';
+import { SafePipe } from 'src/app/safe.pipe';
+import { ViewsPuestosComponent } from './views-puestos/views-puestos.component';
+
+
 
 
 @NgModule({
@@ -13,7 +17,9 @@ import { ViewsZonasComponent } from './views-zonas/views-zonas.component';
     ViewsParquesComponent,
     ViewsAtraccionesComponent,
     ViewsPlanesComponent,
-    ViewsZonasComponent
+    ViewsZonasComponent,
+    SafePipe,
+    ViewsPuestosComponent
   ],
   imports: [
     CommonModule,

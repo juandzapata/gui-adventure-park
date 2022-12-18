@@ -33,6 +33,11 @@ export class ZonasService {
     return this.http.get<ZonaModel[]>(this.url+'?filter={"include":["parque"]}');
   }
 
+  getZonasParque(id: number):Observable<ZonaModel[]>{
+    let actionName = `parques/${id}/zonas`;
+    return this.http.get<ZonaModel[]>(`${this.baseUrl}/${actionName}`);
+  }
+
    /**
    * Obtiene la zona segun el id
    * @returns la zona encontrada

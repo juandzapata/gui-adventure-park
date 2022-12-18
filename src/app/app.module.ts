@@ -10,6 +10,9 @@ import { InternalServerErrorComponent } from './public/errors/internal-server-er
 import { HomeComponent } from './public/master-page/home/home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
+import { SafePipe } from './safe.pipe';
+import { ViewsAtraccionesComponent } from './modules/views/views-atracciones/views-atracciones.component';
+import { ViewsModule } from './modules/views/views.module';
 
 
 
@@ -20,13 +23,14 @@ import { AuthorizationInterceptor } from './interceptors/authorization.intercept
     FooterComponent,
     NotFoundComponent,
     InternalServerErrorComponent,
-    HomeComponent,
+    HomeComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ViewsModule
   ],
   // providers: [
   //   { 

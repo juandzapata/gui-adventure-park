@@ -75,25 +75,26 @@
           contraseña</a></li>
       <li><a class="sidenav-close" (click)="selected = false" *ngIf="isLogged" routerLink="security/logout">Cerrar
           sesión</a></li>
-      <li><img class="imgside" src="../../../../assets/images/LogoAdventureSideNav.png" alt=""></li>
+      <li><img class="imgside" src="../../../../assets/images/LogoAdventureSideNav.png " alt=""></li>
     </ul>
 
     <!--Dropdow init-->  
     <div class="right">
       <!-- Dropdown Trigger -->
-      <a class='dropdown-trigger yellow-text text-darken-3' href='#' data-target='dropdown1'><i class="material-icons right">expand_more</i>Parques Adventure</a>
-
+      <a class='dropdown-trigger yellow-text text-darken-3 font1' href='#' data-target='dropdown1'><i class="material-icons right">expand_more</i>Parques Adventure</a>
         <!-- Dropdown Structure -->
       <ul id='dropdown1' class='dropdown-content'>
-        <li><a class="yellow-text text-darken-3" href="#!">Parque del cáfe</a></li>
+        <li><a routerLink="views/views-parque" class="yellow-text text-darken-3" href="#!">Parque del cáfe</a></li>
         <li class="divider" tabindex="-1"></li>
-        <li><a class="yellow-text text-darken-3" href="#!">Salitre Mágico</a></li>
+        <li><a  routerLink="views/views-parque" class="yellow-text text-darken-3" href="#!">Salitre Mágico</a></li>
         <li class="divider" tabindex="-1"></li>
-        <li><a class="yellow-text text-darken-3" href="#!">Hacienda Napoles</a></li>
+        <li><a routerLink="views/views-parque" class="yellow-text text-darken-3" href="#!">Hacienda Nápoles</a></li>
+        <li class="divider" tabindex="-1"></li>
+        <li><a routerLink="views/views-parque" class="yellow-text text-darken-3" href="#!">Panaca</a></li>
+
       </ul>
     </div>
     <!--Dropdow close-->
     
   </div>
 </nav>
-<!-- Dropdown Trigger -->

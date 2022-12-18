@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ApisInfo } from 'src/app/config/apis-info';
 import { ParqueModel } from 'src/app/models/parque.model';
 import { ParqueService } from 'src/app/services/parameters/parque.service';
@@ -16,10 +17,12 @@ export class ViewsParquesComponent implements OnInit {
   urlServer = ApisInfo.LOGIC_MS_URL;
   recordList: ParqueModel[] = [];
   urlImage: string = '';
+  
 
 
   constructor(
     private parqueService: ParqueService,
+
 
   ) { }
 

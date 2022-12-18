@@ -1,22 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
-
-
-.success-toast{
-    width:100% !important;
-    background-color: green !important;
-    margin-top: 0 !important;
-}
-
-.error-toast{
-    width:100% !important;
-    background-color: red !important;
-    margin-top: 0 !important;
-}
-
 
 .toast{
     width:100% !important;
-    background-color: green !important;
+    background-color: #263238 !important;
     margin-top: 0 !important;
     position: relative !important;
 }
@@ -26,5 +11,9 @@
 }
 
 h1{
+    font-family: 'Hanalei Fill', cursive;
+}
+
+.textosalvaje{
     font-family: 'Hanalei Fill', cursive;
 }

@@ -1,0 +1,23 @@
+<div class="wallpaper">
+    <div class=" container">
+        <br>
+
+        <div class="cards container">
+
+            <div class="card" *ngFor="let r of recordList">
+                <div class="card-image">
+                    <img class="tamaño" src="{{urlServer}}/ObtenerArchivo/5/{{r.imagen}}">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4 textosalvaje center">{{r.nombre}}</span>
+                    <br>
+                    <p class="parrafo center">{{r.menu}}</p>
+                    
+                </div>
+
+                
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
