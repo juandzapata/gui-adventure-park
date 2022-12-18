@@ -10,7 +10,7 @@ const routes: Routes = [
     component: ViewsParquesComponent,
   },
   {
-    path: 'views-atracciones',
+    path: 'views-atracciones/:id',
     component: ViewsAtraccionesComponent,
   },
   {
@@ -20,7 +20,8 @@ const routes: Routes = [
   {
     path: 'views-zonas/:id',
     component: ViewsZonasComponent,
-  },
+  }
+
 ];
 
 @NgModule({

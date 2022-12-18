@@ -31,7 +31,8 @@
     url(../../../../assets/images/texturaAgua.jpg) no-repeat center
     center fixed;
     background-size:cover ;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
 }
 
 .magicButton{
