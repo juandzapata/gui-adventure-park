@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApisInfo } from 'src/app/config/apis-info';
+import { UploadedFileModel } from 'src/app/models/uploaded.file.model';
 import { UserLogicModel } from 'src/app/models/user-logic-model';
 import { LocalStorageService } from '../local-storage.service';
 
@@ -42,8 +43,32 @@ export class UsuarioLogicService {
     });
   }
 
+  editRecord(record: UserLogicModel){
+    return this.http.put(this.url + "/" + record.id, {
+      nombre: record.nombre,
+      apellidos: record.apellidos,
+      cedula: record.cedula,
+      edad: record.edad,
+      estatura: record.estatura,
+      email: record.email
+    }, {
+      headers: new HttpHeaders({
+        "Authorization": `Bearer ${this.jwt}`
+      })
+    });
+  }
+
   buscarCorreo(correo: string):Observable<UserLogicModel>{
     let actionName = 'obtener-email'
     return this.http.get<UserLogicModel>(`${this.url}/${actionName}/${correo}`);
+  }
+
+  uploadImage(formData: FormData): Observable<UploadedFileModel>{
+    let actionName = "cargar-archivo/6";
+    return this.http.post<UploadedFileModel>(`${this.baseUrl}/${actionName}`, formData,{
+      headers: new HttpHeaders({
+        "Authoritzation": `Bearer ${this.jwt}`
+      })
+    });
   }
 }

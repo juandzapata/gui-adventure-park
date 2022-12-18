@@ -83,9 +83,8 @@ export class CreateCompraComponent implements OnInit {
       this.usuarioCorreo = userData.user.correo;
       this.usuariosService.buscarCorreo(this.usuarioCorreo).subscribe({
         next: (data) => {
-          this.usuarioId = parseInt(data.id);
+          this.usuarioId = data.id;
           console.log(this.usuarioId);
-          
         }
       })
     } else{

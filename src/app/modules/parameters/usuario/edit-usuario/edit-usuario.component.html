@@ -1,1 +1,94 @@
+<main>
 
+    <div class="section"></div>
+
+
+    <br>
+    <div class="container">
+        <div class="z-depth-1 grey lighten-4 row" style="padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+            
+            <h3 class="title brown-text center">Tu Perfil</h3>
+            <div class="section"></div>
+            <div class="col ">
+                <div class="col s12">
+                    <a routerLink="">
+                        <img class="circle imgInput" *ngIf="uploadedImage == '' || uploadedImage == null" src="../../../../assets/images/without_photo.jpeg" />
+                        <img class="circle imgInput" *ngIf="uploadedImage != '' && uploadedImage != null" src="{{urlServer}}/ObtenerArchivo/6/{{uploadedImage}}" />
+                    </a>
+                    <div class="">
+                        <div class="col sm-12">
+                            <div class="file-field input-field">
+                                <div class="btn blue">
+                                    <span>Foto</span>
+                                    <input type="file" (change)="onFileSelect($event)" />
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col sm-12">
+                            <button (click)="UploadImage()" [disabled]="!isFileSelected" class="btn orange">Cargar</button>
+                        </div>
+                    </div>
+                    <div class='input-field col s12'>
+                        <input disabled value={{usuarioCorreo}} type='email' name='correo' id='correo' />
+                        <label class="active" for=''>Correo</label>
+                    </div>
+                    <div class="col s12">
+                        <button type='button' name='btn_forgot' routerLink="/security/change-password"
+                        class='col s btn btn-medium waves-effect brown'>Cambiar contraseña</button>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <form class="col s4 center" [formGroup]="fGroup">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input formControlName="name" id="name" type="text" />
+                        <label class="active" for="name">Nombre</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input formControlName="apellidos" id="apellido" type="text" />
+                        <label class="active" for="apellido">Apellidos</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input formControlName="identidad" id="identidad" type="text" />
+                        <label class="active" for="identidad">Documento de Identidad</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input formControlName="estatura" id="estatura" type="number" />
+                        <label class="active" for="estatura">Estatura</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input formControlName="edad" id="edad" type="text" />
+                        <label class="active" for="edad">Edad</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input formControlName="celular" id="celular" type="text" />
+                        <label class="active" for="celular">Celular</label>
+                    </div>
+                </div>
+                <br />
+
+                <div class='row'>
+                    <button type='button' (click)="EditarRecord()" name='btn_forgot'
+                        class='col s12 btn btn-large waves-effect brown'>Actualizar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</main>
