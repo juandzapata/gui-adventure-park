@@ -45,12 +45,12 @@ export class EditAtraccionesComponent implements OnInit {
   BuildingForm() {
     this.fGroup = this.fb.group({
       id: ['', []],
-      name: ['', [Validators.required]],
+      name: ['', []],
       file: ['', []],
-      estaturaMinima: ['', [Validators.required]],
-      video: ['', [Validators.required]],
-      descripcion: ['', [Validators.required]],
-      seleccionado: ['', [Validators.required]]
+      estaturaMinima: ['', []],
+      video: ['', []],
+      descripcion: ['', []],
+      seleccionado: ['', []]
 
     });
   }
@@ -97,6 +97,7 @@ export class EditAtraccionesComponent implements OnInit {
         this.fGroup.controls["descripcion"].setValue(data.descripcion);
         this.uploadedImage = data.imagen;
         this.fGroup.controls["seleccionado"].setValue(data.zonaId);
+        this.seleccionado = this.fGroup.controls["seleccionado"].value;
       }, 
       error: (err) => {
 

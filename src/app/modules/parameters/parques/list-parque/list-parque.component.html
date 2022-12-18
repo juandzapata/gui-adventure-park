@@ -22,6 +22,9 @@
                 Categoría
             </th>
             <th>
+                Ciudad
+            </th>
+            <th>
                 Acciones
             </th>
         </tr>
@@ -39,6 +42,9 @@
             </td>
             <td>
                 {{r.categoria.nombre}}
+            </td>
+            <td>
+                {{r.ciudad.nombre}}
             </td>
             <td>
                 <a routerLink="/parameters/edit-parque/{{r.id}}" class="waves-effect waves-light btn orange"><i class="material-icons left">edit</i>Editar</a>

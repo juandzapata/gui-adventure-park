@@ -1,4 +1,5 @@
 import { CategoriaModel } from "./categoria.model";
+import { CiudadModel } from "./ciudad.model";
 
 export class ParqueModel{
     id: string = '';
@@ -12,5 +13,6 @@ export class ParqueModel{
     descripcion: string = '';
     ciudadId: number = 0;
     categoriaId: number = 0;
-    categoria:CategoriaModel = new CategoriaModel()
+    categoria:CategoriaModel = new CategoriaModel();
+    ciudad: CiudadModel = new CiudadModel();
 }

@@ -1,3 +1,5 @@
+import { ZonaModel } from "./zona.model";
+
 export class AtraccionModel{
     id: string='';
     nombre: string='';
@@ -6,4 +8,5 @@ export class AtraccionModel{
     video: string = '';
     descripcion: string = '';
     zonaId: number = 0;
+    zona: ZonaModel = new ZonaModel();
 }

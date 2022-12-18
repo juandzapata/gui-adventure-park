@@ -15,6 +15,9 @@
                 Código Postal
             </th>
             <th>
+                Departamento
+            </th>
+            <th>
                 Acciones
             </th>
         </tr>
@@ -26,7 +29,10 @@
             </td>
             <td>
                 {{r.codigoPostal}}
-            </td>            
+            </td>
+            <td>
+                {{r.departamento.nombre}}
+            </td>             
             <td>
                 <a routerLink="/parameters/edit-ciudades/{{r.id}}" class="waves-effect waves-light btn orange"><i class="material-icons left">edit</i>Editar</a>
                 &nbsp;<a routerLink="/parameters/remove-ciudades/{{r.id}}" class="waves-effect waves-light btn red"><i class="material-icons left">delete</i>Eliminar</a>

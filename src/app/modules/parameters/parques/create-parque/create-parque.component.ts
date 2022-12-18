@@ -175,6 +175,6 @@ export class CreateParqueComponent implements OnInit {
   }
 
   capturarCategoria() {
-    this.seleccionado = parseInt(this.fGroup.controls["seleccionadoCategoria"].value);
+    this.seleccionadoCategoria = parseInt(this.fGroup.controls["seleccionadoCategoria"].value);
   }
 }

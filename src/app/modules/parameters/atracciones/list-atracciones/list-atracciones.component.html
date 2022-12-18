@@ -15,6 +15,9 @@
                 Imagen
             </th>
             <th>
+                Zona
+            </th>
+            <th>
                 Acciones
             </th>
         </tr>
@@ -23,13 +26,13 @@
         <tr *ngFor="let r of recordList">
             <td>
                 {{r.nombre}}
-            </td>
-            <td>
-                {{r.descripcion}}
-            </td>            
+            </td>          
             <td>
                 <img class="imagenAtraccion" src="{{urlServer}}/ObtenerArchivo/1/{{r.imagen}}" alt="imagen"/>
             </td>
+            <td>
+                {{r.zona.nombre}}
+            </td>  
             <td>
                 <a routerLink="/parameters/edit-atracciones/{{r.id}}" class="waves-effect waves-light btn orange"><i class="material-icons left">edit</i>Editar</a>
                 &nbsp;<a routerLink="/parameters/remove-atracciones/{{r.id}}" class="waves-effect waves-light btn red"><i class="material-icons left">delete</i>Eliminar</a>

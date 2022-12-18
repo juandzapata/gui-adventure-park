@@ -1,1 +1,58 @@
-<p>create-plan-atraccion works!</p>
+<div class="container">
+    <div class="row">
+        <br>
+        <form class="col s12" [formGroup]="fGroup">
+    
+            <div class="row">
+                <label class="input-field col s12 input-select">Atracción</label>
+              </div>
+              <div class="row">
+                <div>
+                  <select class="mi-select browser-default" (change)="capturarA()" formControlName="seleccionadoA"
+                    id="seleccionado">
+                    <option disabled selected>Selecciona una atracción</option>
+                    <option *ngFor="let r of atracciones" value="{{r.id}}">{{r.nombre}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <label class="input-field col s12 input-select">Plan</label>
+              </div>
+              <div class="row">
+                <div>
+                  <select class="mi-select browser-default" (change)="capturarP()" formControlName="seleccionadoP"
+                    id="seleccionadoP">
+                    <option disabled selected>Selecciona un plan</option>
+                    <option *ngFor="let r of planes" value="{{r.id}}">{{r.nombre}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <input formControlName="descripcion" id="eslogan" type="text" />
+                  <label for="eslogan">Descripción</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                    <input formControlName="precio" id="precio" type="number" />
+                    <label for="precio">Precio</label>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="input-field col s12">
+                    <button class="btn btn-success green" (click)="SaveRecord()">
+                        <i class="material-icons left">save</i>Guardar
+                    </button>
+                    &nbsp;
+                    <a routerLink="/parameters/list-plan-atraccion" class="waves-effect waves-light btn red"><i
+                            class="material-icons left">cancel</i>Cancelar</a>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+    </div>

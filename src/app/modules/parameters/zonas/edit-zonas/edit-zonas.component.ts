@@ -46,11 +46,11 @@ export class EditZonasComponent implements OnInit {
     this.fGroup = this.fb.group({
       //quitar los requeridos para no obligar al usuario a modificarlo todo!!!
       id: ['', []],
-      name: ['', [Validators.required]],
+      name: ['', []],
       file: ['', []], 
-      color: ['', [Validators.required]],
-      descripcion: ['', [Validators.required]],
-      seleccionado: ['', [Validators.required]]
+      color: ['', []],
+      descripcion: ['', []],
+      seleccionado: ['', []]
     });
   }
 
@@ -96,6 +96,7 @@ export class EditZonasComponent implements OnInit {
         this.uploadedImage = data.imagen; 
         this.isFileSelected = true; //evitar que pida archivo de foto obligatoriamente 
         this.fGroup.controls["seleccionado"].setValue(data.parqueId);
+        this.seleccionado = this.fGroup.controls["seleccionado"].value; 
       }, 
       error: (err) => {
         console.log(err);
@@ -115,6 +116,7 @@ export class EditZonasComponent implements OnInit {
       model.color = this.fGroup.controls['color'].value;
       model.id = this.fGroup.controls['id'].value;
       model.parqueId = this.seleccionado;
+      
 
       this.zonasService.editRecord(model).subscribe({
         next: (data) => {

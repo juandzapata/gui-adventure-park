@@ -88,8 +88,15 @@ export class RegisterUserComponent implements OnInit {
 
       this.usuariosLogicService.saveRecord(model).subscribe({
         next: (data) => {
-          ShowToastMessage("¡Ya eres parte de la familia Adventure Park!", CustomStyles.success_toast_class);
-          this.SaveSecurityRecord();
+          if (data) {
+            console.log(data);
+            
+            ShowToastMessage("¡Ya eres parte de la familia Adventure Park!", CustomStyles.success_toast_class);
+            this.SaveSecurityRecord();
+          } else {
+            ShowToastMessage("¡Oh no! Ya existe una cuenta con este correo electrónico.", CustomStyles.success_toast_class);
+          }
+          
         },
         error: (err) => {
           console.log(err);
@@ -111,7 +118,9 @@ export class RegisterUserComponent implements OnInit {
 
       this.usuariosSecurityService.saveRecord(model).subscribe({
         next: (data) => {
-          this.router.navigate(['/security/singup']);
+          if(data){
+            this.router.navigate(['/security/singup']);
+          }
         },
         error: (err) => {
           ShowToastMessage("Error", CustomStyles.error_toast_class);

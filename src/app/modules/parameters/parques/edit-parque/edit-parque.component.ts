@@ -153,7 +153,7 @@ export class EditParqueComponent implements OnInit {
       model.imagenMapa = this.uploadedImageMapa;
       model.id = this.fGroup.controls["id"].value;
       model.ciudadId = this.seleccionado;
-      //console.log(model);
+      console.log(model);
       this.parqueService.editRecord(model).subscribe({
         next: (data) => {
           ShowToastMessage("Registro actualizado éxitosamente", CustomStyles.success_toast_class);

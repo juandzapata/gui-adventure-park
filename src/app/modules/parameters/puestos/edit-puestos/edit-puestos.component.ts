@@ -46,10 +46,10 @@ export class EditPuestosComponent implements OnInit {
   BuildingForm() {
     this.fGroup = this.fb.group({
       id: ['', []],
-      name: ['', [Validators.required]],
+      name: ['', []],
       file: ['', []],
-      menu: ['', [Validators.required]],
-      seleccionado: ['', [Validators.required]],
+      menu: ['', []],
+      seleccionado: ['', []],
     });
   }
 
@@ -63,6 +63,7 @@ export class EditPuestosComponent implements OnInit {
         this.fGroup.controls["menu"].setValue(data.menu);
         this.uploadedImage = data.imagen; 
         this.fGroup.controls["seleccionado"].setValue(data.zonaId);
+        this.seleccionado = this.fGroup.controls["seleccionado"].value; 
       }, 
       error: (err) => {
         console.log(err);
