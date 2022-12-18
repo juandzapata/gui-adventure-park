@@ -1,0 +1,15 @@
+.remove{
+    padding: 5vh 5vh 1vh 5vh;
+    background-color: aliceblue;
+    border-radius: 15px;
+    border-width: 2px !important;
+    border-color: aqua !important;
+}
+
+.container{
+    padding: 20vh;
+}
+.botones{
+    display: flex;
+    justify-content: space-between;
+}

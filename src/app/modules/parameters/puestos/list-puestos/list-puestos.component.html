@@ -15,6 +15,9 @@
                 Imagen
             </th>
             <th>
+                Zona
+            </th>
+            <th>
                 Acciones
             </th>
         </tr>
@@ -27,6 +30,9 @@
             <td>
                 <img class="imagenPuestos" src="{{urlServer}}/ObtenerArchivo/5/{{r.imagen}}" alt="logo"/>
 
+            </td>
+            <td>
+                {{r.zona.nombre}}
             </td>            
             <td>
                 <a routerLink="/parameters/edit-puestos/{{r.id}}" class="waves-effect waves-light btn orange"><i class="material-icons left">edit</i>Editar</a>

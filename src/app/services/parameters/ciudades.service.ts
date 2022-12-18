@@ -29,7 +29,7 @@ export class CiudadesService {
    * @returns La lista de parques como un objeto JSON
    */
   getRecordList():Observable<CiudadModel[]>{        
-    return this.http.get<CiudadModel[]>(this.url);
+    return this.http.get<CiudadModel[]>(this.url+'?filter={"include":["departamento"]}');
   }
 
   getRecordById(id: number):Observable<CiudadModel>{        
@@ -63,7 +63,13 @@ export class CiudadesService {
    * @returns NA
    */
   editRecord(record: CiudadModel){
-    return this.http.put(this.url + "/" + record.id, record, {
+    console.log(record);
+    
+    return this.http.put(this.url + "/" + record.id, {
+      nombre: record.nombre,
+      codigoPostal: record.codigoPostal,
+      departamentoId: record.departamentoId
+    }, {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`
       })

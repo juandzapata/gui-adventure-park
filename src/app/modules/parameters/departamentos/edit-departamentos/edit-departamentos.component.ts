@@ -32,7 +32,7 @@ export class EditDepartamentosComponent implements OnInit {
   BuildingForm() {
     this.fGroup = this.fb.group({
       id: ['',[]],
-      name: ['',[Validators.required]]
+      name: ['',[]]
     });
     
   }
@@ -63,7 +63,7 @@ export class EditDepartamentosComponent implements OnInit {
       model.nombre = this.fGroup.controls['name'].value;
       model.id = this.fGroup.controls['id'].value;
 
-      this.departamentoService.saveRecord(model).subscribe({
+      this.departamentoService.editRecord(model).subscribe({
         next: (data) => {
           ShowToastMessage("Registro actualizado éxitosamente", CustomStyles.success_toast_class);
           this.router.navigate(['/parameters/list-departamentos']);

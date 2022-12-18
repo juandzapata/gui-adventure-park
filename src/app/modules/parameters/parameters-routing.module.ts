@@ -17,6 +17,10 @@ import { CreateParqueComponent } from './parques/create-parque/create-parque.com
 import { EditParqueComponent } from './parques/edit-parque/edit-parque.component';
 import { ListParqueComponent } from './parques/list-parque/list-parque.component';
 import { RemoveParqueComponent } from './parques/remove-parque/remove-parque.component';
+import { CreatePlanAtraccionComponent } from './plan-atraccion/create-plan-atraccion/create-plan-atraccion.component';
+import { EditPlanAtraccionComponent } from './plan-atraccion/edit-plan-atraccion/edit-plan-atraccion.component';
+import { ListPlanAtraccionComponent } from './plan-atraccion/list-plan-atraccion/list-plan-atraccion.component';
+import { RemovePlanAtraccionComponent } from './plan-atraccion/remove-plan-atraccion/remove-plan-atraccion.component';
 import { CreatePlanesComponent } from './planes/create-planes/create-planes.component';
 import { EditPlanesComponent } from './planes/edit-planes/edit-planes.component';
 import { ListPlanesComponent } from './planes/list-planes/list-planes.component';
@@ -176,6 +180,26 @@ const routes: Routes = [
   {
     path:'edit-usuario',
     component:EditUsuarioComponent,
+    canActivate: [AuthenticatedGuard]
+  },
+  {
+    path:'list-plan-atraccion',
+    component:ListPlanAtraccionComponent,
+    canActivate: [AuthenticatedGuard]
+  },
+  {
+    path:'create-plan-atraccion',
+    component:CreatePlanAtraccionComponent,
+    canActivate: [AuthenticatedGuard]
+  },
+  {
+    path:'edit-plan-atraccion/:id',
+    component:EditPlanAtraccionComponent,
+    canActivate: [AuthenticatedGuard]
+  },
+  {
+    path:'remove-plan-atraccion/:id',
+    component:RemovePlanAtraccionComponent,
     canActivate: [AuthenticatedGuard]
   },
   

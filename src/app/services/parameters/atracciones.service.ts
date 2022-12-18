@@ -31,7 +31,7 @@ export class AtraccionesService {
    * @returns La lista de parques como un objeto JSON
    */
   getRecordList():Observable<AtraccionModel[]>{        
-    return this.http.get<AtraccionModel[]>(this.url);
+    return this.http.get<AtraccionModel[]>(this.url+'?filter={"include":["zona"]}');
   }
 
   /**
@@ -72,7 +72,14 @@ export class AtraccionesService {
    * @returns NA
    */
   editRecord(record: AtraccionModel){
-    return this.http.put(this.url + "/" + record.id, record, {
+    return this.http.put(this.url + "/" + record.id, {
+      nombre: record.nombre,
+      imagen: record.imagen,
+      estaturaMinima: record.estaturaMinima,
+      video: record.video,
+      descripcion: record.descripcion,
+      zonaId: record.zonaId
+    }, {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`
       })

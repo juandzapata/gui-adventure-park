@@ -30,7 +30,7 @@ export class ZonasService {
    * @returns La lista de parques como un objeto JSON
    */
   getRecordList():Observable<ZonaModel[]>{        
-    return this.http.get<ZonaModel[]>(this.url);
+    return this.http.get<ZonaModel[]>(this.url+'?filter={"include":["parque"]}');
   }
 
    /**
@@ -70,7 +70,13 @@ export class ZonasService {
    * @returns NA
    */
   editRecord(record: ZonaModel){
-    return this.http.put(this.url + "/" + record.id, record, {
+    return this.http.put(this.url + "/" + record.id, {
+      nombre: record.nombre,
+      imagen: record.imagen,
+      color: record.color,
+      descripcion: record.descripcion,
+      parqueId: record.parqueId
+    }, {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`
       })

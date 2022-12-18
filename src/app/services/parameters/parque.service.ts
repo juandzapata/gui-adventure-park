@@ -31,7 +31,7 @@ export class ParqueService {
    * @returns La lista de parques como un objeto JSON
    */
   getRecordList():Observable<ParqueModel[]>{        
-    return this.http.get<ParqueModel[]>(this.url+'?filter={"include":["categoria"]}');
+    return this.http.get<ParqueModel[]>(this.url+'?filter={"include":["categoria", "ciudad"]}');
   }
 
    /**

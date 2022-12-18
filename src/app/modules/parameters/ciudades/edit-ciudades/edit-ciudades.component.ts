@@ -39,9 +39,9 @@ export class EditCiudadesComponent implements OnInit {
   BuildingForm(){
     this.fGroup = this.fb.group({
       id: ['',[]],
-      name: ['',[Validators.required]],
-      codigoPostal: ['',[Validators.required]],
-      seleccionado: ['',[Validators.required]]
+      name: ['',[]],
+      codigoPostal: ['',[]],
+      seleccionado: ['',[]]
     });
   }
   
@@ -54,6 +54,7 @@ export class EditCiudadesComponent implements OnInit {
         this.fGroup.controls["name"].setValue(data.nombre);
         this.fGroup.controls["codigoPostal"].setValue(data.codigoPostal);
         this.fGroup.controls["seleccionado"].setValue(data.departamentoId);
+        this.seleccionado = this.fGroup.controls["seleccionado"].value; //--> ojo importante
       }, 
       error: (err) => {
         console.log(err);
@@ -69,7 +70,12 @@ export class EditCiudadesComponent implements OnInit {
       model.nombre = this.fGroup.controls['name'].value;
       model.codigoPostal = this.fGroup.controls['codigoPostal'].value;
       model.id = this.fGroup.controls['id'].value;
+      console.log(model.id);
+      
       model.departamentoId = this.seleccionado;
+      
+      console.log(model);
+      
       
       this.ciudadService.editRecord(model).subscribe({
         next: (data) => {

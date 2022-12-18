@@ -1,1 +1,49 @@
-<p>list-plan-atraccion works!</p>
+<div class="container">
+    <br>
+    <div class="section"></div>
+    
+    <h3 class="title brown-text center">¡Planes por atracción!</h3>
+    <div class="section"></div>
+    <a routerLink="/parameters/create-plan-atraccion" class="waves-effect waves-light btn green"><i class="material-icons left">add</i>Agregar</a>
+    <table class="striped">
+        <thead>
+            <tr>
+                <th>
+                    Plan
+                </th>
+                <th>
+                    Atraccion
+                </th>
+                <th>
+                    Imagen atracción
+                </th>
+                <th>
+                    Precio 
+                </th>
+                <th>
+                    Acciones
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let r of recordList">
+                <td>
+                    {{r.planes.nombre}}
+                </td>
+                <td>
+                    {{r.atracciones.nombre}}
+                </td>            
+                <td>
+                    <img class="imagenAtraccion" src="{{urlServer}}/ObtenerArchivo/1/{{r.atracciones.imagen}}" alt="imagen"/>
+                </td>
+                <td>
+                    {{r.precio}}
+                </td>  
+                <td>
+                    <a routerLink="/parameters/edit-plan-atraccion/{{r.id}}" class="waves-effect waves-light btn orange"><i class="material-icons left">edit</i>Editar</a>
+                    &nbsp;<a routerLink="/parameters/remove-plan-atraccion/{{r.id}}" class="waves-effect waves-light btn red"><i class="material-icons left">delete</i>Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>

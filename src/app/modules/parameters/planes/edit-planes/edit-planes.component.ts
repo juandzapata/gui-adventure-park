@@ -32,9 +32,8 @@ export class EditPlanesComponent implements OnInit {
   BuildingForm(){
     this.fGroup = this.fb.group({
       id: ['',[]],
-      name: ['',[Validators.required]],
-      color: ['',[Validators.required]],
-      valor: ['', [Validators.required]]
+      name: ['',[]],
+      color: ['',[]]
     });
   }
 
@@ -46,7 +45,6 @@ export class EditPlanesComponent implements OnInit {
         console.log(data);
         this.fGroup.controls["id"].setValue(data.id);
         this.fGroup.controls["name"].setValue(data.nombre);
-        this.fGroup.controls["valor"].setValue(data.valor);
         this.fGroup.controls["color"].setValue(data.color);
       }, 
       error: (err) => {
@@ -62,12 +60,12 @@ export class EditPlanesComponent implements OnInit {
       let model = new PlanModel();      
       model.nombre = this.fGroup.controls['name'].value;
       model.color = this.fGroup.controls['color'].value;
-      model.valor = this.fGroup.controls['valor'].value;
       model.id = this.fGroup.controls['id'].value;
       
       this.planService.editRecord(model).subscribe({
         next: (data) => {
           ShowToastMessage("Registro actualizado éxitosamente", CustomStyles.success_toast_class);
+          this.router.navigate(['/parameters/list-planes']);
         },
         error: (err) => {},
       });

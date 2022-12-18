@@ -31,7 +31,7 @@ export class PuestosService {
    * @returns La lista de parques como un objeto JSON
    */
   getRecordList():Observable<PuestoModel[]>{        
-    return this.http.get<PuestoModel[]>(this.url);
+    return this.http.get<PuestoModel[]>(this.url+'?filter={"include":["zona"]}');
   }
 
   getRecordById(id: number):Observable<PuestoModel>{        
@@ -66,7 +66,12 @@ export class PuestosService {
    * @returns NA
    */
   editRecord(record: PuestoModel){
-    return this.http.put(this.url + "/" + record.id, record, {
+    return this.http.put(this.url + "/" + record.id, {
+      nombre: record.nombre,
+      imagen: record.imagen,
+      menu: record.menu,
+      zonaId: record.zonaId
+    }, {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`
       })
