@@ -134,10 +134,15 @@ export class EditUsuarioComponent implements OnInit {
         modelS.nombres =  this.fGroup.controls['name'].value;
         modelS.apellidos =  this.fGroup.controls['apellidos'].value;
         modelS.celular =  this.fGroup.controls['celular'].value;
-        modelS.imagenPerfil = this.uploadedImage;
         modelS.correo =  this.usuarioCorreo;
         modelS.id = this.usuarioIdSecurity;
         modelS.rolId = this.rolUsuario;
+
+        if (this.uploadedImage != null) {
+          modelS.imagenPerfil = this.uploadedImage;
+        } else {
+          modelS.imagenPerfil = '';
+        }
         
         this.usuarioSecService.editRecord(modelS).subscribe({
           next: (data) => {

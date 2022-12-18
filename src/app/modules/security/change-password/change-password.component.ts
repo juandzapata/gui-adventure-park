@@ -45,7 +45,7 @@ export class ChangePasswordComponent implements OnInit {
         next: (data) => {
           if(data){
             ShowToastMessage("Tu contraseña ha sido modificada éxitosamente. ¡Revisa tu bandeja de entrada!", CustomStyles.success_toast_class);
-            this.router.navigate(['/home']);
+            this.router.navigate(['/parameters/edit-usuario']);
           } else{
             alert("Error en el cambio");
           }

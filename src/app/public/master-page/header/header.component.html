@@ -21,8 +21,8 @@
 
           </div>
           <a routerLink="">
-            <img class="circle" *ngIf="imagen == '' || !isLogged || imagen == null" src="../../../../assets/images/without_photo.jpeg" />
-            <img class="circle" *ngIf="imagen != '' && imagen != null " src="{{urlServer}}/ObtenerArchivo/6/{{imagen}}" />
+            <img class="circle sidenav-close" *ngIf="imagen == '' || !isLogged || imagen == null" src="../../../../assets/images/without_photo.jpeg" />
+            <img class="circle sidenav-close" *ngIf="imagen != '' && imagen != null " src="{{urlServer}}/ObtenerArchivo/6/{{imagen}}" />
           </a>
           <a><span class="white-text name">{{fullname}}</span></a>
           <a><span class="white-text email">{{correo}}</span></a>

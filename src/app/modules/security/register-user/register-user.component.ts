@@ -110,7 +110,7 @@ export class RegisterUserComponent implements OnInit {
       alert('Faltan datos - Usuario Seguridad');
     } else {
       let model = new UserSecurityModel();    
-      model.nombres = `${this.fGroup.controls['nombre'].value} ${this.fGroup.controls['apellidos'].value}`;
+      model.nombres = `${this.fGroup.controls['nombre'].value}`;
       model.apellidos = this.fGroup.controls['apellidos'].value; 
       model.correo = this.fGroup.controls['correo'].value;
       model.celular = this.fGroup.controls['celular'].value;
