@@ -21,12 +21,12 @@
 
           </div>
           <a routerLink="">
-            <img class="circle" *ngIf="imagen == '' || !isLogged" src="../../../../assets/images/without_photo.jpeg" />
-            <img class="circle" *ngIf="imagen != ''" src="{{urlServer}}/ObtenerArchivo/6/{{imagen}}" />
+            <img class="circle sidenav-close" *ngIf="imagen == '' || !isLogged || imagen == null" src="../../../../assets/images/without_photo.jpeg" />
+            <img class="circle sidenav-close" *ngIf="imagen != '' && imagen != null " src="{{urlServer}}/ObtenerArchivo/6/{{imagen}}" />
           </a>
           <a><span class="white-text name">{{fullname}}</span></a>
           <a><span class="white-text email">{{correo}}</span></a>
-          <a routerLink="" *ngIf="isLogged"><span class="white-text edit">Editar mi perfil</span></a>
+          <a class="sidenav-close" routerLink="parameters/edit-usuario" *ngIf="isLogged && rolId == '6371d531ec6ee399607ab929'"><span class="white-text edit">Editar mi perfil</span></a>
 
 
         </div>
@@ -61,18 +61,9 @@
       <li><a class="sidenav-close" *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' "
           routerLink="security/change-password">Cambiar
           contraseña</a>
-      <li><a *ngIf="isLogged && rolId == '6371d531ec6ee399607ab929'" routerLink="parameters/vistas-parque">
-          Parques Adventure</a></li>
-      <li><a *ngIf="isLogged && rolId == '6371d531ec6ee399607ab929'" routerLink="parameters/vistas-atracciones">
-          Atracciones Adventure</a></li>
-      <li><a *ngIf="isLogged && rolId == '6371d531ec6ee399607ab929'" routerLink="parameters/vistas-planes">
-          Planes Adventure</a></li>
       <br>
       <br>
       <br>
-
-      <li><a *ngIf="isLogged && rolId == '6371d531ec6ee399607ab929'" routerLink="security/change-password">Cambiar
-          contraseña</a></li>
       <li><a class="sidenav-close" (click)="selected = false" *ngIf="isLogged" routerLink="security/logout">Cerrar
           sesión</a></li>
       <li><img class="imgside" src="../../../../assets/images/LogoAdventureSideNav.png " alt=""></li>

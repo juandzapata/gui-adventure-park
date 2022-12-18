@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApisInfo } from 'src/app/config/apis-info';
 import { UserModel } from 'src/app/models/user.model';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { UsuarioSecurityService } from 'src/app/services/parameters/usuario-security.service';
 import { SercurityService } from 'src/app/services/sercurity.service';
 declare const DropBoxNav: any;
 
@@ -18,10 +19,12 @@ export class HeaderComponent implements OnInit {
   imagen: string = "";
   correo: string = '';
   selected: boolean = false;
+  usuarioId: number = 0;
 
   constructor(
     private secService: SercurityService,
-    private lsService: LocalStorageService
+    private lsService: LocalStorageService,
+    private userSecService: UsuarioSecurityService
     ) { }
 
   ngOnInit(): void {
@@ -29,9 +32,14 @@ export class HeaderComponent implements OnInit {
       next: (data:UserModel) =>{
         this.isLogged = data.isLogged;
         this.rolId = data.rol;
-        this.fullname = data.nombre;
-        this.imagen = data.imagenPerfil;
         this.correo = data.correo;
+
+        this.userSecService.buscarCorreo(this.correo).subscribe({
+          next: (data) => {
+            this.imagen = data.imagenPerfil;
+            this.fullname = `${data.nombres} ${data.apellidos}`        
+          },
+        });
       },
       error: (err) =>{
 

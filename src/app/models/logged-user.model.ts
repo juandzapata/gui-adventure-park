@@ -7,8 +7,6 @@ export class LoggedUserModel{
         nombre: '',
         correo: '',
         rol: '',
-        isLogged: false,
-        imagenPerfil: ''
-
+        isLogged: false
     } 
 }

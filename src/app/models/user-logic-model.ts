@@ -1,5 +1,5 @@
 export class UserLogicModel{
-    id: string = '';
+    id: number = 0;
     nombre: string = '';
     apellidos: string = '';
     cedula: string = '';

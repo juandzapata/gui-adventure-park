@@ -39,4 +39,24 @@ export class UsuarioSecurityService {
       })
     });
   }
+
+  buscarCorreo(correo: string):Observable<UserSecurityModel>{
+    let actionName = 'usuario/obtener-email'
+    return this.http.get<UserSecurityModel>(`${this.baseUrl}/${actionName}/${correo}`);
+  }
+
+  editRecord(record: UserSecurityModel){
+    return this.http.patch(this.url + "/" + record.id, {
+      nombre: record.nombres,
+      apellidos: record.apellidos,
+      celular: record.celular,
+      imagenPerfil: record.imagenPerfil,
+      rolId: record.rolId,
+      correo: record.correo
+    }, {
+      headers: new HttpHeaders({
+        "Authorization": `Bearer ${this.jwt}`
+      })
+    });
+  }
 }
