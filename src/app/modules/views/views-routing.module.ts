@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ViewsAtraccionesComponent } from './views-atracciones/views-atracciones.component';
 import { ViewsParquesComponent } from './views-parques/views-parques.component';
+import { ViewsPuestosComponent } from './views-puestos/views-puestos.component';
 import { ViewsZonasComponent } from './views-zonas/views-zonas.component';
 
 const routes: Routes = [
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'views-zonas/:id',
     component: ViewsZonasComponent,
+  },
+  {
+    path: 'views-puestos/:id',
+    component: ViewsPuestosComponent,
   }
 
 ];

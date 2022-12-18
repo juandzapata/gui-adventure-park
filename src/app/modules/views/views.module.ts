@@ -7,6 +7,7 @@ import { ViewsAtraccionesComponent } from './views-atracciones/views-atracciones
 import { ViewsPlanesComponent } from './views-planes/views-planes.component';
 import { ViewsZonasComponent } from './views-zonas/views-zonas.component';
 import { SafePipe } from 'src/app/safe.pipe';
+import { ViewsPuestosComponent } from './views-puestos/views-puestos.component';
 
 
 
@@ -17,7 +18,8 @@ import { SafePipe } from 'src/app/safe.pipe';
     ViewsAtraccionesComponent,
     ViewsPlanesComponent,
     ViewsZonasComponent,
-    SafePipe
+    SafePipe,
+    ViewsPuestosComponent
   ],
   imports: [
     CommonModule,

@@ -94,4 +94,9 @@ export class PuestosService {
       })
     });
   }
+
+  getPuestosZona(id:number):Observable<PuestoModel[]>{
+    let actionName = `zonas/${id}/puestos`;
+    return this.http.get<PuestoModel[]>(`${this.baseUrl}/${actionName}`);
+  }
 }
