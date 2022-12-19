@@ -33,7 +33,9 @@ export class EditPlanesComponent implements OnInit {
     this.fGroup = this.fb.group({
       id: ['',[]],
       name: ['',[]],
-      color: ['',[]]
+      color: ['',[]],
+      descripcion: ['',[]],
+      precio: ['',[]]
     });
   }
 
@@ -46,6 +48,9 @@ export class EditPlanesComponent implements OnInit {
         this.fGroup.controls["id"].setValue(data.id);
         this.fGroup.controls["name"].setValue(data.nombre);
         this.fGroup.controls["color"].setValue(data.color);
+        this.fGroup.controls["descripcion"].setValue(data.descripcion);
+        this.fGroup.controls["precio"].setValue(data.precio);
+
       }, 
       error: (err) => {
         console.log(err);
@@ -61,6 +66,9 @@ export class EditPlanesComponent implements OnInit {
       model.nombre = this.fGroup.controls['name'].value;
       model.color = this.fGroup.controls['color'].value;
       model.id = this.fGroup.controls['id'].value;
+      model.descripcion = this.fGroup.controls['descripcion'].value;
+      model.precio = this.fGroup.controls['precio'].value;
+
       
       this.planService.editRecord(model).subscribe({
         next: (data) => {

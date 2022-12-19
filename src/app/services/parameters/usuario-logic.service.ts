@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApisInfo } from 'src/app/config/apis-info';
+import { CompraModel } from 'src/app/models/compra.model';
 import { UploadedFileModel } from 'src/app/models/uploaded.file.model';
 import { UserLogicModel } from 'src/app/models/user-logic-model';
 import { LocalStorageService } from '../local-storage.service';
@@ -70,5 +71,10 @@ export class UsuarioLogicService {
         "Authoritzation": `Bearer ${this.jwt}`
       })
     });
+  }
+
+  getUsuarioCompras(idUsuario:number):Observable<CompraModel[]>{
+    let actionName = `usuarios/${idUsuario}/compras`;
+    return this.http.get<CompraModel[]>(`${this.baseUrl}${actionName}`);
   }
 }

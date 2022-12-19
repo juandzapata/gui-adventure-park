@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApisInfo } from 'src/app/config/apis-info';
+import { CompraEmailModel } from 'src/app/models/compra-email.model';
+import { CompraPlanModel } from 'src/app/models/compra-plan.model';
 import { CompraModel } from 'src/app/models/compra.model';
 import { LocalStorageService } from '../local-storage.service';
 
@@ -11,6 +13,7 @@ import { LocalStorageService } from '../local-storage.service';
 export class CompraService {
 
   baseUrl:string = ApisInfo.LOGIC_MS_URL;
+  secUrl:string = ApisInfo.SEC_MS_URL;
   actionName = 'compras';
   url:string = `${this.baseUrl}/${this.actionName}`;
   jwt: String = '';
@@ -38,7 +41,7 @@ export class CompraService {
    * @returns la atraccion encontrada
    */
    getRecordById(id: number):Observable<CompraModel>{        
-    return this.http.get<CompraModel>(this.url + "/" + id, {
+    return this.http.get<CompraModel>(this.url + "/" + id + '?filter={"include":["usuario"]}', {
       headers: new HttpHeaders({
         "Authorization": "Bearer "+ this.jwt
       })
@@ -84,6 +87,24 @@ export class CompraService {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`
       })
+    });
+  }
+
+  getComprasPlanes(id:number):Observable<CompraPlanModel[]>{
+    let actionName = `compras/${id}/compra-plans`;
+    return this.http.get<CompraPlanModel[]>(`${this.baseUrl}/${actionName}`);
+  }
+
+  enviarCorreoCompra(model: CompraEmailModel):Observable<boolean>{
+    console.log(model);
+    let actionName = 'email-compra'
+    return this.http.post<boolean>('http://localhost:3001/email-compra', {
+      nombreUsuario: model.nombreUsuario,
+      correoUsuario: model.correoUsuario,
+      compraId: model.idCompra,
+      fechaCompra: model.fechaCompra,
+      cedulaUsuario: model.cedulaUsuario,
+      totalCompra: model.totalCompra
     });
   }
 }

@@ -8,6 +8,10 @@ import { ViewsPlanesComponent } from './views-planes/views-planes.component';
 import { ViewsZonasComponent } from './views-zonas/views-zonas.component';
 import { SafePipe } from 'src/app/safe.pipe';
 import { ViewsPuestosComponent } from './views-puestos/views-puestos.component';
+import { CreateCompraComponent } from '../purchase/compra/create-compra/create-compra.component';
+import { PurchaseModule } from '../purchase/purchase.module';
+import { PurchaseRoutingModule } from '../purchase/purchase-routing.module';
+import { ViewsPlanesAtraccionComponent } from './views-planes-atraccion/views-planes-atraccion.component';
 
 
 
@@ -19,11 +23,13 @@ import { ViewsPuestosComponent } from './views-puestos/views-puestos.component';
     ViewsPlanesComponent,
     ViewsZonasComponent,
     SafePipe,
-    ViewsPuestosComponent
+    ViewsPuestosComponent,
+    ViewsPlanesAtraccionComponent
   ],
   imports: [
     CommonModule,
-    ViewsRoutingModule
+    ViewsRoutingModule,
+    PurchaseRoutingModule
   ]
 })
 export class ViewsModule { }

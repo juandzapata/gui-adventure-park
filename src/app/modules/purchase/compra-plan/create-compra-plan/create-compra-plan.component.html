@@ -1,1 +1,44 @@
-<p>create-compra-plan works!</p>
+<main>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+    <div class="section"></div>
+
+    <h3 class="title brown-text">Código para confirmar tu compra</h3>
+    <div class="container">
+        <div class="z-depth-1 grey lighten-4 row" style="padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+
+            <form class="col s12" [formGroup]="fGroup">
+                <div class='row'>
+                    <div class='col s12'>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='input-field col s12'>
+                        <input formControlName="codigo" type='text' name='codigo' id='codigo' />
+                        <label class="active" for="codigo">Ingresa el código</label>
+                        <div class="input-error"
+                            *ngIf="fg['codigo'].errors && (fg['codigo'].dirty || fg['codigo'].touched)">
+                            <ul>
+                                <li><strong *ngIf="fg['codigo'].errors['required']">Este campo es requerido.</strong>
+                                </li>
+                                <br>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class='row'>
+                    <button type='button' name='btn_forgot' (click)="validarCodigo()"
+                        class='col s12 btn btn-large waves-effect brown'>Enviar código</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="section"></div>
+    <div class="section"></div>
+</div>
+</main>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApisInfo } from 'src/app/config/apis-info';
-import { CustomStyles } from 'src/app/config/custom.styles';
 import { CompraPlanModel } from 'src/app/models/compra-plan.model';
 import { CompraModel } from 'src/app/models/compra.model';
 import { PlanAtraccionModel } from 'src/app/models/plan-atraccion.model';
@@ -10,18 +9,16 @@ import { PlanAtraccionService } from 'src/app/services/parameters/plan-atraccion
 import { UsuarioLogicService } from 'src/app/services/parameters/usuario-logic.service';
 import { CompraPlanService } from 'src/app/services/purchase/compra-plan.service';
 import { CompraService } from 'src/app/services/purchase/compra.service';
-
-export declare const OpenModal: any;
-export declare const ShowToastMessage: any;
+export declare const OpenModal:any;
+export declare const ShowToastMessage:any;
 
 @Component({
-  selector: 'app-views-planes',
-  templateUrl: './views-planes.component.html',
-  styleUrls: ['./views-planes.component.css']
+  selector: 'app-views-planes-atraccion',
+  templateUrl: './views-planes-atraccion.component.html',
+  styleUrls: ['./views-planes-atraccion.component.css']
 })
-export class ViewsPlanesComponent implements OnInit {
+export class ViewsPlanesAtraccionComponent implements OnInit {
 
-  idAtraccion: number = this.route.snapshot.params["id"];
   recordList: PlanAtraccionModel[] = [];
   urlServer = ApisInfo.LOGIC_MS_URL;
   urlVideo = "";
@@ -33,29 +30,23 @@ export class ViewsPlanesComponent implements OnInit {
   compraId: number = 0;
   compras: CompraPlanModel[] = [];
   totalCompra: number = 0;
-
   constructor(
     private route: ActivatedRoute,
-    private planesAtraccionesServices: PlanAtraccionService,
+    private planesAtraccionesService: PlanAtraccionService,
     private compraService: CompraService,
     private compraPlanService: CompraPlanService,
     private router: Router,
     private usuariosService: UsuarioLogicService,
     private ls: LocalStorageService
+    
   ) { }
 
   ngOnInit(): void {
-    this.buscarUsuarioId();
-    this.planesAtraccionesServices.getPlanesAtracciones(this.idAtraccion).subscribe({
+    this.planesAtraccionesService.getRecordList().subscribe({
       next: (data) => {
         this.recordList = data;
-
-        this.recordList.forEach(r => {
-          this.number = 1;
-        });
-      },
-      error: (err) => {
-        alert("Error obteniendo la información");
+        console.log(data);
+        
       }
     });
   }
@@ -151,4 +142,5 @@ export class ViewsPlanesComponent implements OnInit {
     }
     });
   }
+
 }

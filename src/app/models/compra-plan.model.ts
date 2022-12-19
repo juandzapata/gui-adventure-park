@@ -1,7 +1,9 @@
 export class CompraPlanModel{
-    id: string = '';
+    id: number = 0;
     cantidad: number = 0;
     total: number = 0;
-    compraId: string = '';
-    planId: string = '';   
+    compraId: number = 0;
+    planId: number = 0;
+    planNombre: string = '';
+    precio: number = 0;   
 }

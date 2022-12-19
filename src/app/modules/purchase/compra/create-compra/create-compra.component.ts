@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApisInfo } from 'src/app/config/apis-info';
 import { UsuarioLogicService } from 'src/app/services/parameters/usuario-logic.service';
 import { CompraService } from 'src/app/services/purchase/compra.service';
@@ -8,6 +8,10 @@ import { UserLogicModel } from 'src/app/models/user-logic-model';
 import { CustomStyles } from 'src/app/config/custom.styles';
 import { CompraModel } from 'src/app/models/compra.model';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { CompraPlanModel } from 'src/app/models/compra-plan.model';
+import { CompraPlanService } from 'src/app/services/purchase/compra-plan.service';
+import { UsuarioSecurityService } from 'src/app/services/parameters/usuario-security.service';
+import { SercurityService } from 'src/app/services/sercurity.service';
 
 declare const ShowToastMessage:any;
 
@@ -19,30 +23,29 @@ declare const ShowToastMessage:any;
 export class CreateCompraComponent implements OnInit {
 
   urlServer: string = ApisInfo.LOGIC_MS_URL;
-  uploadedImageLogo: string = '';
-  uploadedImageMapa: string = '';
-  isFileSelectedLogo: boolean = false;
-  isFileSelectedMapa: boolean = false;
-
   fGroup: FormGroup = new FormGroup({});
   usuarioCorreo: string = '';
   usuarioId: number = 0;
+  comprasPlanes: CompraPlanModel[] = [];
+  cont:number = 0;
+  idCompra: number = 0;
 
-  //fecha del momento de la compra
-  fechaCompra: Date = new Date();
-  
   constructor(
     private fb: FormBuilder, 
     private compraService: CompraService ,
     private router: Router,
     private usuariosService: UsuarioLogicService,
-    private ls: LocalStorageService
+    private ls: LocalStorageService,
+    private route: ActivatedRoute,
+    private comprasPlanesService: CompraPlanService,
+    private usuarioSecService: UsuarioSecurityService,
+    private secService: SercurityService
     ) {}
 
   ngOnInit(): void {
-    //this.BuildingForm();
+    this.idCompra = this.route.snapshot.params["idCompra"];
+    this.BuildingForm();
     this.buscarUsuarioId();
-    
   }
 
   /**
@@ -50,7 +53,10 @@ export class CreateCompraComponent implements OnInit {
    */
   BuildingForm() {
     this.fGroup = this.fb.group({
-      id: ['', []]
+      tarjeta: ['', [Validators.required]],
+      titular: ['', [Validators.required]],
+      CVV: ['', [Validators.required]],
+      expiracion: ['', [Validators.required]],
     });
   }
 
@@ -58,26 +64,31 @@ export class CreateCompraComponent implements OnInit {
     return this.fGroup.controls;
   }
 
-  SaveRecord() {
-    if(this.fGroup.invalid) {
-      ShowToastMessage("Faltan datos", CustomStyles.error_toast_class);
-    } else {
-      let model = new CompraModel();
-      const fechaStr = this.fechaCompra.toISOString();
-      model.fecha = fechaStr;
-      model.usuarioId = this.usuarioId;
+  RemoveCompras() {
+    this.compraService.getComprasPlanes(this.idCompra).subscribe({
+      next: (data) => {
+        this.comprasPlanes = data;
 
-      this.compraService.saveRecord(model).subscribe({
-        next: (data) => {
-          ShowToastMessage("Registro almacenado éxitosamente", CustomStyles.success_toast_class);
-          //this.router.navigate(['/parameters/list-puestos']);
-        },
-        error: (err) => {
-          alert("Error creando compra");
-        }
-      });
+        this.comprasPlanes.forEach(compraPlan => {
+          this.comprasPlanesService.removeRecord(compraPlan.id).subscribe({
+            next: (data) => {
+              console.log("compra plan" + compraPlan.id + "eliminada");
+              this.cont++;
+              if(this.cont == this.comprasPlanes.length){
+                this.compraService.removeRecord(this.idCompra).subscribe({
+                  next: (data) => {
+                    console.log("Compra eliminada.");
+                    ShowToastMessage("Tu compra ha sido cancelada éxitosamente")
+                    this.router.navigate(["/views/views-parque"]);            
+                  }
+                });
+              }
+            }
+          });
+        });
+      }
+    });
 
-    }
   }
 
   buscarUsuarioId() {
@@ -87,12 +98,26 @@ export class CreateCompraComponent implements OnInit {
       this.usuariosService.buscarCorreo(this.usuarioCorreo).subscribe({
         next: (data) => {
           this.usuarioId = data.id;
-          console.log(this.usuarioId);
+          this.usuarioCorreo = data.email;
+          //console.log(this.usuarioId);
         }
       })
     } else{
       alert("Error obteniendo correo");
     }
+  }
+
+  generarCodigo(){
+    this.secService.generateCode(this.usuarioCorreo).subscribe({
+      next: (data) => {
+        console.log(data);
+        if(data) {
+          ShowToastMessage("¡Código enviado! Revisa tus mensajes.");
+          console.log(this.idCompra);
+          this.router.navigate([`/purchase/create-compra-plan/${this.idCompra}`]);
+        }
+      }
+    });
   }
 
 }
