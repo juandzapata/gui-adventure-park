@@ -27,8 +27,8 @@ export class CreateCompraComponent implements OnInit {
   usuarioCorreo: string = '';
   usuarioId: number = 0;
   comprasPlanes: CompraPlanModel[] = [];
-
-
+  cont:number = 0;
+  idCompra: number = 0;
 
   constructor(
     private fb: FormBuilder, 
@@ -43,6 +43,7 @@ export class CreateCompraComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
+    this.idCompra = this.route.snapshot.params["idCompra"];
     this.BuildingForm();
     this.buscarUsuarioId();
   }
@@ -64,26 +65,26 @@ export class CreateCompraComponent implements OnInit {
   }
 
   RemoveCompras() {
-    let idCompra = this.route.snapshot.params["idCompra"];
-    this.compraService.getComprasPlanes(idCompra).subscribe({
+    this.compraService.getComprasPlanes(this.idCompra).subscribe({
       next: (data) => {
         this.comprasPlanes = data;
-        //console.log(data);
 
         this.comprasPlanes.forEach(compraPlan => {
           this.comprasPlanesService.removeRecord(compraPlan.id).subscribe({
             next: (data) => {
-              console.log("compra plan" + compraPlan.id + "eliminada");             
+              console.log("compra plan" + compraPlan.id + "eliminada");
+              this.cont++;
+              if(this.cont == this.comprasPlanes.length){
+                this.compraService.removeRecord(this.idCompra).subscribe({
+                  next: (data) => {
+                    console.log("Compra eliminada.");
+                    ShowToastMessage("Tu compra ha sido cancelada éxitosamente")
+                    this.router.navigate(["/views/views-parque"]);            
+                  }
+                });
+              }
             }
           });
-        });
-
-        this.compraService.removeRecord(idCompra).subscribe({
-          next: (data) => {
-            console.log("Compra eliminada.");
-            ShowToastMessage("Tu compra ha sido cancelada éxitosamente")
-            this.router.navigate(["/views/views-parque"]);            
-          }
         });
       }
     });
@@ -112,7 +113,8 @@ export class CreateCompraComponent implements OnInit {
         console.log(data);
         if(data) {
           ShowToastMessage("¡Código enviado! Revisa tus mensajes.");
-          this.router.navigate(["/purchase/create-compra-plan"]);
+          console.log(this.idCompra);
+          this.router.navigate([`/purchase/create-compra-plan/${this.idCompra}`]);
         }
       }
     });

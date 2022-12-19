@@ -11,6 +11,7 @@ import { ViewsPuestosComponent } from './views-puestos/views-puestos.component';
 import { CreateCompraComponent } from '../purchase/compra/create-compra/create-compra.component';
 import { PurchaseModule } from '../purchase/purchase.module';
 import { PurchaseRoutingModule } from '../purchase/purchase-routing.module';
+import { ViewsPlanesAtraccionComponent } from './views-planes-atraccion/views-planes-atraccion.component';
 
 
 
@@ -22,7 +23,8 @@ import { PurchaseRoutingModule } from '../purchase/purchase-routing.module';
     ViewsPlanesComponent,
     ViewsZonasComponent,
     SafePipe,
-    ViewsPuestosComponent
+    ViewsPuestosComponent,
+    ViewsPlanesAtraccionComponent
   ],
   imports: [
     CommonModule,
