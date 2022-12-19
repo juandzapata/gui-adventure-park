@@ -47,11 +47,11 @@ export class ResetPasswordComponent implements OnInit {
           ShowToastMessage("Hemos enviado un correo con tu nueva contraseña, ¡No la olvides esta vez!", CustomStyles.success_toast_class);
           this.router.navigate(['/security/singup']);
         }else{
-          alert("No se ha enviado la contraseña")
+          ShowToastMessage('No se pudo enviar la contraseña')
         }
       },
       error:(err) =>{
-        alert("Error en el cambio de contraseña")
+        ShowToastMessage('¡Oh no! Dirección de correo inválido');
       }
     });
   }

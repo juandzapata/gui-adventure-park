@@ -97,10 +97,16 @@ export class EditPlanAtraccionComponent implements OnInit {
           ShowToastMessage("Registro actualizado éxitosamente", CustomStyles.success_toast_class);
 
           //Fecha para compra!!!!!
-          // const fechaActual = new Date();
-          // console.log(fechaActual);
-          // const fechaStr =  `${fechaActual.toLocaleDateString()} ${fechaActual.toLocaleTimeString()} `
-          // console.log(fechaStr);
+          const fechaActual = new Date();
+          const fechaActualStrIso = fechaActual.toISOString();
+          console.log(fechaActualStrIso);
+
+          console.log("---------------------");
+          
+           
+          console.log(fechaActual);
+          const fechaStr =  `${fechaActual.toLocaleDateString()} ${fechaActual.toLocaleTimeString()} `
+          console.log(fechaStr);
 
           this.router.navigate(['/parameters/list-plan-atraccion']);
         },
