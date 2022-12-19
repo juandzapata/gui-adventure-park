@@ -10,7 +10,7 @@ import { LocalStorageService } from '../local-storage.service';
 })
 export class CompraPlanService {
   baseUrl:string = ApisInfo.LOGIC_MS_URL;
-  actionName = 'compra';
+  actionName = 'compra-plan';
   url:string = `${this.baseUrl}/${this.actionName}`;
   jwt: String = '';
 
@@ -51,10 +51,10 @@ export class CompraPlanService {
    */
   saveRecord(record: CompraPlanModel): Observable<CompraPlanModel>{
     return this.http.post<CompraPlanModel>(this.url, {
-      fecha: record.cantidad,
+      cantidad: record.cantidad,
       total: record.total,
       compraId: record.compraId,
-      planId: record.planId, 
+      planAtraccionId: record.planId, 
     }, {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`

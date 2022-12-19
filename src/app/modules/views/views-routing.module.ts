@@ -16,10 +16,6 @@ const routes: Routes = [
     component: ViewsAtraccionesComponent,
   },
   {
-    path:'views-planes',
-    component: ViewsParquesComponent,
-  },
-  {
     path: 'views-zonas/:id',
     component: ViewsZonasComponent,
   },

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApisInfo } from 'src/app/config/apis-info';
+import { CompraPlanModel } from 'src/app/models/compra-plan.model';
 import { CompraModel } from 'src/app/models/compra.model';
 import { LocalStorageService } from '../local-storage.service';
 
@@ -85,5 +86,10 @@ export class CompraService {
         "Authorization": `Bearer ${this.jwt}`
       })
     });
+  }
+
+  getComprasPlanes(id:number):Observable<CompraPlanModel[]>{
+    let actionName = `compras/${id}/compra-plans`;
+    return this.http.get<CompraPlanModel[]>(`${this.baseUrl}/${actionName}`);
   }
 }

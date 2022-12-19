@@ -116,4 +116,9 @@ export class SercurityService {
     return this.http.get<boolean>(`${this.url}${actionName}/${username}`);
   }
 
+  generateCode(username:string):Observable<boolean> {
+    let actionName = `generate-code/${username}`;
+    return this.http.get<boolean>(this.url + actionName);
+  }
+
 }

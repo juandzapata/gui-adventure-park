@@ -1,5 +1,5 @@
 export class CompraModel{
-    id: string = '';
+    id: number = 0;
     fecha: string = '';
     usuarioId: number = 0;
 }

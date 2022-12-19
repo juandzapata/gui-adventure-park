@@ -2,42 +2,52 @@
 <br>
 <br>
 <div class="container">
-  <h3 class="title brown-text center">¡Realiza tu compra!</h3>
-    <div class="row">
-        <br>
-        <form class="col s12" [formGroup]="fGroup">
-    
-            <!-- <div class="row">
-                <div class="input-field col s12">
-                    <input formControlName="fecha" id="fecha" type="text" />
-                    <label for="fecha">Fecha de la compra</label>
-                </div>
-            </div> -->
-    
-            <!--<div class="row">
-                <label class="input-field col s12 input-select">Usuario</label>
-              </div>
-              <div class="row">
-                <div>
-                  <select class="mi-select browser-default" (change)="capturar()" formControlName="seleccionado"
-                    id="seleccionado">
-                    <option disabled selected>Selecciona un usuario</option>
-                    <option *ngFor="let r of usuarios" value="{{r.id}}">{{r.nombre}}</option>
-                  </select>
-                </div>
-              </div>-->
-    
-            <div class="row">
-                <div class="input-field col s12">
-                    <button class="btn btn-success green" (click)="SaveRecord()">
-                        <i class="material-icons left">Confirmar compra</i>Guardar
-                    </button>
-                    &nbsp;
-                    <a routerLink="/parameters/list-ciudades" class="waves-effect waves-light btn red"><i
-                            class="material-icons left">cancel</i>Cancelar compra</a>
-                </div>
+  <h3 class="title brown-text center">¡Información para tu pago!</h3>
+  <div class="container center">
+    <div class="z-depth-1 grey lighten-4 row" style="padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+
+      <form class="form" [formGroup]="fGroup">
+        <div class="col">
+          <div class='row'>
+            <div class='input-field col'>
+              <input formControlName="tarjeta" type='email' name='correo' id='correo' />
+              <label for='correo'>Número de la tarjeta</label>
             </div>
-            
-        </form>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s">
+              <input formControlName="titular" id="nombre" type="text" />
+              <label for="nombre">Titular de la tarjeta</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="col otro">
+          <div class="row">
+            <div class="input-field col s">
+              <input formControlName="CVV" id="apellido" type="text" />
+              <label for="apellido">CVV</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s">
+              <input formControlName="expiracion" id="cedula" type="text" />
+              <label for="cedula">Fecha de expiración</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+    
+            <a (click)="RemoveCompras()" class="waves-effect waves-light btn red"><i
+                class="material-icons left">cancel</i>Cancelar</a>
+            &nbsp;
+            <button (click)="generarCodigo()" class="btn btn-success green">
+              <i class="material-icons left"></i>Confirmar pago
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
-    </div>
+  </div>

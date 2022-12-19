@@ -1,5 +1,7 @@
-<div class="">
-    <div class="container">
+<div class="container">
+    <button class= "btn blue left cart" (click)="ShowModal()"><i class="material-icons">shopping_cart</i></button>
+
+    <div class="">
         <br>
 
         <div class="cards center">
@@ -10,8 +12,19 @@
                         <span class="card-title activator grey-text text-darken-4 textosalvaje center">{{r.planes.nombre}}
                         </span>
                     </div>
+
                     <p class="parrafo left">{{r.planes.descripcion}}</p>
-                    <a (click)="ShowModal()" class="magicButton right">COMPRAR</a>
+                    
+                    <div class="row">
+                        <a (click)="agregarAlCarrito(number, r.id, r.planes.nombre, r.planes.precio)" class="magicButton right"><i class="material-icons">add_shopping_cart
+                        </i></a>
+                        <div class="col row right add_min cart">                                                                                                                
+                            <a (click)="removeNumber()" class="col btn blue-grey darken-4"><i class="material-icons white-text">remove</i></a>
+                            <p class="col textosalvaje">{{number}}</p>
+                            <a (click)="addNumber()" class="col btn blue-grey darken-4"><i class="material-icons white-text">add</i></a>
+                        </div>                        
+                    </div>
+                    
                            
                 </div>
                 <div class="row">
@@ -24,17 +37,55 @@
 
     <!-- Modal Structure -->
     <div id="AddModal" class="modal">
-        <h1 class="textosalvaje">El cosiacador</h1>
-        <div class="center">
-            <div class="addNumber_cont">
-                <div class="addNumber" (click)="addNumber()">
-                    <a class="btn blue-grey darken-4"><i class="material-icons white-text">add</i></a>
-                </div>
-                <div>
-                    <p class="textosalvaje">{{number}}</p>
-                </div>
-                <div class="minNumber" (click)="removeNumber()">
-                    <a class="btn blue-grey darken-4"><i class="material-icons white-text">remove</i></a>
+        <h5 class="textosalvaje center">¡Tu carrito!</h5>
+        <div class="container">
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th>
+                            Plan
+                        </th>
+                        <th>
+                            Cantidad
+                        </th>
+                        <th>
+                            Precio Unitario
+                        </th>
+                        <th>
+                            Subtotal
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let c of compras">
+                        <td>
+                            {{c.planNombre}}
+                        </td>          
+                        <td>
+                            {{c.cantidad}}
+                        </td> 
+                        <td>
+                            {{c.precio}}
+                        </td>  
+                        <td>
+                            {{c.total}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="container row">
+                <h6 class="textosalvaje">Total compra: </h6>
+                <p class="col"> $ {{totalCompra}}</p>
+            </div>
+            
+        </div>
+        
+        <div class="row">
+            <div class="input-field col s12">
+                <div class="right">
+                    <button routerLink="/purchase/create-compra/{{compraId}}" class="waves-effect waves-light btn btn-success green">
+                        Ir al pago
+                    </button>
                 </div>
             </div>
         </div>
