@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'chart.js/auto';
+import { AtraccionModel } from 'src/app/models/atraccion.model';
+import { AtraccionesService } from 'src/app/services/parameters/atracciones.service';
 
 declare const firstReport:any;
+declare const downloadChart:any;
 
 @Component({
   selector: 'app-chartjs-test',
@@ -10,24 +14,50 @@ declare const firstReport:any;
 })
 export class ChartjsTestComponent implements OnInit {
 
-  constructor() { }
+  recordList: AtraccionModel[] = [];
+  estadosAtracciones: number[] = [0,0,0];
+
+  constructor(
+    private route: ActivatedRoute,
+    private atraccionService: AtraccionesService
+  ) { }
 
   ngOnInit(): void {
-    this.report();
+    this.atraccionService.getRecordList().subscribe({
+      next:(data)=>{
+        this.recordList = data;
+        this.AtraccionesReport();
+        this.report();
+      },
+      error:(err)=>{
+        alert("Error obteniendo la información");
+      }
+    });
+    
   }
 
   report(){
     const data = [
-    { year: 2015, count: 100 },
-    { year: 2016, count: 201 },
-    { year: 2017, count: 152 },
-    { year: 2018, count: 253 },
-    { year: 2019, count: 224 },
-    { year: 2020, count: 302 },
-    { year: 2021, count: 281 },
+    { estado: 'Activa',  count: this.estadosAtracciones[0] },
+    { estado: 'En Mantenimiento',  count: this.estadosAtracciones[1]},
+    { estado: 'Inactiva',  count: this.estadosAtracciones[2]}
     ]
-
     firstReport(data);
   }
 
+  AtraccionesReport(){
+    for (let i = 0; i < this.recordList.length; i++) {
+      if(this.recordList[i].estado == "Activa"){
+        this.estadosAtracciones[0] += 1;
+      }else if(this.recordList[i].estado == "En mantenimiento"){
+        this.estadosAtracciones[1] += 1;
+      }else{
+        this.estadosAtracciones[2] += 1;
+      }      
+    }
+  }
+
+  Download(){
+    downloadChart();
+  }
 }

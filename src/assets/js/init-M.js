@@ -40,14 +40,36 @@ document.addEventListener('DOMContentLoaded', function() {
         {
           type: 'bar',
           data: {
-            labels: data.map(row => row.year),
+            labels: data.map(row => row.estado),
             datasets: [
               {
-                label: 'Acquisitions by year',
-                data: data.map(row => row.count)
+                label: 'Estado de las atracciones',
+                data: data.map(row => row.count),
+                backgroundColor: [
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(255, 205, 86, 0.2)',
+                  'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                  'rgb(75, 192, 192)',
+                  'rgb(255, 205, 86)',
+                  'rgb(255, 99, 132)'
+                ],
+                borderWidth: 1
               }
             ]
+          },
+          options: {
+            indexAxis: 'y',
           }
         }
       );
 }
+
+  function downloadChart() {
+    const imageLink = document.createElement('a');
+    const canvas = document.getElementById('acquisitions');
+    imageLink.download = 'chart.png'; 
+    imageLink.href = canvas.toDataURL("image/png", 1); // 1 is the quality 
+    imageLink.click();
+  }

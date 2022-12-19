@@ -1,5 +1,8 @@
 .tabla{
     width: 800px;
     height: 800px;
-    padding-top: 15vh;    
+}
+
+.componente{
+    margin: 5vh;
 }
