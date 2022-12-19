@@ -58,7 +58,8 @@ export class AtraccionesService {
       estaturaMinima: record.estaturaMinima,
       video: record.video,
       descripcion: record.descripcion,
-      zonaId: record.zonaId
+      zonaId: record.zonaId,
+      estado: record.estado
     }, {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`
@@ -78,7 +79,8 @@ export class AtraccionesService {
       estaturaMinima: record.estaturaMinima,
       video: record.video,
       descripcion: record.descripcion,
-      zonaId: record.zonaId
+      zonaId: record.zonaId,
+      estado: record.estado
     }, {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`

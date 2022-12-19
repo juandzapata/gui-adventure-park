@@ -1,1 +1,43 @@
-<p>views-planes works!</p>
+<div class="">
+    <div class="container">
+        <br>
+
+        <div class="cards center">
+
+            <div class="card" *ngFor="let r of recordList" [ngStyle]="{'background': r.planes.color}">
+                <div class="row">
+                    <div class="col card-content">
+                        <span class="card-title activator grey-text text-darken-4 textosalvaje center">{{r.planes.nombre}}
+                        </span>
+                    </div>
+                    <p class="parrafo left">{{r.planes.descripcion}}</p>
+                    <a (click)="ShowModal()" class="magicButton right">COMPRAR</a>
+                           
+                </div>
+                <div class="row">
+                    <p class="precio center textosalvaje">${{r.planes.precio}}</p>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="AddModal" class="modal">
+        <h1 class="textosalvaje">El cosiacador</h1>
+        <div class="center">
+            <div class="addNumber_cont">
+                <div class="addNumber" (click)="addNumber()">
+                    <a class="btn blue-grey darken-4"><i class="material-icons white-text">add</i></a>
+                </div>
+                <div>
+                    <p class="textosalvaje">{{number}}</p>
+                </div>
+                <div class="minNumber" (click)="removeNumber()">
+                    <a class="btn blue-grey darken-4"><i class="material-icons white-text">remove</i></a>
+                </div>
+            </div>
+        </div>
+      </div>
+</div>
+

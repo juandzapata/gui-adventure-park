@@ -41,9 +41,7 @@ export class PlanAtraccionService {
   saveRecord(record: PlanAtraccionModel): Observable<PlanAtraccionModel>{
     return this.http.post<PlanAtraccionModel>(this.url, {
       planId: record.planId,
-      atraccionId: record.atraccionId,
-      descripcion: record.descripcion,
-      precio: record.precio
+      atraccionId: record.atraccionId
     }, {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`
@@ -57,8 +55,6 @@ export class PlanAtraccionService {
     return this.http.put(this.url + "/" + record.id,  {
       planId: record.planId,
       atraccionId: record.atraccionId,
-      descripcion: record.descripcion,
-      precio: record.precio
     }, {
       headers: new HttpHeaders({
         "Authorization": `Bearer ${this.jwt}`
@@ -72,5 +68,10 @@ export class PlanAtraccionService {
         "Authorization": `Bearer ${this.jwt}`
       })
     });
+  }
+
+  getPlanesAtracciones(id:number):Observable<PlanAtraccionModel[]>{
+    let actionName = `atraccions/${id}/plan-atraccions?filter={"include": ["planes"]}`;
+    return this.http.get<PlanAtraccionModel[]>(`${this.baseUrl}/${actionName}`);
   }
 }
