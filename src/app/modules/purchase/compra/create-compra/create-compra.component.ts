@@ -27,6 +27,9 @@ export class CreateCompraComponent implements OnInit {
   fGroup: FormGroup = new FormGroup({});
   usuarioCorreo: string = '';
   usuarioId: number = 0;
+
+  //fecha del momento de la compra
+  fechaCompra: Date = new Date();
   
   constructor(
     private fb: FormBuilder, 
@@ -37,9 +40,9 @@ export class CreateCompraComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    this.BuildingForm();
+    //this.BuildingForm();
     this.buscarUsuarioId();
-
+    
   }
 
   /**
@@ -47,8 +50,7 @@ export class CreateCompraComponent implements OnInit {
    */
   BuildingForm() {
     this.fGroup = this.fb.group({
-      id: ['', []],
-      fecha: ['',[Validators.required]]
+      id: ['', []]
     });
   }
 
@@ -61,7 +63,8 @@ export class CreateCompraComponent implements OnInit {
       ShowToastMessage("Faltan datos", CustomStyles.error_toast_class);
     } else {
       let model = new CompraModel();
-      model.fecha = this.fGroup.controls["fecha"].value;
+      const fechaStr = this.fechaCompra.toISOString();
+      model.fecha = fechaStr;
       model.usuarioId = this.usuarioId;
 
       this.compraService.saveRecord(model).subscribe({

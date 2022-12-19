@@ -56,6 +56,10 @@
           routerLink="report/chartjs-test">Reportes</a>
       </li>
 
+      <li><a class="sidenav-close" *ngIf="isLogged && rolId == '6371d531ec6ee399607ab929' "
+        routerLink="report/report1">Mis Compras</a>
+      </li>
+
       <li><a class="sidenav-close" *ngIf="isLogged && rolId == '633aedcc38f68246c4b8bcb7' "
           routerLink="security/change-password">Cambiar
           contraseña</a>
