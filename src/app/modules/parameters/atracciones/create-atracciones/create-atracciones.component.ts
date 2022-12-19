@@ -53,7 +53,8 @@ export class CreateAtraccionesComponent implements OnInit {
       estaturaMinima: ['', [Validators.required]],
       video: ['', [Validators.required]],
       descripcion: ['', [Validators.required]],
-      seleccionado: ['', [Validators.required]]
+      seleccionado: ['', [Validators.required]],
+      estado: ['', [Validators.required]],
     });
   }
 
@@ -99,6 +100,7 @@ export class CreateAtraccionesComponent implements OnInit {
       model.descripcion = this.fGroup.controls['descripcion'].value;
       model.video = this.fGroup.controls['video'].value;
       model.zonaId = this.seleccionado;
+      model.estado = this.fGroup.controls['estado'].value;
       this.atraccionesService.saveRecord(model).subscribe({
         next: (data) => {
           ShowToastMessage("Registro almacenado éxitosamente", CustomStyles.success_toast_class);

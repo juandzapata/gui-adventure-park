@@ -32,7 +32,9 @@ export class CreatePlanesComponent implements OnInit {
     this.fGroup = this.fb.group({
       id: ['',[]],
       name: ['',[Validators.required]],
-      color: ['',[Validators.required]]
+      color: ['',[Validators.required]],
+      descripcion: ['',[Validators.required]],
+      precio: ['',[Validators.required]]
     });
   }
   
@@ -43,6 +45,8 @@ export class CreatePlanesComponent implements OnInit {
       let model = new PlanModel();      
       model.nombre = this.fGroup.controls['name'].value;
       model.color = this.fGroup.controls['color'].value;
+      model.precio = this.fGroup.controls['precio'].value;
+      model.descripcion = this.fGroup.controls['descripcion'].value;
       
       this.planService.saveRecord(model).subscribe({
         next: (data) => {

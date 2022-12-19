@@ -18,6 +18,7 @@ export class ViewsAtraccionesComponent implements OnInit {
   recordList: AtraccionModel[] = [];
   urlServer = ApisInfo.LOGIC_MS_URL;
   urlVideo = "";
+  color: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -42,6 +43,4 @@ export class ViewsAtraccionesComponent implements OnInit {
     
     OpenModal();
   }
-
-
 } 

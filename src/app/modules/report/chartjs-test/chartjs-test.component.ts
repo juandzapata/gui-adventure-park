@@ -18,13 +18,13 @@ export class ChartjsTestComponent implements OnInit {
 
   report(){
     const data = [
-    { year: 2010, count: 10 },
-    { year: 2011, count: 20 },
-    { year: 2012, count: 15 },
-    { year: 2013, count: 25 },
-    { year: 2014, count: 22 },
-    { year: 2015, count: 30 },
-    { year: 2016, count: 28 },
+    { year: 2015, count: 100 },
+    { year: 2016, count: 201 },
+    { year: 2017, count: 152 },
+    { year: 2018, count: 253 },
+    { year: 2019, count: 224 },
+    { year: 2020, count: 302 },
+    { year: 2021, count: 281 },
     ]
 
     firstReport(data);

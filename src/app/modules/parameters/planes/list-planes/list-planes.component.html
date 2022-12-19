@@ -12,6 +12,12 @@
                 Nombre
             </th>
             <th>
+                Descripción
+            </th>
+            <th>
+                Precio
+            </th>
+            <th>
                 Acciones
             </th>
         </tr>
@@ -21,7 +27,13 @@
         <tr *ngFor="let r of recordList">
             <td>
                 {{r.nombre}}
-            </td>         
+            </td>
+            <td>
+                {{r.descripcion}}
+            </td>
+            <td>
+                {{r.precio}}
+            </td>           
             <td>
                 <a routerLink="/parameters/edit-planes/{{r.id}}" class="waves-effect waves-light btn orange"><i class="material-icons left">edit</i>Editar</a>
                 &nbsp;<a routerLink="/parameters/remove-planes/{{r.id}}" class="waves-effect waves-light btn red"><i class="material-icons left">delete</i>Eliminar</a>

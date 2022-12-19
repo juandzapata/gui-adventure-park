@@ -33,3 +33,21 @@ document.addEventListener('DOMContentLoaded', function() {
     var instance = M.Modal.getInstance(elem);
     instance.open();
   }
+
+  function firstReport(data) {
+    new Chart(
+        document.getElementById('acquisitions'),
+        {
+          type: 'bar',
+          data: {
+            labels: data.map(row => row.year),
+            datasets: [
+              {
+                label: 'Acquisitions by year',
+                data: data.map(row => row.count)
+              }
+            ]
+          }
+        }
+      );
+}

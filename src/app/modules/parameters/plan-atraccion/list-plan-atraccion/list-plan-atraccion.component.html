@@ -18,9 +18,6 @@
                     Imagen atracción
                 </th>
                 <th>
-                    Precio 
-                </th>
-                <th>
                     Acciones
                 </th>
             </tr>
@@ -36,9 +33,6 @@
                 <td>
                     <img class="imagenAtraccion" src="{{urlServer}}/ObtenerArchivo/1/{{r.atracciones.imagen}}" alt="imagen"/>
                 </td>
-                <td>
-                    {{r.precio}}
-                </td>  
                 <td>
                     <a routerLink="/parameters/edit-plan-atraccion/{{r.id}}" class="waves-effect waves-light btn orange"><i class="material-icons left">edit</i>Editar</a>
                     &nbsp;<a routerLink="/parameters/remove-plan-atraccion/{{r.id}}" class="waves-effect waves-light btn red"><i class="material-icons left">delete</i>Eliminar</a>

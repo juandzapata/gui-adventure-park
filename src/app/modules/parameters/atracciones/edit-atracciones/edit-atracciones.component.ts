@@ -50,7 +50,8 @@ export class EditAtraccionesComponent implements OnInit {
       estaturaMinima: ['', []],
       video: ['', []],
       descripcion: ['', []],
-      seleccionado: ['', []]
+      seleccionado: ['', []],
+      estado: ['', []]
 
     });
   }
@@ -98,6 +99,7 @@ export class EditAtraccionesComponent implements OnInit {
         this.uploadedImage = data.imagen;
         this.fGroup.controls["seleccionado"].setValue(data.zonaId);
         this.seleccionado = this.fGroup.controls["seleccionado"].value;
+        this.fGroup.controls["estado"].setValue(data.estado);
       }, 
       error: (err) => {
 
@@ -117,6 +119,7 @@ export class EditAtraccionesComponent implements OnInit {
       model.descripcion = this.fGroup.controls['descripcion'].value;
       model.video = this.fGroup.controls["video"].value;
       model.zonaId = this.seleccionado;
+      model.estado = this.fGroup.controls["estado"].value;
       console.log(model);
       
       model.id = this.fGroup.controls["id"].value;

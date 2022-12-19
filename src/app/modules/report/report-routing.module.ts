@@ -4,7 +4,7 @@ import { ChartjsTestComponent } from './chartjs-test/chartjs-test.component';
 
 const routes: Routes = [
   {
-    path: "report1",
+    path: "chartjs-test",
     component: ChartjsTestComponent
   }
 ];

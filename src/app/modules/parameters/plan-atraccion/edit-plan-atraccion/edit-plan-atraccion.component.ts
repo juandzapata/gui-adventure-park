@@ -47,9 +47,7 @@ export class EditPlanAtraccionComponent implements OnInit {
     this.fGroup = this.fb.group({
       id: ['',[]],
       seleccionadoA: ['',[]],
-      seleccionadoP: ['',[]],
-      descripcion: ['',[]],
-      precio: ['',[]]
+      seleccionadoP: ['',[]]
     });
   }
 
@@ -63,8 +61,6 @@ export class EditPlanAtraccionComponent implements OnInit {
         this.fGroup.controls["id"].setValue(data.id);
         this.fGroup.controls["seleccionadoP"].setValue(data.planId);
         this.fGroup.controls["seleccionadoA"].setValue(data.atraccionId);
-        this.fGroup.controls["descripcion"].setValue(data.descripcion);
-        this.fGroup.controls["precio"].setValue(data.precio);
         this.seleccionadoA = this.fGroup.controls["seleccionadoA"].value;
         this.seleccionadoP = this.fGroup.controls["seleccionadoP"].value;
         
@@ -86,11 +82,7 @@ export class EditPlanAtraccionComponent implements OnInit {
       
       model.planId = this.seleccionadoP;
       model.atraccionId = this.seleccionadoA;
-      model.descripcion = this.fGroup.controls['descripcion'].value;
-      model.precio = this.fGroup.controls['precio'].value;
-
       //console.log(model);
-      
       
       this.planAtraccionService.editRecord(model).subscribe({
         next: (data) => {

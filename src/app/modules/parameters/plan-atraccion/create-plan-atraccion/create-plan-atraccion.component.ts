@@ -45,10 +45,7 @@ export class CreatePlanAtraccionComponent implements OnInit {
     this.fGroup = this.fb.group({
       id: ['',[]],
       seleccionadoA: ['',[Validators.required]],
-      seleccionadoP: ['',[Validators.required]],
-      descripcion: ['',[Validators.required]],
-      precio: ['',[Validators.required]]
-
+      seleccionadoP: ['',[Validators.required]]
     });
   }
   
@@ -59,8 +56,6 @@ export class CreatePlanAtraccionComponent implements OnInit {
       let model = new PlanAtraccionModel();      
       model.planId = this.seleccionadoP;
       model.atraccionId = this.seleccionadoA;
-      model.descripcion = this.fGroup.controls['descripcion'].value;
-      model.precio = this.fGroup.controls['precio'].value;
       
       this.planAtraccionService.saveRecord(model).subscribe({
         next: (data) => {

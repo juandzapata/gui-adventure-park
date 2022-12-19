@@ -12,22 +12,29 @@
                 </div>
                 <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4 textosalvaje center">{{r.nombre}}</span>
-                    <a routerLink="/views/views-zonas/{{r.id}}" class="magicButton right">VER PLANES</a>
+                    <div class="row">
+                        <div class="col row estado">
+                            <div class="circulo col" *ngIf="r.estado == 'Activa'" style="background-color: green"></div>
+                            <div class="circulo col" *ngIf="r.estado == 'En mantenimiento'" style="background-color: yellow"></div>
+                            <div class="circulo col" *ngIf="r.estado == 'Inactiva'" style="background-color: red"></div>
+                            <p class="col">{{r.estado}}</p>
+                        </div>
+                        <p class="center col"><i class="material-icons">vertical_align_top</i>{{r.estaturaMinima}}cm</p>                        
+                    </div>
+
+                    <a routerLink="/views/views-planes/{{r.id}}" class="magicButton right">VER PLANES</a>
                     <br>
                     <p class="parrafo">{{r.descripcion}}</p>
-                    
-                </div>
 
-                
+                </div>
             </div>
         </div>
 
         <!-- Modal Structure -->
         <div id="AddModal" class="modal center">
-            <iframe width="560" height="315" [src]="urlVideo | safe"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+            <iframe width="560" height="315" [src]="urlVideo | safe" title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
         </div>
 
         <br>

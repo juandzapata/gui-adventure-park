@@ -8,5 +8,6 @@ export class AtraccionModel{
     video: string = '';
     descripcion: string = '';
     zonaId: number = 0;
+    estado: string = '';
     zona: ZonaModel = new ZonaModel();
 }
